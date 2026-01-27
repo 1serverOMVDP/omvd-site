@@ -1170,13 +1170,14 @@ bind [key] do На груди сотрудника виднеется шевро
                 command: "/r [ваш позывной] Выезжаю за ОП/СОП, по базе данных: [имя фамилия], напарник: [Позывной/Фамилия напарника]."
             },
             {
-                title: "Доклад для авиационного отряда (вылет)",
-                command: "/r [ваш позывной], Вылетаю для воздушного патрулирования юрисдикции, второй пилот: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Доклад для авиационного отряда (патруль)",
-                command: "/r [ваш позывной], Продолжаю воздушный патруль, состояние стабильное, второй пилот: [Позывной/Фамилия напарника]."
-                {
+        title: "Доклад для авиационного отряда (вылет)",
+        command: "/r [ваш позывной], Вылетаю для воздушного патрулирования юрисдикции, второй пилот: [Позывной/Фамилия напарника]."
+    },
+    {
+        title: "Доклад для авиационного отряда (патруль)",
+        command: "/r [ваш позывной], Продолжаю воздушный патруль, состояние стабильное, второй пилот: [Позывной/Фамилия напарника]."
+    },
+    {
         title: "Завершение выполнения задачи",
         command: "/r [ваш позывной], Закончил выполнение задачи, возвращаюсь на базу."
     },
@@ -1187,7 +1188,7 @@ bind [key] do На груди сотрудника виднеется шевро
     {
         title: "Взлёт для выполнения задачи",
         command: "/r [ваш позывной], Взлетаю для [задача]."
-    },
+    }
 ];
             
         
@@ -2066,22 +2067,28 @@ function updateUserData() {
 function fillBinds() {
     const mainBindsList = document.getElementById('mainBindsList');
     const additionalBindsList = document.getElementById('additionalBindsList');
-    
+
     if (mainBindsList) {
         mainBindsList.innerHTML = '';
         mainBinds.forEach((bind, index) => {
             const bindItem = document.createElement('div');
             bindItem.className = 'bind-item';
             bindItem.innerHTML = `
-                <div class="bind-key">${bind.title}</div>
-                <div class="bind-commands">${formatBindCommands(bind.commands)}</div>
-                <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formatBindCommands(bind.commands))}')">
-                    <i class="far fa-copy"></i> Копировать бинд
-                </button>
+                <p>${bind.name}</p>
+                <p>${bind.phoneNumber}</p>
+                <p>${bind.email}</p>
+                <p>${bind.address1}</p>
+                <p>${bind.address2}</p>
+                <p>${bind.city}</p>
+                <p>${bind.state}</p>
+                <p>${bind.zipCode}</p>
+                <p>${bind.country}</p>
             `;
+            // Удалено: bindItem.appendChild(bind); // Это лишнее и вызывает ошибку
             mainBindsList.appendChild(bindItem);
         });
     }
+}
     
     if (additionalBindsList) {
         additionalBindsList.innerHTML = '';
@@ -2377,16 +2384,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Мой сайт</title>
-</head>
-<body>
-    <h1>Сайт работает!</h1>
-</body>
 
-</html>
+
 
 
 
