@@ -2052,17 +2052,22 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Заменить существующую функцию updateUserData():
 function updateUserData() {
     userData = {
         rank: document.getElementById('rank').value || "",
         lastname: document.getElementById('lastname').value || "",
         position: document.getElementById('position').value || "",
         callsign: document.getElementById('callsign').value || "",
-        partnerCallsign: document.getElementById('partnerCallsign').value || "", // ДОБАВЛЕНО
+        partnerCallsign: document.getElementById('partnerCallsign').value || "",
         service: document.getElementById('service').value || "полиции"
     };
 }
+        document.getElementById('updateDataBtn').addEventListener('click', function() {
+        updateUserData();
+        fillBinds();
+        fillReports();
+        showNotification('Данные обновлены!');
+    });
 // Функция для заполнения биндов
 function fillBinds() {
     const mainBindsList = document.getElementById('mainBindsList');
@@ -2074,18 +2079,29 @@ function fillBinds() {
             const bindItem = document.createElement('div');
             bindItem.className = 'bind-item';
             bindItem.innerHTML = `
-                <p>${bind.name}</p>
-                <p>${bind.phoneNumber}</p>
-                <p>${bind.email}</p>
-                <p>${bind.address1}</p>
-                <p>${bind.address2}</p>
-                <p>${bind.city}</p>
-                <p>${bind.state}</p>
-                <p>${bind.zipCode}</p>
-                <p>${bind.country}</p>
+                <div class="bind-key">${bind.title}</div>
+                <div class="bind-commands">${formatBindCommands(bind.commands)}</div>
+                <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formatBindCommands(bind.commands))}')">
+                    <i class="far fa-copy"></i> Копировать бинд
+                </button>
             `;
-            // Удалено: bindItem.appendChild(bind); // Это лишнее и вызывает ошибку
             mainBindsList.appendChild(bindItem);
+        });
+    }
+    
+    if (additionalBindsList) {
+        additionalBindsList.innerHTML = '';
+        additionalBinds.forEach((bind, index) => {
+            const bindItem = document.createElement('div');
+            bindItem.className = 'bind-item';
+            bindItem.innerHTML = `
+                <div class="bind-key">${bind.title}</div>
+                <div class="bind-commands">${formatBindCommands(bind.commands)}</div>
+                <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formatBindCommands(bind.commands))}')">
+                    <i class="far fa-copy"></i> Копировать бинд
+                </button>
+            `;
+            additionalBindsList.appendChild(bindItem);
         });
     }
 }
@@ -2384,6 +2400,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
