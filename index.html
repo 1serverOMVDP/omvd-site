@@ -552,6 +552,10 @@
                     <input type="text" id="callsign" placeholder="Например: Хрюндель">
                 </div>
                 <div class="form-group">
+    <label for="partnerCallsign">Позывной напарника:</label>
+    <input type="text" id="partnerCallsign" placeholder="Например: Кинжал">
+</div>
+                <div class="form-group">
                     <label for="service">Служба:</label>
                     <select id="service">
                         <option value="полиции">Полиции</option>
@@ -835,14 +839,15 @@ do У пострадавшего есть дыхание?</div>
     </footer>
 
     <script>
-        // Данные пользователя
-        let userData = {
-            rank: "",
-            lastname: "",
-            position: "",
-            callsign: "",
-            service: "полиции"
-        };
+        // Обновить объект userData в начале скрипта:
+let userData = {
+    rank: "",
+    lastname: "",
+    position: "",
+    callsign: "",
+    partnerCallsign: "", // ДОБАВЛЕНО
+    service: "полиции"
+};
 
         // Основные бинды (1.1 - 8.1.2)
         const mainBinds = [
@@ -1171,8 +1176,21 @@ bind [key] do На груди сотрудника виднеется шевро
             {
                 title: "Доклад для авиационного отряда (патруль)",
                 command: "/r [ваш позывной], Продолжаю воздушный патруль, состояние стабильное, второй пилот: [Позывной/Фамилия напарника]."
-            }
-        ];
+                {
+        title: "Завершение выполнения задачи",
+        command: "/r [ваш позывной], Закончил выполнение задачи, возвращаюсь на базу."
+    },
+    {
+        title: "Посадка на вертолётную площадку",
+        command: "/r [ваш позывной], Выполняю посадку на вертолётную площадку."
+    },
+    {
+        title: "Взлёт для выполнения задачи",
+        command: "/r [ваш позывной], Взлетаю для [задача]."
+    }
+];
+            
+        
 
         // Отыгровки ПДП
         const pdpItems = [
@@ -2033,13 +2051,14 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Функция для обновления пользовательских данных
+// Заменить существующую функцию updateUserData():
 function updateUserData() {
     userData = {
-        rank: document.getElementById('rank').value || "Лейтенант полиции",
-        lastname: document.getElementById('lastname').value || "Иванов",
-        position: document.getElementById('position').value || "Инструктор АМВД",
-        callsign: document.getElementById('callsign').value || "Хрюндель",
+        rank: document.getElementById('rank').value || "",
+        lastname: document.getElementById('lastname').value || "",
+        position: document.getElementById('position').value || "",
+        callsign: document.getElementById('callsign').value || "",
+        partnerCallsign: document.getElementById('partnerCallsign').value || "", // ДОБАВЛЕНО
         service: document.getElementById('service').value || "полиции"
     };
 }
@@ -2270,15 +2289,28 @@ function formatBindCommands(commands) {
     return formatted;
 }
 
+// Заменить существующую функцию formatReportCommand():
 function formatReportCommand(command) {
     let formatted = command;
     
-    if (userData.callsign) {
-        // Заменяем все варианты плейсхолдеров
-        formatted = formatted.replace(/\[ваш позывной\]/gi, userData.callsign);
-        formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/gi, userData.callsign);
-        formatted = formatted.replace(/\[Позывной\]/gi, userData.callsign);
-        formatted = formatted.replace(/\[Позывной\/Фамилия\]/gi, userData.callsign);
+    // ИСПРАВЛЕНИЕ 1: Заменяем [ваш позывной] только если он не пустой
+    if (userData.callsign && userData.callsign.trim() !== "") {
+        formatted = formatted.replace(/\[ваш позывной\]/g, userData.callsign);
+        formatted = formatted.replace(/\[ваш позывный\]/g, userData.callsign);
+    }
+    // Если позывной пустой - оставляем [Ваш позывной] как есть
+    
+    // ИСПРАВЛЕНИЕ 2: Заменяем позывной напарника только если он указан
+    if (userData.partnerCallsign && userData.partnerCallsign.trim() !== "") {
+        formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.partnerCallsign);
+    } else {
+        // Если напарник не указан - пишем "Напарника: Нет"
+        formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, 'Напарника: Нет');
+    }
+    
+    // Также заменяем другие плейсхолдеры если они есть
+    if (userData.callsign && userData.callsign.trim() !== "") {
+        formatted = formatted.replace(/\[Позывной\]/g, userData.callsign);
     }
     
     return formatted;
@@ -2352,5 +2384,6 @@ updateDataBtn.addEventListener('click', () => {
 </body>
 
 </html>
+
 
 
