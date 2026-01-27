@@ -2288,18 +2288,19 @@ function formatBindCommands(commands) {
     return formatted;
 }
 
-// Заменить существующую функцию formatReportCommand():
 function formatReportCommand(command) {
     let formatted = command;
     
-    // ИСПРАВЛЕНИЕ 1: Заменяем [ваш позывной] только если он не пустой
+    // Заменяем [ваш позывной] только если он не пустой
     if (userData.callsign && userData.callsign.trim() !== "") {
         formatted = formatted.replace(/\[ваш позывной\]/g, userData.callsign);
-        formatted = formatted.replace(/\[ваш позывный\]/g, userData.callsign);
+        formatted = formatted.replace(/\[ваш позывный\]/g, userData.callsign); // на случай опечатки
+    } else {
+        // Если позывной пустой - заменяем на "[ваш позывной]"
+        formatted = formatted.replace(/\[ваш позывной\]/g, "[ваш позывной]");
     }
-    // Если позывной пустой - оставляем [Ваш позывной] как есть
     
-    // ИСПРАВЛЕНИЕ 2: Заменяем позывной напарника только если он указан
+    // Заменяем позывной напарника только если он указан
     if (userData.partnerCallsign && userData.partnerCallsign.trim() !== "") {
         formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.partnerCallsign);
     } else {
@@ -2338,13 +2339,16 @@ document.addEventListener('DOMContentLoaded', function() {
     fillPDP();
     initLawSearch();
     
-    // Обновите обработчик кнопки сохранения данных:
-updateDataBtn.addEventListener('click', () => {
-    updateUserData();
-    fillBinds();
-    fillReports(); // Добавьте эту строку
-    showNotification('Данные сохранены! Бинды и доклады обновлены.');
-});
+   function updateUserData() {
+    userData = {
+        rank: document.getElementById('rank').value || "",
+        lastname: document.getElementById('lastname').value || "",
+        position: document.getElementById('position').value || "",
+        callsign: document.getElementById('callsign').value || "",
+        partnerCallsign: document.getElementById('partnerCallsign').value || "",
+        service: document.getElementById('service').value || "полиции"
+    };
+}
     
     
     // Обработчики фильтров законодательства
@@ -2383,6 +2387,7 @@ updateDataBtn.addEventListener('click', () => {
 </body>
 
 </html>
+
 
 
 
