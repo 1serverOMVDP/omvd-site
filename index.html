@@ -2274,8 +2274,11 @@ function formatReportCommand(command) {
     let formatted = command;
     
     if (userData.callsign) {
-        formatted = formatted.replace(/\[ваш позывной\]/g, userData.callsign);
-        formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.callsign);
+        // Заменяем все варианты плейсхолдеров
+        formatted = formatted.replace(/\[ваш позывной\]/gi, userData.callsign);
+        formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/gi, userData.callsign);
+        formatted = formatted.replace(/\[Позывной\]/gi, userData.callsign);
+        formatted = formatted.replace(/\[Позывной\/Фамилия\]/gi, userData.callsign);
     }
     
     return formatted;
@@ -2304,16 +2307,14 @@ document.addEventListener('DOMContentLoaded', function() {
     fillPDP();
     initLawSearch();
     
-    // Обработчик сохранения данных
-    const updateDataBtn = document.getElementById('updateDataBtn');
-    if (updateDataBtn) {
-        updateDataBtn.addEventListener('click', () => {
-            updateUserData();
-            fillBinds();
-            fillReports();
-            showNotification('Данные сохранены! Бинды и доклады обновлены.');
-        });
-    }
+    // Обновите обработчик кнопки сохранения данных:
+updateDataBtn.addEventListener('click', () => {
+    updateUserData();
+    fillBinds();
+    fillReports(); // Добавьте эту строку
+    showNotification('Данные сохранены! Бинды и доклады обновлены.');
+});
+    
     
     // Обработчики фильтров законодательства
     ['filterUK', 'filterKOAP', 'filterFZOP', 'filterFZOVNG'].forEach(id => {
@@ -2351,4 +2352,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 
 </html>
+
 
