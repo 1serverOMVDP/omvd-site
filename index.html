@@ -552,9 +552,9 @@
                     <input type="text" id="callsign" placeholder="Например: Хрюндель">
                 </div>
                 <div class="form-group">
-    <label for="partnerCallsign">Позывной напарника:</label>
-    <input type="text" id="partnerCallsign" placeholder="Например: Кинжал">
-</div>
+                    <label for="partnerCallsign">Позывной напарника:</label>
+                    <input type="text" id="partnerCallsign" placeholder="Например: Кинжал">
+                </div>
                 <div class="form-group">
                     <label for="service">Служба:</label>
                     <select id="service">
@@ -822,7 +822,7 @@ do У пострадавшего есть дыхание?</div>
     <!-- Уведомление о копировании -->
     <div class="notification" id="copyNotification">
         <i class="fas fa-check-circle"></i>
-        <span>Текст скопирован в буфер обмена!</span>
+        <span id="notificationText">Текст скопирован в буфер обмена!</span>
     </div>
 
     <footer>
@@ -839,17 +839,17 @@ do У пострадавшего есть дыхание?</div>
     </footer>
 
     <script>
-        // Обновить объект userData в начале скрипта:
-let userData = {
-    rank: "",
-    lastname: "",
-    position: "",
-    callsign: "",
-    partnerCallsign: "", // ДОБАВЛЕНО
-    service: "полиции"
-};
+        // Глобальный объект для хранения пользовательских данных
+        let userData = {
+            rank: "",
+            lastname: "",
+            position: "",
+            callsign: "",
+            partnerCallsign: "",
+            service: "полиции"
+        };
 
-        // Основные бинды (1.1 - 8.1.2)
+       // Основные бинды (1.1 - 8.1.2)
         const mainBinds = [
             {
                 title: "1.1. Приветствие коллег",
@@ -1987,417 +1987,394 @@ me открыл силиконовую ленту и прилепил её на 
         {title: "Статья 32. Права руководства войск национальной гвардии", content: "Руководство организации вправе отказать в принятии, восстановлении и переводе без оглашения причин.", hidden: ""}
     ]
 };
- // Функция для переключения вкладок
-function initTabs() {
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Убираем активный класс у всех вкладок
-            tabs.forEach(t => t.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
+
+        // Функция для переключения вкладок
+        function initTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
             
-            // Добавляем активный класс текущей вкладке
-            tab.classList.add('active');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Убираем активный класс у всех вкладок
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Добавляем активный класс текущей вкладке
+                    tab.classList.add('active');
+                    
+                    // Показываем соответствующий контент
+                    const tabId = tab.getAttribute('data-tab');
+                    const tabContent = document.getElementById(tabId);
+                    if (tabContent) {
+                        tabContent.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Функция для сворачивания/разворачивания категорий
+        function toggleCategory(header) {
+            header.classList.toggle('collapsed');
+            const list = header.nextElementSibling;
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+            } else {
+                list.style.display = 'none';
+            }
+        }
+
+        // Функция для копирования текста
+        function copyToClipboard(text) {
+            // Удаляем лишние пробелы и переносы строк
+            const cleanText = text.replace(/\s+/g, ' ').trim();
             
-            // Показываем соответствующий контент
-            const tabId = tab.getAttribute('data-tab');
-            const tabContent = document.getElementById(tabId);
-            if (tabContent) {
-                tabContent.classList.add('active');
+            navigator.clipboard.writeText(cleanText).then(() => {
+                showNotification('Текст скопирован в буфер обмена!');
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+                // Fallback для старых браузеров
+                const textArea = document.createElement('textarea');
+                textArea.value = cleanText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('Текст скопирован в буфер обмена!');
+            });
+        }
+
+        // Показать уведомление
+        function showNotification(message) {
+            const notification = document.getElementById('copyNotification');
+            const notificationText = document.getElementById('notificationText');
+            
+            if (notificationText) {
+                notificationText.textContent = message;
             }
-        });
-    });
-}
-
-// Функция для сворачивания/разворачивания категорий
-function toggleCategory(header) {
-    header.classList.toggle('collapsed');
-    const list = header.nextElementSibling;
-    if (list.style.display === 'none') {
-        list.style.display = 'block';
-    } else {
-        list.style.display = 'none';
-    }
-}
-
-// Функция для копирования текста
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        showNotification('Текст скопирован в буфер обмена!');
-    }).catch(err => {
-        console.error('Ошибка копирования: ', err);
-        // Fallback для старых браузеров
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        showNotification('Текст скопирован в буфер обмена!');
-    });
-}
-
-// Показать уведомление
-function showNotification(message) {
-    const notification = document.getElementById('copyNotification');
-    const notificationText = notification.querySelector('span');
-    
-    notificationText.textContent = message;
-    notification.style.display = 'flex';
-    
-    setTimeout(() => {
-        notification.style.display = 'none';
-    }, 3000);
-}
-
-function updateUserData() {
-    userData = {
-        rank: document.getElementById('rank').value || "",
-        lastname: document.getElementById('lastname').value || "",
-        position: document.getElementById('position').value || "",
-        callsign: document.getElementById('callsign').value || "",
-        partnerCallsign: document.getElementById('partnerCallsign').value || "",
-        service: document.getElementById('service').value || "полиции"
-    };
-}
-        document.getElementById('updateDataBtn').addEventListener('click', function() {
-        updateUserData();
-        fillBinds();
-        fillReports();
-        showNotification('Данные обновлены!');
-    });
-// Функция для заполнения биндов
-function fillBinds() {
-    const mainBindsList = document.getElementById('mainBindsList');
-    const additionalBindsList = document.getElementById('additionalBindsList');
-
-    if (mainBindsList) {
-        mainBindsList.innerHTML = '';
-        mainBinds.forEach((bind, index) => {
-            const bindItem = document.createElement('div');
-            bindItem.className = 'bind-item';
-            bindItem.innerHTML = `
-                <div class="bind-key">${bind.title}</div>
-                <div class="bind-commands">${formatBindCommands(bind.commands)}</div>
-                <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formatBindCommands(bind.commands))}')">
-                    <i class="far fa-copy"></i> Копировать бинд
-                </button>
-            `;
-            mainBindsList.appendChild(bindItem);
-        });
-    }
-    
-    if (additionalBindsList) {
-        additionalBindsList.innerHTML = '';
-        additionalBinds.forEach((bind, index) => {
-            const bindItem = document.createElement('div');
-            bindItem.className = 'bind-item';
-            bindItem.innerHTML = `
-                <div class="bind-key">${bind.title}</div>
-                <div class="bind-commands">${formatBindCommands(bind.commands)}</div>
-                <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formatBindCommands(bind.commands))}')">
-                    <i class="far fa-copy"></i> Копировать бинд
-                </button>
-            `;
-            additionalBindsList.appendChild(bindItem);
-        });
-    }
-}
-    
-    if (additionalBindsList) {
-        additionalBindsList.innerHTML = '';
-        additionalBinds.forEach((bind, index) => {
-            const bindItem = document.createElement('div');
-            bindItem.className = 'bind-item';
-            bindItem.innerHTML = `
-                <div class="bind-key">${bind.title}</div>
-                <div class="bind-commands">${formatBindCommands(bind.commands)}</div>
-                <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formatBindCommands(bind.commands))}')">
-                    <i class="far fa-copy"></i> Копировать бинд
-                </button>
-            `;
-            additionalBindsList.appendChild(bindItem);
-        });
-    }
-}
-
-// Функция для заполнения докладов
-function fillReports() {
-    const reportsList = document.getElementById('reportsList');
-    
-    if (reportsList) {
-        reportsList.innerHTML = '';
-        reports.forEach((report, index) => {
-            const reportItem = document.createElement('div');
-            reportItem.className = 'report-item';
-            const formattedCommand = formatReportCommand(report.command);
-            reportItem.innerHTML = `
-                <h4>${report.title}</h4>
-                <div class="report-command">${formattedCommand}</div>
-                <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommand)}')">
-                    <i class="far fa-copy"></i> Копировать доклад
-                </button>
-            `;
-            reportsList.appendChild(reportItem);
-        });
-    }
-}
-
-// Функция для заполнения ПДП
-function fillPDP() {
-    const pdpList = document.getElementById('pdpList');
-    
-    if (pdpList) {
-        pdpList.innerHTML = '';
-        pdpItems.forEach((item, index) => {
-            const pdpItem = document.createElement('div');
-            pdpItem.className = 'pdp-injury';
-            pdpItem.innerHTML = `
-                <div class="injury-header" onclick="toggleCategory(this)">
-                    <span>${item.title}</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="injury-content">
-                    <div class="bind-commands">${item.content.replace(/\n/g, '\n')}</div>
-                    <!-- Убрана кнопка Копировать -->
-                </div>
-            `;
-            pdpList.appendChild(pdpItem);
-        });
-    }
-}
-
-// Функция для поиска законодательства
-function initLawSearch() {
-    const searchInput = document.getElementById('lawSearch');
-    const searchBtn = document.getElementById('searchLawBtn');
-    const lawResults = document.getElementById('lawResults');
-    
-    function performLawSearch() {
-        const query = searchInput.value.toLowerCase();
-        const showUK = document.getElementById('filterUK').checked;
-        const showKOAP = document.getElementById('filterKOAP').checked;
-        const showFZOP = document.getElementById('filterFZOP').checked;
-        const showFZOVNG = document.getElementById('filterFZOVNG').checked;
-        
-        lawResults.innerHTML = '';
-        
-        // Поиск по УК
-        if (showUK) {
-            legislationData.uk.forEach(article => {
-                if (query === '' || 
-                    article.title.toLowerCase().includes(query) || 
-                    article.content.toLowerCase().includes(query) ||
-                    (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                    
-                    const articleElement = createLawArticleElement('УК РП', article, query);
-                    lawResults.appendChild(articleElement);
-                }
-            });
+            notification.style.display = 'flex';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
         }
-        
-        // Поиск по КоАП
-        if (showKOAP) {
-            legislationData.koap.forEach(article => {
-                if (query === '' || 
-                    article.title.toLowerCase().includes(query) || 
-                    article.content.toLowerCase().includes(query) ||
-                    (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                    
-                    const articleElement = createLawArticleElement('КоАП', article, query);
-                    lawResults.appendChild(articleElement);
-                }
-            });
+
+        // Обновление пользовательских данных
+        function updateUserData() {
+            userData = {
+                rank: document.getElementById('rank').value || "",
+                lastname: document.getElementById('lastname').value || "",
+                position: document.getElementById('position').value || "",
+                callsign: document.getElementById('callsign').value || "",
+                partnerCallsign: document.getElementById('partnerCallsign').value || "",
+                service: document.getElementById('service').value || "полиции"
+            };
         }
-        
-        // Поиск по ФЗоП
-        if (showFZOP) {
-            legislationData.fzop.forEach(article => {
-                if (query === '' || 
-                    article.title.toLowerCase().includes(query) || 
-                    article.content.toLowerCase().includes(query) ||
-                    (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                    
-                    const articleElement = createLawArticleElement('ФЗоП', article, query);
-                    lawResults.appendChild(articleElement);
-                }
-            });
-        }
-        
-        // Поиск по ФЗоВНГ
-        if (showFZOVNG) {
-            legislationData.fzvng.forEach(article => {
-                if (query === '' || 
-                    article.title.toLowerCase().includes(query) || 
-                    article.content.toLowerCase().includes(query) ||
-                    (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                    
-                    const articleElement = createLawArticleElement('ФЗоВНГ', article, query);
-                    lawResults.appendChild(articleElement);
-                }
-            });
-        }
-    }
-    
-    if (searchBtn) {
-        searchBtn.addEventListener('click', performLawSearch);
-    }
-    
-    if (searchInput) {
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                performLawSearch();
+
+        // Функция для заполнения биндов
+        function fillBinds() {
+            const mainBindsList = document.getElementById('mainBindsList');
+            const additionalBindsList = document.getElementById('additionalBindsList');
+
+            if (mainBindsList) {
+                mainBindsList.innerHTML = '';
+                mainBinds.forEach((bind) => {
+                    const bindItem = document.createElement('div');
+                    bindItem.className = 'bind-item';
+                    const formattedCommands = formatBindCommands(bind.commands);
+                    bindItem.innerHTML = `
+                        <div class="bind-key">${bind.title}</div>
+                        <div class="bind-commands">${formattedCommands}</div>
+                        <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommands)}')">
+                            <i class="far fa-copy"></i> Копировать бинд
+                        </button>
+                    `;
+                    mainBindsList.appendChild(bindItem);
+                });
             }
-        });
-    }
-    
-    // Запустить поиск при загрузке
-    performLawSearch();
-}
+            
+            if (additionalBindsList) {
+                additionalBindsList.innerHTML = '';
+                additionalBinds.forEach((bind) => {
+                    const bindItem = document.createElement('div');
+                    bindItem.className = 'bind-item';
+                    const formattedCommands = formatBindCommands(bind.commands);
+                    bindItem.innerHTML = `
+                        <div class="bind-key">${bind.title}</div>
+                        <div class="bind-commands">${formattedCommands}</div>
+                        <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommands)}')">
+                            <i class="far fa-copy"></i> Копировать бинд
+                        </button>
+                    `;
+                    additionalBindsList.appendChild(bindItem);
+                });
+            }
+        }
 
-// Вспомогательные функции
-function createLawArticleElement(code, article, query) {
-    const articleElement = document.createElement('div');
-    articleElement.className = 'law-article';
-    
-    let content = article.content;
-    let hiddenContent = article.hidden || '';
-    
-    // Подсветка найденного текста
-    if (query && query.trim() !== '') {
-        const regex = new RegExp(`(${query})`, 'gi');
-        content = content.replace(regex, '<span class="highlight-text">$1</span>');
-        hiddenContent = hiddenContent.replace(regex, '<span class="highlight-text">$1</span>');
-    }
-    
-    articleElement.innerHTML = `
-        <div class="law-code">${code} - ${article.title}</div>
-        <div class="law-text">${content.replace(/\n/g, '<br>')}</div>
-        ${hiddenContent ? `
-            <div class="law-title" style="margin-top: 15px; color: #666; font-size: 0.9rem;">
-                <i class="fas fa-info-circle"></i> Примечание:
-            </div>
-            <div class="law-text" style="font-size: 0.9rem; color: #666;">${hiddenContent.replace(/\n/g, '<br>')}</div>
-        ` : ''}
-    `;
-    
-    return articleElement;
-}
+        // Функция для заполнения докладов
+        function fillReports() {
+            const reportsList = document.getElementById('reportsList');
+            
+            if (reportsList) {
+                reportsList.innerHTML = '';
+                reports.forEach((report) => {
+                    const reportItem = document.createElement('div');
+                    reportItem.className = 'report-item';
+                    const formattedCommand = formatReportCommand(report.command);
+                    reportItem.innerHTML = `
+                        <h4>${report.title}</h4>
+                        <div class="report-command">${formattedCommand}</div>
+                        <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommand)}')">
+                            <i class="far fa-copy"></i> Копировать доклад
+                        </button>
+                    `;
+                    reportsList.appendChild(reportItem);
+                });
+            }
+        }
 
-function formatBindCommands(commands) {
-    let formatted = commands;
-    
-    // Замена плейсхолдеров на пользовательские данные
-    if (userData.rank) {
-        formatted = formatted.replace(/\[звание\]/g, userData.rank);
-    }
-    if (userData.lastname) {
-        formatted = formatted.replace(/\[фамилия\]/g, userData.lastname);
-        formatted = formatted.replace(/\[Имя\]/g, userData.lastname); // Добавляем эту строку
-    }
-    if (userData.position) {
-        formatted = formatted.replace(/\[должность\]/g, userData.position);
-    }
-    if (userData.callsign) {
-        formatted = formatted.replace(/\[Позывной\]/g, userData.callsign);
-    }
-    if (userData.service) {
-        // Для правильной замены
-        formatted = formatted.replace(/\[полиции\/юстиции\/внутренней службы\]/g, userData.service);
-    }
-    
-    return formatted;
-}
+        // Функция для заполнения ПДП
+        function fillPDP() {
+            const pdpList = document.getElementById('pdpList');
+            
+            if (pdpList) {
+                pdpList.innerHTML = '';
+                pdpItems.forEach((item) => {
+                    const pdpItem = document.createElement('div');
+                    pdpItem.className = 'pdp-injury';
+                    pdpItem.innerHTML = `
+                        <div class="injury-header" onclick="toggleCategory(this)">
+                            <span>${item.title}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="injury-content">
+                            <div class="bind-commands">${item.content}</div>
+                        </div>
+                    `;
+                    pdpList.appendChild(pdpItem);
+                });
+            }
+        }
 
-function formatReportCommand(command) {
-    let formatted = command;
-    
-    // Заменяем [ваш позывной] только если он не пустой
-    if (userData.callsign && userData.callsign.trim() !== "") {
-        formatted = formatted.replace(/\[ваш позывной\]/g, userData.callsign);
-        formatted = formatted.replace(/\[ваш позывный\]/g, userData.callsign); // на случай опечатки
-    } else {
-        // Если позывной пустой - заменяем на "[ваш позывной]"
-        formatted = formatted.replace(/\[ваш позывной\]/g, "[ваш позывной]");
-    }
-    
-    // Заменяем позывной напарника только если он указан
-    if (userData.partnerCallsign && userData.partnerCallsign.trim() !== "") {
-        formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.partnerCallsign);
-    } else {
-        // Если напарник не указан - пишем "Напарника: Нет"
-        formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, 'Напарника: Нет');
-    }
-    
-    // Также заменяем другие плейсхолдеры если они есть
-    if (userData.callsign && userData.callsign.trim() !== "") {
-        formatted = formatted.replace(/\[Позывной\]/g, userData.callsign);
-    }
-    
-    return formatted;
-}
+        // Функция для поиска законодательства
+        function initLawSearch() {
+            const searchInput = document.getElementById('lawSearch');
+            const searchBtn = document.getElementById('searchLawBtn');
+            const lawResults = document.getElementById('lawResults');
+            
+            function performLawSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+                const showUK = document.getElementById('filterUK').checked;
+                const showKOAP = document.getElementById('filterKOAP').checked;
+                const showFZOP = document.getElementById('filterFZOP').checked;
+                const showFZOVNG = document.getElementById('filterFZOVNG').checked;
+                
+                lawResults.innerHTML = '';
+                
+                // Поиск по УК
+                if (showUK) {
+                    legislationData.uk.forEach(article => {
+                        if (query === '' || 
+                            article.title.toLowerCase().includes(query) || 
+                            article.content.toLowerCase().includes(query) ||
+                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
+                            
+                            const articleElement = createLawArticleElement('УК РП', article, query);
+                            lawResults.appendChild(articleElement);
+                        }
+                    });
+                }
+                
+                // Поиск по КоАП
+                if (showKOAP) {
+                    legislationData.koap.forEach(article => {
+                        if (query === '' || 
+                            article.title.toLowerCase().includes(query) || 
+                            article.content.toLowerCase().includes(query) ||
+                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
+                            
+                            const articleElement = createLawArticleElement('КоАП', article, query);
+                            lawResults.appendChild(articleElement);
+                        }
+                    });
+                }
+                
+                // Поиск по ФЗоП
+                if (showFZOP) {
+                    legislationData.fzop.forEach(article => {
+                        if (query === '' || 
+                            article.title.toLowerCase().includes(query) || 
+                            article.content.toLowerCase().includes(query) ||
+                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
+                            
+                            const articleElement = createLawArticleElement('ФЗоП', article, query);
+                            lawResults.appendChild(articleElement);
+                        }
+                    });
+                }
+                
+                // Поиск по ФЗоВНГ
+                if (showFZOVNG) {
+                    legislationData.fzvng.forEach(article => {
+                        if (query === '' || 
+                            article.title.toLowerCase().includes(query) || 
+                            article.content.toLowerCase().includes(query) ||
+                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
+                            
+                            const articleElement = createLawArticleElement('ФЗоВНГ', article, query);
+                            lawResults.appendChild(articleElement);
+                        }
+                    });
+                }
+                
+                if (lawResults.children.length === 0 && query !== '') {
+                    lawResults.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Ничего не найдено</p>';
+                }
+            }
+            
+            if (searchBtn) {
+                searchBtn.addEventListener('click', performLawSearch);
+            }
+            
+            if (searchInput) {
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        performLawSearch();
+                    }
+                });
+            }
+            
+            // Запустить поиск при загрузке
+            performLawSearch();
+        }
 
-// Замените функцию escapeQuotes на эту:
-function escapeQuotes(text) {
-    return text
-        .replace(/\\/g, '\\\\')
-        .replace(/'/g, "\\'")
-        .replace(/"/g, '\\"')
-        .replace(/\n/g, '\\n')
-        .replace(/\r/g, '\\r')
-        .replace(/\t/g, '\\t');
-}
+        // Вспомогательные функции
+        function createLawArticleElement(code, article, query) {
+            const articleElement = document.createElement('div');
+            articleElement.className = 'law-article';
+            
+            let content = article.content;
+            let hiddenContent = article.hidden || '';
+            
+            // Подсветка найденного текста
+            if (query && query.trim() !== '') {
+                const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+                content = content.replace(regex, '<span class="highlight-text">$1</span>');
+                if (hiddenContent) {
+                    hiddenContent = hiddenContent.replace(regex, '<span class="highlight-text">$1</span>');
+                }
+            }
+            
+            articleElement.innerHTML = `
+                <div class="law-code">${code} - ${article.title}</div>
+                <div class="law-text">${content.replace(/\n/g, '<br>')}</div>
+                ${hiddenContent ? `
+                    <div class="law-title" style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> Примечание:
+                    </div>
+                    <div class="law-text" style="font-size: 0.9rem; color: #666;">${hiddenContent.replace(/\n/g, '<br>')}</div>
+                ` : ''}
+            `;
+            
+            return articleElement;
+        }
 
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация вкладок
-    initTabs();
-    
-    // Заполнение данных
-    updateUserData();
-    fillBinds();
-    fillReports();
-    fillPDP();
-    initLawSearch();
-    
-   function updateUserData() {
-    userData = {
-        rank: document.getElementById('rank').value || "",
-        lastname: document.getElementById('lastname').value || "",
-        position: document.getElementById('position').value || "",
-        callsign: document.getElementById('callsign').value || "",
-        partnerCallsign: document.getElementById('partnerCallsign').value || "",
-        service: document.getElementById('service').value || "полиции"
-    };
-}
-    
-    
-    // Обработчики фильтров законодательства
-    ['filterUK', 'filterKOAP', 'filterFZOP', 'filterFZOVNG'].forEach(id => {
-        const filter = document.getElementById(id);
-        if (filter) {
-            filter.addEventListener('change', () => {
-                const searchBtn = document.getElementById('searchLawBtn');
-                if (searchBtn) searchBtn.click();
+        function formatBindCommands(commands) {
+            let formatted = commands;
+            
+            // Замена плейсхолдеров на пользовательские данные
+            if (userData.rank) {
+                formatted = formatted.replace(/\[звание\]/g, userData.rank);
+            }
+            if (userData.lastname) {
+                formatted = formatted.replace(/\[фамилия\]/g, userData.lastname);
+                formatted = formatted.replace(/\[Имя\]/g, userData.lastname);
+            }
+            if (userData.position) {
+                formatted = formatted.replace(/\[должность\]/g, userData.position);
+            }
+            if (userData.callsign) {
+                formatted = formatted.replace(/\[Позывной\]/g, userData.callsign);
+            }
+            if (userData.service) {
+                formatted = formatted.replace(/\[полиции\/юстиции\/внутренней службы\]/g, userData.service);
+            }
+            
+            return formatted;
+        }
+
+        function formatReportCommand(command) {
+            let formatted = command;
+            
+            // Заменяем [ваш позывной] только если он не пустой
+            if (userData.callsign && userData.callsign.trim() !== "") {
+                formatted = formatted.replace(/\[ваш позывной\]/g, userData.callsign);
+            } else {
+                formatted = formatted.replace(/\[ваш позывной\]/g, "[ваш позывной]");
+            }
+            
+            // Заменяем позывной напарника только если он указан
+            if (userData.partnerCallsign && userData.partnerCallsign.trim() !== "") {
+                formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.partnerCallsign);
+            } else {
+                formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, 'Напарника: Нет');
+            }
+            
+            return formatted;
+        }
+
+        function escapeQuotes(text) {
+            return text
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '\\"')
+                .replace(/\n/g, '\\n');
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация вкладок
+            initTabs();
+            
+            // Заполнение данных
+            updateUserData();
+            fillBinds();
+            fillReports();
+            fillPDP();
+            initLawSearch();
+            
+            // Обработчик кнопки обновления данных
+            document.getElementById('updateDataBtn').addEventListener('click', function() {
+                updateUserData();
+                fillBinds();
+                fillReports();
+                showNotification('Данные обновлены!');
             });
-        }
-    });
-    
-    // Добавляем стили для скрытых элементов
-    const style = document.createElement('style');
-    style.textContent = `
-        .category-header, .injury-header {
-            cursor: pointer;
-        }
-        .bind-list, .injury-content {
-            transition: all 0.3s ease;
-        }
-    `;
-    document.head.appendChild(style);
-});
-</script>
+            
+            // Обработчики фильтров законодательства
+            ['filterUK', 'filterKOAP', 'filterFZOP', 'filterFZOVNG'].forEach(id => {
+                const filter = document.getElementById(id);
+                if (filter) {
+                    filter.addEventListener('change', () => {
+                        const searchBtn = document.getElementById('searchLawBtn');
+                        if (searchBtn) searchBtn.click();
+                    });
+                }
+            });
+            
+            // Инициализация категорий (все открыты по умолчанию)
+            document.querySelectorAll('.category-header, .injury-header').forEach(header => {
+                header.classList.remove('collapsed');
+                const content = header.nextElementSibling;
+                if (content) {
+                    content.style.display = 'block';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 
