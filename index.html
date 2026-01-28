@@ -629,7 +629,7 @@
                 <i class="fas fa-bullhorn"></i> Доклады по рации
             </h2>
             <p style="margin-bottom: 20px; color: #666;">
-                Доклады автоматически заполнятся вашим позывным и позывным напарника (если указан). Если напарник не указан, будет добавлено "Напарника: Нет".
+                Доклады автоматически заполнятся вашим позывным и позывным напарника (если указан). Если напарник не указан, будет добавлено "Нет".
             </p>
             
             <div style="background-color: #ffebee; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 5px solid #f44336;">
@@ -2316,7 +2316,7 @@ me открыл силиконовую ленту и прилепил её на 
             if (userData.partnerCallsign && userData.partnerCallsign.trim() !== "") {
                 formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.partnerCallsign);
             } else {
-                formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, 'Напарника: Нет');
+                formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, 'Нет');
             }
             
             return formatted;
@@ -2377,6 +2377,7 @@ me открыл силиконовую ленту и прилепил её на 
     </script>
 </body>
 </html>
+
 
 
 
