@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ОМВД-П</title>
+    <title>ОМВД-П | Провинция</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,26 +14,46 @@
         }
 
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background: url('https://images.pexels.com/photos/11666588/pexels-photo-11666588.jpeg?auto=compress&cs=tinysrgb&w=1920') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
             line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        /* ПРОЗРАЧНЫЕ ПЛАШКИ */
         header {
-            background: linear-gradient(135deg, #1a3d7c 0%, #2a5bbf 100%);
+            background: rgba(26, 61, 124, 0.7);
+            backdrop-filter: blur(10px);
             color: white;
             padding: 1.5rem;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
             letter-spacing: 1px;
+            text-shadow: 2px 2px 4px #000;
         }
 
         header .subtitle {
@@ -44,76 +64,25 @@
         .container {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 20px;
-        }
-
-        .tabs {
-            display: flex;
-            flex-wrap: wrap;
-            background-color: white;
-            border-radius: 10px 10px 0 0;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .tab {
-            padding: 18px 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-            min-width: 180px;
-            justify-content: center;
-        }
-
-        .tab:hover {
-            background-color: #f0f5ff;
-        }
-
-        .tab.active {
-            background-color: #e6eeff;
-            border-bottom: 3px solid #2a5bbf;
-            color: #1a3d7c;
-        }
-
-        .tab-content {
-            display: none;
-            background-color: white;
-            padding: 30px;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            min-height: 600px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .tab-content.active {
-            display: block;
         }
 
         .personal-data {
-            background: linear-gradient(135deg, #e6eeff 0%, #d1deff 100%);
+            background: rgba(42, 91, 191, 0.5);
+            backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
-            border-left: 5px solid #2a5bbf;
+            border-left: 5px solid #4CAF50;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .personal-data h3 {
             margin-bottom: 20px;
-            color: #1a3d7c;
+            color: #fff;
             display: flex;
             align-items: center;
             gap: 10px;
+            text-shadow: 1px 1px 2px #000;
         }
 
         .data-form {
@@ -130,25 +99,33 @@
         .form-group label {
             font-weight: 600;
             margin-bottom: 5px;
-            color: #333;
+            color: #eee;
         }
 
         .form-group input, .form-group select {
             padding: 12px;
-            border: 1px solid #ccc;
+            border: 1px solid rgba(255,255,255,0.3);
             border-radius: 5px;
             font-size: 1rem;
             transition: border 0.3s;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .form-group option {
+            background: #333;
         }
 
         .form-group input:focus, .form-group select:focus {
-            border-color: #2a5bbf;
+            border-color: #4CAF50;
             outline: none;
-            box-shadow: 0 0 0 2px rgba(42, 91, 191, 0.2);
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+        }
+        .form-group input::placeholder {
+            color: #ccc;
         }
 
         .update-btn {
-            background-color: #2a5bbf;
+            background-color: #4CAF50;
             color: white;
             border: none;
             padding: 12px 25px;
@@ -166,22 +143,93 @@
         }
 
         .update-btn:hover {
-            background-color: #1a3d7c;
+            background-color: #45a049;
         }
 
-        .bind-category, .pdp-injury {
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: rgba(32, 32, 32, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-bottom: none;
+        }
+
+        .tab {
+            padding: 18px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 150px;
+            justify-content: center;
+            color: #ddd;
+        }
+
+        .tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .tab.active {
+            background-color: rgba(42, 91, 191, 0.5);
+            border-bottom: 3px solid #4CAF50;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(10, 20, 40, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            min-height: 600px;
+            animation: fadeIn 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-top: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            color: #4CAF50;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        .bind-category, .pdp-injury, .report-category {
             margin-bottom: 30px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 8px;
             overflow: hidden;
+            background: rgba(0,0,0,0.3);
         }
 
-        .category-header, .injury-header {
-            background-color: #f8f9fa;
+        .category-header, .injury-header, .report-header {
+            background-color: rgba(30, 40, 60, 0.8);
             padding: 15px 20px;
             font-weight: 700;
-            color: #1a3d7c;
-            border-bottom: 1px solid #e0e0e0;
+            color: #4CAF50;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -189,26 +237,26 @@
         }
 
         .injury-header {
-            color: #dc3545;
+            color: #ff7b7b;
+        }
+        .report-header {
+            color: #64b5f6;
         }
 
-        .category-header i, .injury-header i {
-            transition: transform 0.3s;
+        /* Убрана анимация поворота иконок */
+        .category-header i, .injury-header i, .report-header i {
+            transition: none;
         }
 
-        .category-header.collapsed i, .injury-header.collapsed i {
-            transform: rotate(180deg);
-        }
-
-        .bind-list, .injury-content {
+        .bind-list, .injury-content, .report-items {
             padding: 20px;
-            background-color: white;
+            background-color: rgba(20, 30, 50, 0.6);
         }
 
         .bind-item {
             margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 1px dashed #e0e0e0;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
         }
 
         .bind-item:last-child {
@@ -218,7 +266,7 @@
 
         .bind-key {
             display: inline-block;
-            background-color: #1a3d7c;
+            background-color: #4CAF50;
             color: white;
             padding: 5px 12px;
             border-radius: 4px;
@@ -228,19 +276,20 @@
         }
 
         .bind-commands, .report-command {
-            background-color: #f8f9fa;
+            background-color: rgba(0,0,0,0.5);
             padding: 15px;
             border-radius: 5px;
-            border-left: 4px solid #2a5bbf;
+            border-left: 4px solid #4CAF50;
             margin-top: 10px;
             font-family: 'Courier New', monospace;
             white-space: pre-wrap;
             word-break: break-word;
             line-height: 1.5;
+            color: #eee;
         }
 
         .report-command {
-            border-left-color: #17a2b8;
+            border-left-color: #64b5f6;
         }
 
         .copy-btn {
@@ -253,7 +302,7 @@
             font-size: 0.9rem;
             margin-top: 10px;
             transition: background-color 0.3s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 5px;
         }
@@ -265,21 +314,25 @@
         .report-item {
             margin-bottom: 20px;
             padding: 20px;
-            background-color: #f8f9fa;
+            background-color: rgba(0,0,0,0.4);
             border-radius: 8px;
-            border-left: 4px solid #17a2b8;
+            border-left: 4px solid #64b5f6;
+        }
+        .report-item h4 {
+            color: #4CAF50;
+            margin-bottom: 10px;
         }
 
         .pdp-note {
-            background-color: #fff3cd;
-            border-left: 5px solid #ffc107;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left: 5px solid #4CAF50;
             padding: 20px;
             margin-bottom: 30px;
             border-radius: 5px;
         }
 
         .pdp-note h4 {
-            color: #856404;
+            color: #4CAF50;
             margin-bottom: 10px;
         }
 
@@ -290,29 +343,34 @@
         }
 
         .info-card {
-            background-color: white;
+            background: rgba(20, 30, 50, 0.6);
+            backdrop-filter: blur(8px);
             border-radius: 10px;
             padding: 25px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            border-top: 5px solid #2a5bbf;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            border-top: 5px solid #4CAF50;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #eee;
         }
 
         .info-card h3 {
-            color: #1a3d7c;
+            color: #4CAF50;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .law-search-container {
-            background-color: white;
+            background: rgba(20, 30, 50, 0.6);
+            backdrop-filter: blur(8px);
             padding: 25px;
             border-radius: 10px;
             margin-bottom: 30px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .search-box {
@@ -324,13 +382,18 @@
         .search-box input {
             flex: 1;
             padding: 15px;
-            border: 1px solid #ccc;
+            border: 1px solid rgba(255,255,255,0.3);
             border-radius: 5px;
             font-size: 1rem;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+        }
+        .search-box input::placeholder {
+            color: #ccc;
         }
 
         .search-btn {
-            background-color: #2a5bbf;
+            background-color: #4CAF50;
             color: white;
             border: none;
             padding: 0 25px;
@@ -348,13 +411,13 @@
             gap: 15px;
             margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
         .filter-label {
             font-weight: 600;
             margin-right: 10px;
-            color: #333;
+            color: #eee;
             align-self: center;
         }
 
@@ -364,51 +427,73 @@
             gap: 8px;
             cursor: pointer;
             padding: 8px 12px;
-            background-color: #f8f9fa;
+            background-color: rgba(255,255,255,0.1);
             border-radius: 6px;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(255,255,255,0.2);
             transition: all 0.2s;
+            color: #ddd;
         }
 
         .filter-checkbox:hover {
-            background-color: #e9ecef;
-            border-color: #2a5bbf;
+            background-color: rgba(255,255,255,0.2);
+            border-color: #4CAF50;
         }
 
         .filter-checkbox input {
             width: 18px;
             height: 18px;
             cursor: pointer;
-            accent-color: #2a5bbf;
+            accent-color: #4CAF50;
         }
 
         .filter-checkbox span {
             font-weight: 500;
-            color: #333;
         }
 
         .law-results {
             max-height: 500px;
             overflow-y: auto;
             padding-right: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 300px;
         }
 
+        .empty-law {
+            text-align: center;
+            color: #aaa;
+            padding: 50px 20px;
+            font-size: 1.2rem;
+            border: 2px dashed rgba(255,255,255,0.2);
+            border-radius: 8px;
+        }
+
+        .empty-law i {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        /* ===== МЕСТО ДЛЯ СТИЛЕЙ СТАТЕЙ ЗАКОНОВ ===== */
+        /* Стили для отображения статей законов */
         .law-article {
             margin-bottom: 25px;
             padding: 20px;
-            background-color: #f8f9fa;
+            background-color: rgba(0,0,0,0.4);
             border-radius: 8px;
             border-left: 4px solid #28a745;
         }
 
         .law-article.highlight {
-            background-color: #fff3cd;
-            border-left-color: #ffc107;
+            background-color: rgba(76, 175, 80, 0.15);
+            border-left-color: #4CAF50;
         }
 
         .law-code {
             font-weight: 700;
-            color: #1a3d7c;
+            color: #4CAF50;
             margin-bottom: 10px;
             font-size: 1.2rem;
         }
@@ -416,26 +501,31 @@
         .law-title {
             font-weight: 600;
             margin-bottom: 15px;
-            color: #333;
+            color: #ddd;
         }
 
         .law-text {
             line-height: 1.7;
+            color: #eee;
         }
 
         .highlight-text {
-            background-color: #ffeb3b;
+            background-color: #4CAF50;
             padding: 0 2px;
             border-radius: 2px;
+            color: #fff;
+            font-weight: 600;
         }
 
         footer {
-            background-color: #1a3d7c;
+            background: rgba(26, 61, 124, 0.7);
+            backdrop-filter: blur(10px);
             color: white;
             text-align: center;
             padding: 25px;
             margin-top: 40px;
-            border-top: 5px solid #2a5bbf;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .footer-content {
@@ -451,7 +541,7 @@
         }
 
         .footer-links a {
-            color: #a3c4ff;
+            color: #4CAF50;
             text-decoration: none;
         }
 
@@ -488,11 +578,38 @@
         }
 
         .radio-command-item {
-            background-color: white;
+            background-color: rgba(0,0,0,0.5);
             padding: 15px;
             border-radius: 5px;
-            border-left: 4px solid #2a5bbf;
+            border-left: 4px solid #4CAF50;
+            color: #eee;
         }
+
+        /* ЦВЕТНЫЕ ПРОЗРАЧНЫЕ ИКОНКИ (БЕЗ ЖЕЛТОГО) */
+        .fas, .far, .fab {
+            opacity: 0.9;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+            transition: all 0.3s ease;
+        }
+
+        .fas:hover, .far:hover, .fab:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+        }
+
+        /* Зеленые иконки (основной цвет) */
+        .fa-shield-alt, .fa-gavel, .fa-calendar-alt, .fa-car,
+        .fa-search, .fa-chevron-down, .fa-save, .fa-map-pin,
+        .fa-calendar-check, .fa-star, .fa-bolt, .fa-keyboard,
+        .fa-user-circle, .fa-copy, .fa-check-circle, .fa-vk,
+        .fa-users, .fa-phone-alt, .fa-hand-paper, .fa-check,
+        .fa-download, .fa-info-circle, .fa-vest, .fa-helicopter,
+        .fa-question-circle, .fa-book-open { color: #4CAF50; }
+
+        /* Красные иконки (для предупреждений) */
+        .fa-bullhorn, .fa-first-aid, .fa-exclamation-triangle,
+        .fa-fire, .fa-skull-crossbones { color: #ff6b6b; }
 
         @media (max-width: 768px) {
             .tabs {
@@ -501,8 +618,7 @@
             
             .tab {
                 justify-content: center;
-                border-bottom: 1px solid #e0e0e0;
-                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
             
             .data-form {
@@ -567,7 +683,7 @@
                     <i class="fas fa-save"></i> Сохранить данные
                 </button>
             </div>
-            <div style="margin-top: 15px; font-size: 0.9rem; color: #555;">
+            <div style="margin-top: 15px; font-size: 0.9rem; color: #ccc;">
                 <i class="fas fa-info-circle"></i> Данные автоматически подставляются в бинды и доклады при вводе
             </div>
         </div>
@@ -595,10 +711,10 @@
         
         <!-- Вкладка Бинды -->
         <div class="tab-content active" id="binds">
-            <h2 style="color: #1a3d7c; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+            <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-keyboard"></i> Бинды для отыгрыша действий
             </h2>
-            <p style="margin-bottom: 20px; color: #666;">
+            <p style="margin-bottom: 20px; color: #ccc;">
                 Нажмите на заголовок категории, чтобы развернуть/свернуть список биндов. Для каждого бинда укажите клавишу в игре в поле [key].
             </p>
             
@@ -625,36 +741,36 @@
 
         <!-- Вкладка Доклады -->
         <div class="tab-content" id="reports">
-            <h2 style="color: #1a3d7c; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+            <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-bullhorn"></i> Доклады по рации
             </h2>
-            <p style="margin-bottom: 20px; color: #666;">
+            <p style="margin-bottom: 20px; color: #ccc;">
                 Доклады автоматически заполнятся вашим позывным и позывным напарника (если указан). Если напарник не указан, будет добавлено "Нет".
             </p>
             
-            <div style="background-color: #ffebee; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 5px solid #f44336;">
-                <h4 style="color: #c62828; margin-bottom: 10px;">
+            <div style="background-color: rgba(76, 175, 80, 0.1); padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 5px solid #4CAF50;">
+                <h4 style="color: #4CAF50; margin-bottom: 10px;">
                     <i class="fas fa-exclamation-triangle"></i> Напоминаем!
                 </h4>
-                <p style="color: #333;">Любой бред в рацию наказуем! Используйте следующие команды для рации:</p>
+                <p style="color: #eee;">Любой бред в рацию наказуем! Используйте следующие команды для рации:</p>
                 <div class="radio-commands">
                     <div class="radio-command-item">
-                        <strong>/r</strong> - рация отдела в IC чат
+                        <strong>r</strong> - рация отдела в IC чат
                     </div>
                     <div class="radio-command-item">
-                        <strong>/rb</strong> - рация отдела в OOC чат
+                        <strong>rb</strong> - рация отдела в OOC чат
                     </div>
                     <div class="radio-command-item">
-                        <strong>/ro</strong> - общая рация МВД в IC чат
+                        <strong>ro</strong> - общая рация МВД в IC чат
                     </div>
                     <div class="radio-command-item">
-                        <strong>/rob</strong> - общая рация МВД в OOC чат
+                        <strong>rob</strong> - общая рация МВД в OOC чат
                     </div>
                     <div class="radio-command-item">
-                        <strong>/d</strong> - рация между МЗ и МО в IC чат
+                        <strong>d</strong> - рация между МЗ и МО в IC чат
                     </div>
                     <div class="radio-command-item">
-                        <strong>/db</strong> - общая рация МЗ и МО в OOC чат
+                        <strong>db</strong> - общая рация МЗ и МО в OOC чат
                     </div>
                 </div>
             </div>
@@ -666,36 +782,36 @@
 
         <!-- Вкладка ПДП -->
         <div class="tab-content" id="pdp">
-            <h2 style="color: #1a3d7c; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+            <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-first-aid"></i> Первая доврачебная помощь (ПДП)
             </h2>
             
             <div class="pdp-note">
                 <h4><i class="fas fa-exclamation-circle"></i> Важное примечание</h4>
                 <p>Перед оказанием первой доврачебной помощи (далее - ПДП или первая помощь), необходимо:</p>
-                <ul style="margin-top: 10px; padding-left: 20px;">
+                <ul style="margin-top: 10px; padding-left: 20px; color: #eee;">
                     <li>Оценить обстановку и обеспечить безопасные условия для оказания первой помощи.</li>
                     <li>Если пострадавший лежит на дороге, то данную местность нужно перекрыть (оцепить) для безопасности гражданина.</li>
                     <li>Достать из автомобиля аптечку.</li>
                     <li>Когда рядом находятся агрессивно настроенные лица, их нужно удалить.</li>
                     <li>Вам стоит учитывать и иные обстоятельства.</li>
                 </ul>
-                <p style="margin-top: 10px;">Вызвать скорую медицинскую помощь по рации или используя смартфон. Вызов помощи необходимо делать именно перед оказанием первой помощи, так как это не занимает много времени, но пока Вы оказываете ПДП, врачи уже будут в пути к месту происшествия.</p>
+                <p style="margin-top: 10px; color: #eee;">Вызвать скорую медицинскую помощь по рации или используя смартфон. Вызов помощи необходимо делать именно перед оказанием первой помощи, так как это не занимает много времени, но пока Вы оказываете ПДП, врачи уже будут в пути к месту происшествия.</p>
             </div>
             
             <div style="margin-bottom: 30px;">
-                <h3 style="color: #1a3d7c; margin-bottom: 15px;">Определение состояния пострадавшего</h3>
-                <p>Нам нужно понять, что случилось с человеком. Первым делом:</p>
+                <h3 style="color: #4CAF50; margin-bottom: 15px;">Определение состояния пострадавшего</h3>
+                <p style="color: #eee;">Нам нужно понять, что случилось с человеком. Первым делом:</p>
                 <div class="bind-commands" style="margin-top: 10px;">
 me осмотрел пострадавшего на наличие видимых травм и кровотечений
 do Есть ли повреждения на теле пострадавшего? Если есть, то какие?</div>
-                <p style="margin-top: 15px;">Основа жизни - дыхание, сознание и кровообращение:</p>
+                <p style="margin-top: 15px; color: #eee;">Основа жизни - дыхание, сознание и кровообращение:</p>
                 <div class="bind-commands" style="margin-top: 10px;">
 me приложил два пальца к сонной артерии пострадавшего для проверки пульса
 do У пострадавшего есть пульс?
 me запрокинув голову пострадавшего, нагнулся к ней для проверки дыхания
 do У пострадавшего есть дыхание?</div>
-                <p style="margin-top: 15px; font-weight: 600;">Если нет ни дыхания, ни кровообращения (пульса) переходим к блоку СЛР.<br>
+                <p style="margin-top: 15px; font-weight: 600; color: #4CAF50;">Если нет ни дыхания, ни кровообращения (пульса) переходим к блоку СЛР.<br>
                 Если нет дыхания, но есть кровообращение (пульс), переходим к блоку проверки дыхательных путей.<br>
                 Если нет кровообращения, но есть дыхание, более точно прощупайте (проверьте) пульс.</p>
             </div>
@@ -707,7 +823,7 @@ do У пострадавшего есть дыхание?</div>
 
         <!-- Вкладка Инфо стенд -->
         <div class="tab-content" id="info">
-            <h2 style="color: #1a3d7c; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+            <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-info-circle"></i> Информационный стенд ОМВД-П
             </h2>
             
@@ -721,7 +837,7 @@ do У пострадавшего есть дыхание?</div>
                         <p><strong>Обеденный перерыв:</strong> с 14:00 до 15:00 по рабочим дням.</p>
                     </div>
                     
-                    <h4 style="margin-top: 20px; margin-bottom: 10px; color: #555;">Правила:</h4>
+                    <h4 style="margin-top: 20px; margin-bottom: 10px; color: #4CAF50;">Правила:</h4>
                     <ul style="padding-left: 20px;">
                         <li>Сотрудник не имеет права брать выходной при наличии дисциплинарных взысканий (кроме замечаний).</li>
                         <li>Если выходной день объявляется рабочим, сотрудник обязан работать в этот день с 09:00 до 18:00.</li>
@@ -732,19 +848,19 @@ do У пострадавшего есть дыхание?</div>
                 
                 <div class="info-card">
                     <h3><i class="fas fa-vest"></i> Основная экипировка</h3>
-                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #555;">Средства индивидуальной защиты:</h4>
+                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #4CAF50;">Средства индивидуальной защиты:</h4>
                     <ul style="padding-left: 20px; margin-bottom: 15px;">
                         <li>Бронежилет «КОРА-1МК» - доступен всем сотрудникам.</li>
                     </ul>
                     
-                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #555;">Специальные средства:</h4>
+                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #4CAF50;">Специальные средства:</h4>
                     <ul style="padding-left: 20px; margin-bottom: 15px;">
                         <li>Палка резиновая ПУС-2 «Аргумент-М» - доступна всем сотрудникам.</li>
                         <li>Электрошоковое устройство «Шторм» - доступно всем сотрудникам.</li>
                         <li>Наручники железные прочные «БР-2М» - доступны всем сотрудникам.</li>
                     </ul>
                     
-                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #555;">Огнестрельное оружие:</h4>
+                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #4CAF50;">Огнестрельное оружие:</h4>
                     <ul style="padding-left: 20px;">
                         <li>Пистолет «МР-443 "Грач"» - доступен всем сотрудникам со звания «Старшина полиции».</li>
                         <li>Винтовка «АК-74М» - доступна всем сотрудникам со звания «Лейтенант полиции».</li>
@@ -755,7 +871,7 @@ do У пострадавшего есть дыхание?</div>
                 <div class="info-card">
                     <h3><i class="fas fa-users"></i> Комплектации отделов</h3>
                     
-                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #555;">ОР ППСП и ИК АМВД:</h4>
+                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #4CAF50;">ОР ППСП и ИК АМВД:</h4>
                     <ul style="padding-left: 20px; margin-bottom: 15px;">
                         <li>Пистолет «МР-443 "Грач"»</li>
                         <li>Винтовка «АК-74М»</li>
@@ -765,7 +881,7 @@ do У пострадавшего есть дыхание?</div>
                         <li>Бронежилет «КОРА-1МК»</li>
                     </ul>
                     
-                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #555;">СОБР "Рысь":</h4>
+                    <h4 style="margin-top: 15px; margin-bottom: 10px; color: #4CAF50;">СОБР "Рысь":</h4>
                     <ul style="padding-left: 20px;">
                         <li>Пистолет «МР-443 "Грач"»</li>
                         <li>Винтовка «АК-74М»</li>
@@ -780,7 +896,7 @@ do У пострадавшего есть дыхание?</div>
 
         <!-- Вкладка Законодательство -->
         <div class="tab-content" id="law">
-            <h2 style="color: #1a3d7c; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+            <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-gavel"></i> Законодательство
             </h2>
             
@@ -817,7 +933,11 @@ do У пострадавшего есть дыхание?</div>
                 </div>
                 
                 <div id="lawResults" class="law-results">
-                    <!-- Результаты поиска будут отображаться здесь -->
+                    <!-- =========================================== -->
+                    <!-- ===== МЕСТО ДЛЯ ДОБАВЛЕНИЯ СТАТЕЙ ===== -->
+                    <!-- =========================================== -->
+                    <!-- Сюда будут добавляться статьи через JavaScript -->
+                    <!-- Сейчас здесь заглушка, которая исчезнет когда вы добавите статьи -->
                 </div>
             </div>
         </div>
@@ -857,9 +977,7 @@ do У пострадавшего есть дыхание?</div>
         const mainBinds = [
             {
                 title: "1.1. Приветствие коллег",
-                commands: `bind [key] say Здравия желаю.
-bind [key] animarmy 3
-bind [key] do На плечах [Имя] виднеются погоны [звание] [полиции/юстиции/внутренней службы].`
+                commands: `bind [key] say Здравия желаю.\nbind [key] animarmy 3\nbind [key] do На плечах [Имя] виднеются погоны [звание] [полиции/юстиции/внутренней службы].`
             },
             {
                 title: "1.2. Представление гражданам",
@@ -875,48 +993,31 @@ bind [key] do На плечах [Имя] виднеются погоны [зва
             },
             {
                 title: "2.1. Начало оформления протоколов",
-                commands: `bind [key] do На плече сотрудника висит кожаная папка с планшеткой, бланками и ручкой.
-bind [key] me вытащил из кожаной папки планшетку с бланками и ручку
-bind [key] up me составил административный протокол и его копию, предварительно закрепив их зажимом планшетки`
+                commands: `bind [key] do На плече сотрудника висит кожаная папка с планшеткой, бланками и ручкой.\nbind [key] me вытащил из кожаной папки планшетку с бланками и ручку\nbind [key] up me составил административный протокол и его копию, предварительно закрепив их зажимом планшетки`
             },
             {
                 title: "2.2. Передача протоколов на подпись",
-                commands: `bind [key] me закончив составлять административный протокол и его копию, вытащил протоколы из-под зажима
-bind [key] me внёс всю нужную информацию о нарушителе и нарушении в планшет
-bind [key] down me передал протокол, копию и ручку на подпись нарушителю напротив
-bind [key] down say Вот, возьмите распишитесь. Копию оставляете себе, оригинал и ручку возвращаете мне.
-bind [key] up b /me взял протоколы, расписался в них, вернул оригинал и ручку сотруднику полиции`
+                commands: `bind [key] me закончив составлять административный протокол и его копию, вытащил протоколы из-под зажима\nbind [key] me внёс всю нужную информацию о нарушителе и нарушении в планшет\nbind [key] down me передал протокол, копию и ручку на подпись нарушителю напротив\nbind [key] down say Вот, возьмите распишитесь. Копию оставляете себе, оригинал и ручку возвращаете мне.\nbind [key] up b /me взял протоколы, расписался в них, вернул оригинал и ручку сотруднику полиции`
             },
             {
                 title: "2.3. Окончание процедуры составления протокола",
-                commands: `bind [key] me взял подписанный оригинал протокола с ручкой
-bind [key] me убрал оригинал протокола, ручку и бланки в кожаную папку`
+                commands: `bind [key] me взял подписанный оригинал протокола с ручкой\nbind [key] me убрал оригинал протокола, ручку и бланки в кожаную папку`
             },
             {
                 title: "2.4. Если нарушитель не может подписать протокол",
-                commands: `bind [key] me сделал пометку в протоколе и его копии о том, что нарушитель не имеет возможность подписать
-bind [key] me закончив составлять административный протокол и его копию, вытащил протоколы из-под зажима
-bind [key] down say Копию протокола можете забрать на дежурной части, как только будете свободны.`
+                commands: `bind [key] me сделал пометку в протоколе и его копии о том, что нарушитель не имеет возможность подписать\nbind [key] me закончив составлять административный протокол и его копию, вытащил протоколы из-под зажима\nbind [key] down say Копию протокола можете забрать на дежурной части, как только будете свободны.`
             },
             {
                 title: "2.5. Убирание бланков",
-                commands: `bind [key] down me внёс всю нужную информацию о нарушителе и нарушении в планшет
-bind [key] me убрал оригинал протокола, ручку и бланки в кожаную папку`
+                commands: `bind [key] down me внёс всю нужную информацию о нарушителе и нарушении в планшет\nbind [key] me убрал оригинал протокола, ручку и бланки в кожаную папку`
             },
             {
                 title: "3.1. Требование об остановке Т/С",
-                commands: `bind [key] do На приборной панели зафиксирована тангента громкоговорителя СГУ «Сапфир».
-bind [key] me снял тангенту с крепления и поднёс её ко рту, зажав кнопку «PTT»
-bind [key] down m Водитель, это полиция, принимаем крайнее правое положение и останавливаемся.
-bind [key] up me зафиксировал тангенту громкоговорителя на креплении, отпустив кнопку «PTT»`
+                commands: `bind [key] do На приборной панели зафиксирована тангента громкоговорителя СГУ «Сапфир».\nbind [key] me снял тангенту с крепления и поднёс её ко рту, зажав кнопку «PTT»\nbind [key] down m Водитель, это полиция, принимаем крайнее правое положение и останавливаемся.\nbind [key] up me зафиксировал тангенту громкоговорителя на креплении, отпустив кнопку «PTT»`
             },
             {
                 title: "3.2. Если гражданин не реагирует на требования об остановке Т/С",
-                commands: `bind [key] do На приборной панели зафиксирована тангента громкоговорителя СГУ «Сапфир».
-bind [key] me снял тангенту с крепления и поднёс её ко рту, зажав кнопку «PTT»
-bind [key] down m Водитель, это полиция, останавливаемся, иначе открываю огонь!
-bind [key] up me зафиксировал тангенту громкоговорителя на креплении, отпустив кнопку «PTT»
-Важно! Бинд 3.2 отыгрывается после нескольких требований об остановке Т/С (бинд 3.1). Интервал между требования должен составлять не менее 30 секунд! Не нужно сразу же делать все предупреждения!`
+                commands: `bind [key] do На приборной панели зафиксирована тангента громкоговорителя СГУ «Сапфир».\nbind [key] me снял тангенту с крепления и поднёс её ко рту, зажав кнопку «PTT»\nbind [key] down m Водитель, это полиция, останавливаемся, иначе открываю огонь!\nbind [key] up me зафиксировал тангенту громкоговорителя на креплении, отпустив кнопку «PTT»\nВажно! Бинд 3.2 отыгрывается после нескольких требований об остановке Т/С (бинд 3.1). Интервал между требования должен составлять не менее 30 секунд! Не нужно сразу же делать все предупреждения!`
             },
             {
                 title: "3.3. Требование об остановке на случай побега гражданина",
@@ -924,20 +1025,15 @@ bind [key] up me зафиксировал тангенту громкогово�
             },
             {
                 title: "4.1. Извлечение планшета из кобуры",
-                commands: `bind [key] do Электронный планшет лежит в кожаной папке на плече.
-bind [key] me открыв кожаную папку, достал из неё электронный планшет
-bind [key] up me включив планшет, открыл базу данных МВД`
+                commands: `bind [key] do Электронный планшет лежит в кожаной папке на плече.\nbind [key] me открыв кожаную папку, достал из неё электронный планшет\nbind [key] up me включив планшет, открыл базу данных МВД`
             },
             {
                 title: "4.2. Пробитие информации о ранних нарушениях",
-                commands: `bind [key] me ввёл данные гражданина в базу данных МВД через планшет
-bind [key] do На экране планшета появилась информация о гражданине.
-bind [key] chatbox crimrec`
+                commands: `bind [key] me ввёл данные гражданина в базу данных МВД через планшет\nbind [key] do На экране планшета появилась информация о гражданине.\nbind [key] chatbox crimrec`
             },
             {
                 title: "4.3. Оформление электронного штрафа",
-                commands: `bind [key] me выписал электронный штраф гражданину через планшет
-bind [key] chatbox tsu`
+                commands: `bind [key] me выписал электронный штраф гражданину через планшет\nbind [key] chatbox tsu`
             },
             {
                 title: "4.4. После окончания работы с планшетом",
@@ -945,69 +1041,43 @@ bind [key] chatbox tsu`
             },
             {
                 title: "5.1. Конвоирование задержанного",
-                commands: `bind [key] say Гражданин, сопротивление бесполезно! Не сопротивляйтесь, вам же хуже будет.
-bind [key] chatbox arr`
+                commands: `bind [key] say Гражданин, сопротивление бесполезно! Не сопротивляйтесь, вам же хуже будет.\nbind [key] chatbox arr`
             },
             {
                 title: "5.2. Посадка в патрульный автомобиль",
-                commands: `bind [key] say Аккуратно, бережём голову при посадке в патрульный автомобиль.
-bind [key] me отпустил руку задержанного, немного наклонил перед дверью и усадил его в салон автомобиля
-bind [key] chatbox dearr`
+                commands: `bind [key] say Аккуратно, бережём голову при посадке в патрульный автомобиль.\nbind [key] me отпустил руку задержанного, немного наклонил перед дверью и усадил его в салон автомобиля\nbind [key] chatbox dearr`
             },
             {
                 title: "5.3.1. Передача задержанного конвоиру из патрульного авто",
-                commands: `bind [key] s Конвоир!
-bind [key] me вытащил задержанного из патрульного автомобиля и передал его с вещами конвоиру
-bind [key] do Конвоир увёл задержанного в КПЗ.
-bind [key] chatbox arrest`
+                commands: `bind [key] s Конвоир!\nbind [key] me вытащил задержанного из патрульного автомобиля и передал его с вещами конвоиру\nbind [key] do Конвоир увёл задержанного в КПЗ.\nbind [key] chatbox arrest`
             },
             {
                 title: "5.3.2. Передача задержанного конвоиру из здания УВД",
-                commands: `bind [key] s Конвоир!
-bind [key] me передал задержанного и его личные вещи конвоиру
-bind [key] do Конвоир увёл задержанного в КПЗ.
-bind [key] chatbox arrest`
+                commands: `bind [key] s Конвоир!\nbind [key] me передал задержанного и его личные вещи конвоиру\nbind [key] do Конвоир увёл задержанного в КПЗ.\nbind [key] chatbox arrest`
             },
             {
                 title: "6.1. Достать рацию",
-                commands: `bind [key] do Рация "Motorola DP1400" закреплена в поясном держателе.
-bind [key] me вытащил рацию "Motorola DP1400" из поясного держателя и зажал кнопку «PTT»
-bind [key] fracvoice 1`
+                commands: `bind [key] do Рация "Motorola DP1400" закреплена в поясном держателе.\nbind [key] me вытащил рацию "Motorola DP1400" из поясного держателя и зажал кнопку «PTT»\nbind [key] fracvoice 1`
             },
             {
                 title: "6.2. Убрать рация",
-                commands: `bind [key] me отжал кнопку «PTT» и закрепил рацию "Motorola DP1400" в поясном держателе
-bind [key] fracvoice 2`
+                commands: `bind [key] me отжал кнопку «PTT» и закрепил рацию "Motorola DP1400" в поясном держателе\nbind [key] fracvoice 2`
             },
             {
                 title: "7.1. Объявление гражданина в розыск",
-                commands: `bind [key] do Рация "Motorola DP1400" закреплена в поясном держателе.
-bind [key] me вытащил рацию из поясного держателя, зажав кнопку «PTT», связался с дежурным
-bind [key] up me сообщил дежурному информацию о выдаче розыска
-bind [key] chatbox su`
+                commands: `bind [key] do Рация "Motorola DP1400" закреплена в поясном держателе.\nbind [key] me вытащил рацию из поясного держателя, зажав кнопку «PTT», связался с дежурным\nbind [key] up me сообщил дежурному информацию о выдаче розыска\nbind [key] chatbox su`
             },
             {
                 title: "7.2. Снятие розыска с гражданина",
-                commands: `bind [key] do Рация "Motorola DP1400" закреплена в поясном держателе.
-bind [key] me вытащил рацию из поясного держателя, зажав кнопку «PTT», связался с дежурным
-bind [key] up me сообщил дежурному информацию о снятии розыска с гражданина
-bind [key] chatbox clear`
+                commands: `bind [key] do Рация "Motorola DP1400" закреплена в поясном держателе.\nbind [key] me вытащил рацию из поясного держателя, зажав кнопку «PTT», связался с дежурным\nbind [key] up me сообщил дежурному информацию о снятии розыска с гражданина\nbind [key] chatbox clear`
             },
             {
                 title: "7.3. Отслеживание ООП/СОП",
-                commands: `bind [key] do Рация "Motorola DP1400" закреплена в поясном держателе.
-bind [key] me вытащил рацию из поясного держателя, зажав кнопку «PTT», связался с дежурным
-bind [key] up me запросил ориентировки, сводки, данные с камер видеонаблюдения у дежурного
-bind [key] up do Дежурный сообщает ориентировки, сводки и данные с камер видеонаблюдения.
-bind [key] wanted`
+                commands: `bind [key] do Рация "Motorola DP1400" закреплена в поясном держателе.\nbind [key] me вытащил рацию из поясного держателя, зажав кнопку «PTT», связался с дежурным\nbind [key] up me запросил ориентировки, сводки, данные с камер видеонаблюдения у дежурного\nbind [key] up do Дежурный сообщает ориентировки, сводки и данные с камер видеонаблюдения.\nbind [key] wanted`
             },
             {
                 title: "8.1. Досмотр гражданина",
-                commands: `bind [key] do Через плечо сотрудника висит сумка с перчатками.
-bind [key] me достал перчатки из сумки и надел их на руки
-bind [key] me начал досматривать гражданина
-bind [key] say Есть у Вас что-то нелегальное: оружие, наркотики?
-bind [key] up do Что было обнаружено у гражданина?`
+                commands: `bind [key] do Через плечо сотрудника висит сумка с перчатками.\nbind [key] me достал перчатки из сумки и надел их на руки\nbind [key] me начал досматривать гражданина\nbind [key] say Есть у Вас что-то нелегальное: оружие, наркотики?\nbind [key] up do Что было обнаружено у гражданина?`
             },
             {
                 title: "8.1.1. Если при досмотре ничего не найдено",
@@ -1015,11 +1085,7 @@ bind [key] up do Что было обнаружено у гражданина?`
             },
             {
                 title: "8.2. Досмотр автомобиля",
-                commands: `bind [key] do Через плечо сотрудника висит сумка с перчатками.
-bind [key] me достал перчатки из сумки и надел их на руки
-bind [key] me начал досматривать авто
-bind [key] say Есть в авто что-то нелегальное: оружие, наркотики?
-bind [key] up do Что было обнаружено в транспорте?`
+                commands: `bind [key] do Через плечо сотрудника висит сумка с перчатками.\nbind [key] me достал перчатки из сумки и надел их на руки\nbind [key] me начал досматривать авто\nbind [key] say Есть в авто что-то нелегальное: оружие, наркотики?\nbind [key] up do Что было обнаружено в транспорте?`
             },
             {
                 title: "8.1.2. Если при досмотре ничего не найдено",
@@ -1031,17 +1097,11 @@ bind [key] up do Что было обнаружено в транспорте?`
         const additionalBinds = [
             {
                 title: "9.1. Требование о необходимости пропустить патрульное Т/С",
-                commands: `bind [key] do На приборной панели зафиксирована тангента громкоговорителя СГУ «Сапфир».
-bind [key] me снял тангенту с крепления и поднёс её ко рту, зажав кнопку «PTT»
-bind [key] down m Немедленно пропустите экипаж полиции!
-bind [key] down me зафиксировал тангенту громкоговорителя на креплении, отпустив кнопку «PTT»`
+                commands: `bind [key] do На приборной панели зафиксирована тангента громкоговорителя СГУ «Сапфир».\nbind [key] me снял тангенту с крепления и поднёс её ко рту, зажав кнопку «PTT»\nbind [key] down m Немедленно пропустите экипаж полиции!\nbind [key] down me зафиксировал тангенту громкоговорителя на креплении, отпустив кнопку «PTT»`
             },
             {
                 title: "9.2.1. Разбитие стекла",
-                commands: `bind [key] do На поясе сотрудника на креплении висит карманный стеклобой.
-bind [key] me снял с крепления на поясе стеклобой и надавил им на стекло автомобиля
-bind [key] try разбил стекло автомобиля стеклобоем
-bind [key] me закрепил карманный стеклобой на поясе`
+                commands: `bind [key] do На поясе сотрудника на креплении висит карманный стеклобой.\nbind [key] me снял с крепления на поясе стеклобой и надавил им на стекло автомобиля\nbind [key] try разбил стекло автомобиля стеклобоем\nbind [key] me закрепил карманный стеклобой на поясе`
             },
             {
                 title: "9.2.2. Разблокирование дверей",
@@ -1049,48 +1109,27 @@ bind [key] me закрепил карманный стеклобой на поя
             },
             {
                 title: "9.2.3. Принудительное извлечение подозреваемого",
-                commands: `bind [key] me вытащил человека из автомобиля и уложил его на землю, прижав шею к земле
-bind [key] say Не сопротивляйтесь, в противном случае будет еще больнее.`
+                commands: `bind [key] me вытащил человека из автомобиля и уложил его на землю, прижав шею к земле\nbind [key] say Не сопротивляйтесь, в противном случае будет еще больнее.`
             },
             {
                 title: "9.3. Опознание личности по отпечатку пальца",
-                commands: `bind [key] down do На плече сотрудника висит папка со сканером и планшетом.
-bind [key] down me достал из папки планшет и сканер с проводом, затем подсоединил сканер с проводом к планшету
-bind [key] up me приложил сканер к пальцу подозреваемого и активировал поиск в базе данных МВД
-bind [key] up do На экране планшета появилась информация о подозреваемом.
-bind [key] chatbox crimrec`
+                commands: `bind [key] down do На плече сотрудника висит папка со сканером и планшетом.\nbind [key] down me достал из папки планшет и сканер с проводом, затем подсоединил сканер с проводом к планшету\nbind [key] up me приложил сканер к пальцу подозреваемого и активировал поиск в базе данных МВД\nbind [key] up do На экране планшета появилась информация о подозреваемом.\nbind [key] chatbox crimrec`
             },
             {
                 title: "9.4. Опознание личности с помощью фотографии",
-                commands: `bind [key] do На плече сотрудника висит папка, в которой находится планшет.
-bind [key] me достав из папки планшет, включил его, затем зашёл в базу данных МВД
-bind [key] up me открыв камеру на планшете, сделал снимок лица гражданина и загрузил его в базу данных
-bind [key] up do На экране планшета появилась информация о нужном объекте.
-bind [key] chatbox crimrec`
+                commands: `bind [key] do На плече сотрудника висит папка, в которой находится планшет.\nbind [key] me достав из папки планшет, включил его, затем зашёл в базу данных МВД\nbind [key] up me открыв камеру на планшете, сделал снимок лица гражданина и загрузил его в базу данных\nbind [key] up do На экране планшета появилась информация о нужном объекте.\nbind [key] chatbox crimrec`
             },
             {
                 title: "9.5. Тревожная кнопка",
-                commands: `bind [key] do На поясе закреплена рация.
-bind [key] me быстрым движением руки нажал на красную кнопку на рации
-bind [key] ro [ОМВД-П]: Активация тревожной кнопки! Код-3! Местоположение:
-bind [key] chatbox ro`
+                commands: `bind [key] do На поясе закреплена рация.\nbind [key] me быстрым движением руки нажал на красную кнопку на рации\nbind [key] ro [ОМВД-П]: Активация тревожной кнопки! Код-3! Местоположение:\nbind [key] chatbox ro`
             },
             {
                 title: "9.6. Протокол о задержании",
-                commands: `bind [key] do Через плечо сотрудника висит сумка с канцелярией.
-bind [key] me достал из сумки бланк, ручку и начал оформление протокола
-bind [key] say Будет составлен протокол о задержании.
-bind [key] me закончил оформление и внесение данных в протокол
-bind [key] up me поставил пометку о невозможности подписать
-bind [key] up me убрал протокол и ручку в сумку
-bind [key] up say Копию протокола заберёте в дежурной части.`
+                commands: `bind [key] do Через плечо сотрудника висит сумка с канцелярией.\nbind [key] me достал из сумки бланк, ручку и начал оформление протокола\nbind [key] say Будет составлен протокол о задержании.\nbind [key] me закончил оформление и внесение данных в протокол\nbind [key] up me поставил пометку о невозможности подписать\nbind [key] up me убрал протокол и ручку в сумку\nbind [key] up say Копию протокола заберёте в дежурной части.`
             },
             {
                 title: "9.7. Предъявление ориентировки",
-                commands: `bind [key] do Через плечо сотрудника висит сумка с планшетом.
-bind [key] me открыл сумку и достал служебный планшет
-bind [key] up me открыл необходимую информацию и показал её гражданину
-bind [key] say Пожалуйста, вот ориентировка.`
+                commands: `bind [key] do Через плечо сотрудника висит сумка с планшетом.\nbind [key] me открыл сумку и достал служебный планшет\nbind [key] up me открыл необходимую информацию и показал её гражданину\nbind [key] say Пожалуйста, вот ориентировка.`
             },
             {
                 title: "9.8. Требование покинуть автомобиль",
@@ -1098,179 +1137,72 @@ bind [key] say Пожалуйста, вот ориентировка.`
             },
             {
                 title: "9.9. Представление в боевой форме (СОБР Рысь)",
-                commands: `bind [key] say Здравия желаю, являюсь сотрудником СОБР "Рысь" ВНГ. Личный номер [Номер УД].
-bind [key] do На груди сотрудника виднеется шеврон с позывным «[Позывной]».`
+                commands: `bind [key] say Здравия желаю, являюсь сотрудником СОБР "Рысь" ВНГ. Личный номер [Номер УД].\nbind [key] do На груди сотрудника виднеется шеврон с позывным «[Позывной]».`
             }
         ];
 
-        // Доклады
+        // Доклады с категориями
         const reports = [
-            {
-                title: "При заступлении на смену",
-                command: "/r [ваш позывной] Заступил на смену."
-            },
-            {
-                title: "Сдача смены",
-                command: "/r [ваш позывной] Сдал смену."
-            },
-            {
-                title: "Патрулирование юрисдикции",
-                command: "/r [ваш позывной] Выезжаю в патрулирование, напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Продолжение патрулирования",
-                command: "/r [ваш позывной] Продолжаю патрулирование, напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Завершение патрулирования",
-                command: "/r [ваш позывной] Закончил патрулирование, напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Выезд на стационарный пост",
-                command: "/r [ваш позывной] Выезжаю на пост [название поста], напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Заступление на пост",
-                command: "/r [ваш позывной] Заступил на пост [название поста], напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Нахождение на посту",
-                command: "/r [ваш позывной] Нахожусь на посту [название поста], напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Сдача поста",
-                command: "/r [ваш позывной] Сдал пост [название поста], напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Принятие вызова",
-                command: "/r [ваш позывной] Принял вызов [место вызова], напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Обработка вызова",
-                command: "/r [ваш позывной] Обрабатываю вызов [место вызова], напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Ложный вызов",
-                command: "/r [ваш позывной] Вызов [место вызова] ложный, напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Завершение обработка вызова",
-                command: "/r [ваш позывной] Вызов [место вызова] обработан, напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-                title: "Запрос экипажа ДПС",
-                command: "/ro [ОМВД-П][ОГИБДД-П/М/Н] Требуется экипаж ДПС к [место], [причина]."
-            },
-            {
-                title: "Запрос помощи в поимке ООП",
-                command: "/ro [ОМВД-П][МВД] Требуется помощь в поимке ООП по базе данных: [имя фамилия]."
-            },
-            {
-                title: "Подтверждение запроса на помощь",
-                command: "/ro [ОМВД-П][МВД] Принято, выехал."
-            },
-            {
-                title: "Доклад о выезде за ОП/СОП",
-                command: "/r [ваш позывной] Выезжаю за ОП/СОП, по базе данных: [имя фамилия], напарник: [Позывной/Фамилия напарника]."
-            },
-            {
-        title: "Доклад для авиационного отряда (вылет)",
-        command: "/r [ваш позывной], Вылетаю для воздушного патрулирования юрисдикции, второй пилот: [Позывной/Фамилия напарника]."
-    },
-    {
-        title: "Доклад для авиационного отряда (патруль)",
-        command: "/r [ваш позывной], Продолжаю воздушный патруль, состояние стабильное, второй пилот: [Позывной/Фамилия напарника]."
-    },
-    {
-        title: "Завершение выполнения задачи",
-        command: "/r [ваш позывной], Закончил выполнение задачи, возвращаюсь на базу."
-    },
-    {
-        title: "Посадка на вертолётную площадку",
-        command: "/r [ваш позывной], Выполняю посадку на вертолётную площадку."
-    },
-    {
-        title: "Взлёт для выполнения задачи",
-        command: "/r [ваш позывной], Взлетаю для [задача]."
-    }
-];
+            // Заступил и сдал смену
+            { category: "shift", title: "Заступление на смену", command: "r [ваш позывной] Заступил на смену." },
+            { category: "shift", title: "Сдача смены", command: "r [ваш позывной] Сдал смену." },
+            
+            // Патрулирование юрисдикции
+            { category: "patrol", title: "Выезд в патруль", command: "r [ваш позывной] Выезжаю в патрулирование, напарник: [Позывной/Фамилия напарника]." },
+            { category: "patrol", title: "Продолжение патруля", command: "r [ваш позывной] Продолжаю патрулирование, напарник: [Позывной/Фамилия напарника]." },
+            { category: "patrol", title: "Завершение патруля", command: "r [ваш позывной] Закончил патрулирование, напарник: [Позывной/Фамилия напарника]." },
+            
+            // Стационарный посты
+            { category: "post", title: "Выезд на пост", command: "r [ваш позывной] Выезжаю на пост [название поста], напарник: [Позывной/Фамилия напарника]." },
+            { category: "post", title: "Заступление на пост", command: "r [ваш позывной] Заступил на пост [название поста], напарник: [Позывной/Фамилия напарника]." },
+            { category: "post", title: "Нахождение на посту", command: "r [ваш позывной] Нахожусь на посту [название поста], напарник: [Позывной/Фамилия напарника]." },
+            { category: "post", title: "Сдача поста", command: "r [ваш позывной] Сдал пост [название поста], напарник: [Позывной/Фамилия напарника]." },
+            
+            // Принятие, обработка, закрытие вызова
+            { category: "call", title: "Принятие вызова", command: "r [ваш позывной] Принял вызов [место вызова], напарник: [Позывной/Фамилия напарника]." },
+            { category: "call", title: "Обработка вызова", command: "r [ваш позывной] Обрабатываю вызов [место вызова], напарник: [Позывной/Фамилия напарника]." },
+            { category: "call", title: "Ложный вызов", command: "r [ваш позывной] Вызов [место вызова] ложный, напарник: [Позывной/Фамилия напарника]." },
+            { category: "call", title: "Завершение вызова", command: "r [ваш позывной] Вызов [место вызова] обработан, напарник: [Позывной/Фамилия напарника]." },
+            
+            // Запросы на ДПС, выезд за СОП/ОП, Подтверждение помощи
+            { category: "help", title: "Запрос экипажа ДПС", command: "ro [ОМВД-П][ОГИБДД] Требуется экипаж ДПС к [место], [причина]." },
+            { category: "help", title: "Запрос помощи в поимке", command: "ro [ОМВД-П][МВД] Требуется помощь в поимке ООП: [имя фамилия]." },
+            { category: "help", title: "Подтверждение помощи", command: "ro [ОМВД-П][МВД] Принято, выехал." },
+            { category: "help", title: "Выезд за СОП/ОП", command: "r [ваш позывной] Выезжаю за ОП/СОП: [имя фамилия], напарник: [Позывной/Фамилия напарника]." },
+            
+            // Патрулирование юрисдикции на вертолете
+            { category: "air", title: "Вылет на патруль", command: "r [ваш позывной] Вылетаю для воздушного патрулирования, второй пилот: [Позывной/Фамилия напарника]." },
+            { category: "air", title: "Воздушный патруль", command: "r [ваш позывной] Продолжаю воздушный патруль, второй пилот: [Позывной/Фамилия напарника]." },
+            { category: "air", title: "Завершение задачи", command: "r [ваш позывной] Закончил выполнение задачи, возвращаюсь на базу." },
+            { category: "air", title: "Посадка на площадку", command: "r [ваш позывной] Выполняю посадку на вертолётную площадку." },
+            { category: "air", title: "Взлёт на задание", command: "r [ваш позывной] Взлетаю для [задача]." }
+        ];
+
         // Отыгровки ПДП
         const pdpItems = [
             {
                 title: "СЕРДЕЧНО-ЛЁГОЧНАЯ РЕАНИМАЦИЯ (СЛР)",
-                content: `Сердечно-лёгочная реанимация (СЛР) - комплекс неотложных мероприятий, направленных на поддержание жизнедеятельности организма - дыхания и кровообращения путем проведения непрямого массажа сердца (или прямого - только медицинскими работниками) и искусственной вентиляции легких методом реанимации «рот в рот» (или используя специальное оборудование, которого у сотрудников полиции нет).
-
-me запрокинул голову пострадавшего и снял с него стесняющую одежду
-Если скин без одежды, то копировать вторую часть отыгровки не нужно.
-me начал делать 30 компрессий грудной клетки пострадавшему
-После этих отыгровок нужно выдержать паузу в 15 секунд, затем:
-me используя метод реанимации «рот в рот», сделал два вдоха в пострадавшего
-try проверил пульс пострадавшего и почувствовал пульсацию
-Если удачно, то переходим к блоку оказания помощи человеку при отсутствии сознания. Если неудачно, то повторяем комплекс 30 компрессий и реанимации «рот в рот» до тех пор, пока не будет удачного результата или до приезда скорой медицинской помощи.`
+                content: `Сердечно-лёгочная реанимация (СЛР) - комплекс неотложных мероприятий, направленных на поддержание жизнедеятельности организма - дыхания и кровообращения путем проведения непрямого массажа сердца (или прямого - только медицинскими работниками) и искусственной вентиляции легких методом реанимации «рот в рот» (или используя специальное оборудование, которого у сотрудников полиции нет).\n\nme запрокинул голову пострадавшего и снял с него стесняющую одежду\nЕсли скин без одежды, то копировать вторую часть отыгровки не нужно.\nme начал делать 30 компрессий грудной клетки пострадавшему\nПосле этих отыгровок нужно выдержать паузу в 15 секунд, затем:\nme используя метод реанимации «рот в рот», сделал два вдоха в пострадавшего\ntry проверил пульс пострадавшего и почувствовал пульсацию\nЕсли удачно, то переходим к блоку оказания помощи человеку при отсутствии сознания. Если неудачно, то повторяем комплекс 30 компрессий и реанимации «рот в рот» до тех пор, пока не будет удачного результата или до приезда скорой медицинской помощи.`
             },
             {
                 title: "ОКАЗАНИЕ ПОМОЩИ ПРИ ОТСУТСТВИИ СОЗНАНИЯ (БЕЗ ТРАВМ)",
-                content: `Если у пострадавшего нет визуальных травм, а повод к СЛР отсутствует, то вызвав скорую медицинскую помощь, Вам следует ждать её, задав человеку устойчивое боковое положение (УБП) во избежание асфиксии.
-
-me расстегнул стесняющую одежду пострадавшему для притока воздуха
-me задал пострадавшему устойчивое боковое положение для его безопасности
-Контролируем состояние человека и ждем скорую помощь.`
+                content: `Если у пострадавшего нет визуальных травм, а повод к СЛР отсутствует, то вызвав скорую медицинскую помощь, Вам следует ждать её, задав человеку устойчивое боковое положение (УБП) во избежание асфиксии.\n\nme расстегнул стесняющую одежду пострадавшему для притока воздуха\nme задал пострадавшему устойчивое боковое положение для его безопасности\nКонтролируем состояние человека и ждем скорую помощь.`
             },
             {
                 title: "ОКАЗАНИЕ ПОМОЩИ ПРИ ПЕРЕЛОМАХ",
-                content: `В первую очередь нужно понять, открытый или закрытый перелом у человека. Если Вы не знаете, то:
-do У пострадавшего открытый или закрытый перелом?
-
-При закрытом переломе:
-do В аптечке сотрудника лежит шина и бинт.
-me достал бинт и шину из аптечки
-todo Все будет хорошо*закрепив шину на пострадавшем
-Контролируем состояние человека и ждем скорую помощь.
-
-При открытом переломе:
-do В аптечке сотрудника лежит жгут, шина и бинт.
-me достал жгут из аптечки и закрепил его выше перелома пострадавшего
-me достал бинт и шину из аптечки
-todo Все будет хорошо*закрепив шину на пострадавшем
-Контролируем состояние человека и ждем скорую помощь.`
+                content: `В первую очередь нужно понять, открытый или закрытый перелом у человека. Если Вы не знаете, то:\ndo У пострадавшего открытый или закрытый перелом?\n\nПри закрытом переломе:\ndo В аптечке сотрудника лежит шина и бинт.\nme достал бинт и шину из аптечки\ntodo Все будет хорошо*закрепив шину на пострадавшем\nКонтролируем состояние человека и ждем скорую помощь.\n\nПри открытом переломе:\ndo В аптечке сотрудника лежит жгут, шина и бинт.\nme достал жгут из аптечки и закрепил его выше перелома пострадавшего\nme достал бинт и шину из аптечки\ntodo Все будет хорошо*закрепив шину на пострадавшем\nКонтролируем состояние человека и ждем скорую помощь.`
             },
             {
                 title: "ОКАЗАНИЕ ПОМОЩИ ПРИ КРОВОТЕЧЕНИЯХ",
-                content: `В первую очередь нужно понять, в каком месте у человека кровотечение. Если Вы не знаете, то:
-do В каком месте у пострадавшего кровотечение?
-
-При кровотечении из конечности:
-do В кармане сотрудника лежит бинт и жгут.
-me достал бинт и жгут, затем наложил жгут поверх бинта выше раны
-Контролируем состояние человека и ждем скорую помощь.
-
-При кровотечении в других местах тела:
-do В кармане сотрудника лежит чистая салфетка.
-me достал салфетку и прижал её к месту кровотечения рукой
-Контролируем состояние человека и ждем скорую помощь.`
+                content: `В первую очередь нужно понять, в каком месте у человека кровотечение. Если Вы не знаете, то:\ndo В каком месте у пострадавшего кровотечение?\n\nПри кровотечении из конечности:\ndo В кармане сотрудника лежит бинт и жгут.\nme достал бинт и жгут, затем наложил жгут поверх бинта выше раны\nКонтролируем состояние человека и ждем скорую помощь.\n\nПри кровотечении в других местах тела:\ndo В кармане сотрудника лежит чистая салфетка.\nme достал салфетку и прижал её к месту кровотечения рукой\nКонтролируем состояние человека и ждем скорую помощь.`
             },
             {
                 title: "ОКАЗАНИЕ ПОМОЩИ ПРИ ОХЛАЖДЕНИИ",
-                content: `do В багажнике лежит аптечка с изотермическим одеялом.
-me достал одеяло из аптечки
-me окутал пострадавшего в спасательное одеяло по инструкции
-Пострадавшего нужно усадить в автомобиль и ждать скорую.`
+                content: `do В багажнике лежит аптечка с изотермическим одеялом.\nme достал одеяло из аптечки\nme окутал пострадавшего в спасательное одеяло по инструкции\nПострадавшего нужно усадить в автомобиль и ждать скорую.`
             },
             {
                 title: "ОКАЗАНИЕ ПОМОЩИ ПРИ ОГНЕСТРЕЛЬНОМ РАНЕНИИ",
-                content: `В первую очередь нужно понять, в какое место ранен человек. Если Вы не знаете, то:
-do Куда ранен пострадавший?
-
-При ранении в конечности:
-do В кармане сотрудника лежит бинт и жгут.
-me достал бинт и жгут, затем наложил жгут поверх бинта выше раны
-Контролируем состояние человека и ждем скорую помощь.
-
-При ранении в другую часть тела (ровную):
-do В кармане сотрудника лежит самоклеющаяся силиконовая лента.
-me достал самоклеющуюся силиконовую ленту для остановки кровотечения
-me открыл силиконовую ленту и прилепил её на место ранения
-Контролируем состояние человека и ждем скорую помощь.`
+                content: `В первую очередь нужно понять, в какое место ранен человек. Если Вы не знаете, то:\ndo Куда ранен пострадавший?\n\nПри ранении в конечности:\ndo В кармане сотрудника лежит бинт и жгут.\nme достал бинт и жгут, затем наложил жгут поверх бинта выше раны\nКонтролируем состояние человека и ждем скорую помощь.\n\nПри ранении в другую часть тела (ровную):\ndo В кармане сотрудника лежит самоклеющаяся силиконовая лента.\nme достал самоклеющуюся силиконовую ленту для остановки кровотечения\nme открыл силиконовую ленту и прилепил её на место ранения\nКонтролируем состояние человека и ждем скорую помощь.`
             }
         ];
 
@@ -2288,7 +2220,6 @@ me открыл силиконовую ленту и прилепил её на 
 
         // Функция для сворачивания/разворачивания категорий
         function toggleCategory(header) {
-            header.classList.toggle('collapsed');
             const list = header.nextElementSibling;
             if (list.style.display === 'none') {
                 list.style.display = 'block';
@@ -2352,7 +2283,7 @@ me открыл силиконовую ленту и прилепил её на 
                 mainBinds.forEach((bind) => {
                     const bindItem = document.createElement('div');
                     bindItem.className = 'bind-item';
-                    const formattedCommands = formatBindCommands(bind.commands);
+                    const formattedCommands = formatBindCommands(bind.commands).replace(/\//g, '');
                     bindItem.innerHTML = `
                         <div class="bind-key">${bind.title}</div>
                         <div class="bind-commands">${formattedCommands}</div>
@@ -2369,7 +2300,7 @@ me открыл силиконовую ленту и прилепил её на 
                 additionalBinds.forEach((bind) => {
                     const bindItem = document.createElement('div');
                     bindItem.className = 'bind-item';
-                    const formattedCommands = formatBindCommands(bind.commands);
+                    const formattedCommands = formatBindCommands(bind.commands).replace(/\//g, '');
                     bindItem.innerHTML = `
                         <div class="bind-key">${bind.title}</div>
                         <div class="bind-commands">${formattedCommands}</div>
@@ -2388,18 +2319,48 @@ me открыл силиконовую ленту и прилепил её на 
             
             if (reportsList) {
                 reportsList.innerHTML = '';
-                reports.forEach((report) => {
-                    const reportItem = document.createElement('div');
-                    reportItem.className = 'report-item';
-                    const formattedCommand = formatReportCommand(report.command);
-                    reportItem.innerHTML = `
-                        <h4>${report.title}</h4>
-                        <div class="report-command">${formattedCommand}</div>
-                        <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommand)}')">
-                            <i class="far fa-copy"></i> Копировать доклад
-                        </button>
-                    `;
-                    reportsList.appendChild(reportItem);
+                
+                const categories = [
+                    { id: 'shift', title: 'Заступил и сдал смену', icon: 'fa-calendar-check' },
+                    { id: 'patrol', title: 'Патрулирование юрисдикции', icon: 'fa-car' },
+                    { id: 'post', title: 'Стационарный Пост', icon: 'fa-map-pin' },
+                    { id: 'call', title: 'Принятие, обработка, закрытие вызова', icon: 'fa-phone-alt' },
+                    { id: 'help', title: 'Запросы на ДПС, выезд за СОП/ОП, Подтверждение помощи', icon: 'fa-hand-paper' },
+                    { id: 'air', title: 'Патрулирование юрисдикции на вертолете', icon: 'fa-helicopter' }
+                ];
+                
+                categories.forEach(cat => {
+                    const catReports = reports.filter(r => r.category === cat.id);
+                    
+                    if (catReports.length > 0) {
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'report-category';
+                        
+                        let itemsHtml = '';
+                        catReports.forEach(report => {
+                            const formattedCommand = formatReportCommand(report.command).replace(/\//g, '');
+                            itemsHtml += `
+                                <div class="report-item">
+                                    <h4>${report.title}</h4>
+                                    <div class="report-command">${formattedCommand}</div>
+                                    <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommand)}')">
+                                        <i class="far fa-copy"></i> Копировать доклад
+                                    </button>
+                                </div>
+                            `;
+                        });
+                        
+                        categoryDiv.innerHTML = `
+                            <div class="report-header" onclick="toggleCategory(this)">
+                                <span><i class="fas ${cat.icon}"></i> ${cat.title}</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="report-items" style="display: block;">
+                                ${itemsHtml}
+                            </div>
+                        `;
+                        reportsList.appendChild(categoryDiv);
+                    }
                 });
             }
         }
@@ -2419,7 +2380,7 @@ me открыл силиконовую ленту и прилепил её на 
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="injury-content">
-                            <div class="bind-commands">${item.content}</div>
+                            <div class="bind-commands">${item.content.replace(/\//g, '')}</div>
                         </div>
                     `;
                     pdpList.appendChild(pdpItem);
@@ -2443,6 +2404,28 @@ me открыл силиконовую ленту и прилепил её на 
                 
                 lawResults.innerHTML = '';
                 
+                let hasResults = false;
+                
+                // Проверяем, есть ли вообще статьи в массивах
+                const hasAnyArticles = 
+                    (showUK && legislationData.uk.length > 0) ||
+                    (showKOAP && legislationData.koap.length > 0) ||
+                    (showFZOP && legislationData.fzop.length > 0) ||
+                    (showFZOVNG && legislationData.fzvng.length > 0) ||
+                    (showOPSGO && legislationData.opsgo.length > 0);
+                
+                if (!hasAnyArticles) {
+                    lawResults.innerHTML = `
+                        <div class="empty-law">
+                            <i class="fas fa-book-open"></i>
+                            <h3 style="color: #4CAF50; margin-bottom: 10px;">База законодательства пуста</h3>
+                            <p style="color: #ccc;">Добавьте статьи законов в массив legislationData в коде</p>
+                            <p style="color: #aaa; font-size: 0.9rem; margin-top: 20px;">Место для добавления отмечено комментариями в коде</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
                 // Поиск по УК
                 if (showUK) {
                     legislationData.uk.forEach(article => {
@@ -2453,6 +2436,7 @@ me открыл силиконовую ленту и прилепил её на 
                             
                             const articleElement = createLawArticleElement('УК РП', article, query);
                             lawResults.appendChild(articleElement);
+                            hasResults = true;
                         }
                     });
                 }
@@ -2467,6 +2451,7 @@ me открыл силиконовую ленту и прилепил её на 
                             
                             const articleElement = createLawArticleElement('КоАП', article, query);
                             lawResults.appendChild(articleElement);
+                            hasResults = true;
                         }
                     });
                 }
@@ -2481,6 +2466,7 @@ me открыл силиконовую ленту и прилепил её на 
                             
                             const articleElement = createLawArticleElement('ФЗоП', article, query);
                             lawResults.appendChild(articleElement);
+                            hasResults = true;
                         }
                     });
                 }
@@ -2495,6 +2481,7 @@ me открыл силиконовую ленту и прилепил её на 
                             
                             const articleElement = createLawArticleElement('ФЗоВНГ', article, query);
                             lawResults.appendChild(articleElement);
+                            hasResults = true;
                         }
                     });
                 }
@@ -2509,12 +2496,13 @@ me открыл силиконовую ленту и прилепил её на 
                             
                             const articleElement = createLawArticleElement('ОПСГО', article, query);
                             lawResults.appendChild(articleElement);
+                            hasResults = true;
                         }
                     });
                 }
                 
-                if (lawResults.children.length === 0 && query !== '') {
-                    lawResults.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Ничего не найдено</p>';
+                if (!hasResults && query !== '') {
+                    lawResults.innerHTML = '<p style="text-align: center; color: #ccc; padding: 20px;">Ничего не найдено</p>';
                 }
             }
             
@@ -2555,10 +2543,10 @@ me открыл силиконовую ленту и прилепил её на 
                 <div class="law-code">${code} - ${article.title}</div>
                 <div class="law-text">${content.replace(/\n/g, '<br>')}</div>
                 ${hiddenContent ? `
-                    <div class="law-title" style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                    <div class="law-title" style="margin-top: 15px; color: #aaa; font-size: 0.9rem;">
                         <i class="fas fa-info-circle"></i> Примечание:
                     </div>
-                    <div class="law-text" style="font-size: 0.9rem; color: #666;">${hiddenContent.replace(/\n/g, '<br>')}</div>
+                    <div class="law-text" style="font-size: 0.9rem; color: #ccc;">${hiddenContent.replace(/\n/g, '<br>')}</div>
                 ` : ''}
             `;
             
@@ -2644,7 +2632,7 @@ me открыл силиконовую ленту и прилепил её на 
                 }
             });
             
-            document.querySelectorAll('.category-header, .injury-header').forEach(header => {
+            document.querySelectorAll('.category-header, .injury-header, .report-header').forEach(header => {
                 header.classList.remove('collapsed');
                 const content = header.nextElementSibling;
                 if (content) {
