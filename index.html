@@ -972,6 +972,35 @@ do У пострадавшего есть дыхание?</div>
             partnerCallsign: "",
             service: "полиции"
         };
+        // Функции для сохранения и загрузки данных из localStorage
+        function saveUserDataToStorage() {
+            try {
+                localStorage.setItem('policeUserData', JSON.stringify(userData));
+            } catch (e) {
+                console.error('Ошибка сохранения данных:', e);
+            }
+        }
+
+        function loadUserDataFromStorage() {
+            try {
+                const savedData = localStorage.getItem('policeUserData');
+                if (savedData) {
+                    const parsedData = JSON.parse(savedData);
+                    // Обновляем объект userData сохраненными данными
+                    userData = { ...userData, ...parsedData };
+                    
+                    // Заполняем поля формы сохраненными данными
+                    document.getElementById('rank').value = userData.rank || '';
+                    document.getElementById('lastname').value = userData.lastname || '';
+                    document.getElementById('position').value = userData.position || '';
+                    document.getElementById('callsign').value = userData.callsign || '';
+                    document.getElementById('partnerCallsign').value = userData.partnerCallsign || '';
+                    document.getElementById('service').value = userData.service || 'полиции';
+                }
+            } catch (e) {
+                console.error('Ошибка загрузки данных:', e);
+            }
+        }
 
         // Основные бинды (1.1 - 8.1.2)
         const mainBinds = [
@@ -2271,6 +2300,8 @@ do У пострадавшего есть дыхание?</div>
                 partnerCallsign: document.getElementById('partnerCallsign').value || "",
                 service: document.getElementById('service').value || "полиции"
             };
+            // Сохраняем в localStorage после обновления
+            saveUserDataToStorage();
         }
 
         // Функция для заполнения биндов
@@ -2608,6 +2639,7 @@ do У пострадавшего есть дыхание?</div>
 
         // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
+            loadUserDataFromStorage();
             initTabs();
             updateUserData();
             fillBinds();
@@ -2643,5 +2675,3 @@ do У пострадавшего есть дыхание?</div>
     </script>
 </body>
 </html>
-
-
