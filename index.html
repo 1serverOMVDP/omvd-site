@@ -33,7 +33,6 @@
             z-index: -1;
         }
 
-        /* ПРОЗРАЧНЫЕ ПЛАШКИ */
         header {
             background: rgba(26, 61, 124, 0.7);
             backdrop-filter: blur(10px);
@@ -216,7 +215,6 @@
             text-shadow: 2px 2px 2px #000;
         }
 
-        /* Стили для подвкладок */
         .subtabs {
             display: flex;
             flex-wrap: wrap;
@@ -526,8 +524,6 @@
             opacity: 0.7;
         }
 
-        /* ===== МЕСТО ДЛЯ СТИЛЕЙ СТАТЕЙ ЗАКОНОВ ===== */
-        /* Стили для отображения статей законов */
         .law-article {
             margin-bottom: 25px;
             padding: 20px;
@@ -635,7 +631,6 @@
             color: #eee;
         }
 
-        /* ЦВЕТНЫЕ ПРОЗРАЧНЫЕ ИКОНКИ (БЕЗ ЖЕЛТОГО) */
         .fas, .far, .fab {
             opacity: 0.9;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
@@ -648,7 +643,6 @@
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
         }
 
-        /* Зеленые иконки (основной цвет) */
         .fa-shield-alt, .fa-gavel, .fa-calendar-alt, .fa-car,
         .fa-search, .fa-chevron-down, .fa-save, .fa-map-pin,
         .fa-calendar-check, .fa-star, .fa-bolt, .fa-keyboard,
@@ -657,7 +651,6 @@
         .fa-download, .fa-info-circle, .fa-vest, .fa-helicopter,
         .fa-question-circle, .fa-book-open { color: #4CAF50; }
 
-        /* Красные иконки (для предупреждений) */
         .fa-bullhorn, .fa-first-aid, .fa-exclamation-triangle,
         .fa-fire, .fa-skull-crossbones { color: #ff6b6b; }
 
@@ -689,7 +682,6 @@
             }
         }
         
-        /* ===== КНОПКА ПОМОЩИ ДЛЯ ВКЛАДКИ ЗАКОНОДАТЕЛЬСТВО ===== */
         .law-help-container {
             display: flex;
             justify-content: center;
@@ -726,7 +718,6 @@
             filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
         }
         
-        /* Модальное окно для помощи */
         .law-help-modal {
             display: none;
             position: fixed;
@@ -1055,12 +1046,6 @@
                     <div class="radio-command-item">
                         <strong>rob</strong> - общая рация МВД в OOC чат
                     </div>
-                    <div class="radio-command-item">
-                        <strong>d</strong> - рация между МЗ, РЖД и МО в IC чат
-                    </div>
-                    <div class="radio-command-item">
-                        <strong>db</strong> - общая рация МЗ, РЖД и МО в OOC чат
-                    </div>
                 </div>
             </div>
             
@@ -1183,6 +1168,7 @@ do У пострадавшего есть дыхание?</div>
             </div>
         </div>
 
+
         <!-- Вкладка Законодательство -->
         <div class="tab-content" id="law">
             <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
@@ -1234,7 +1220,7 @@ do У пострадавшего есть дыхание?</div>
                     <div class="empty-law">
                         <i class="fas fa-book-open"></i>
                         <h3 style="color: #4CAF50; margin-bottom: 10px;">База законодательства пуста</h3>
-                        <p style="color: #ccc;">Добавьте статьи законов вручную через код.</p>
+                        <p style="color: #ccc;">Добавьте статьи законов в массив legislationData в коде.</p>
                     </div>
                 </div>
             </div>
@@ -1251,7 +1237,7 @@ do У пострадавшего есть дыхание?</div>
         <div class="footer-content">
             <p>© 2026 ОМВД-П. Все права защищены.</p>
             <p>Сайт является исключительно для сотрудников 1 сервера ОМВД-П</p>
-            <p>Разработчик сайта: Ellie_Parker</p>
+            <p>Разработчик сайта: AI Assistant</p>
             <div class="footer-links">
                 <a href="#" target="_blank">
                     <i class="fab fa-vk"></i> Связь для ошибок или предложений
@@ -1604,7 +1590,7 @@ do У пострадавшего есть дыхание?</div>
             { category: "air", title: "Взлёт на задание", command: "r [ваш позывной] Взлетаю для [задача]." }
         ];
 
-        // Отыгровки ПДП
+       // Отыгровки ПДП
         const pdpItems = [
             {
                 title: "СЕРДЕЧНО-ЛЁГОЧНАЯ РЕАНИМАЦИЯ (СЛР)",
@@ -1632,278 +1618,7 @@ do У пострадавшего есть дыхание?</div>
             }
         ];
 
-        // Функция для переключения вкладок
-        function initTabs() {
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    tab.classList.add('active');
-                    const tabId = tab.getAttribute('data-tab');
-                    const tabContent = document.getElementById(tabId);
-                    if (tabContent) {
-                        tabContent.classList.add('active');
-                    }
-                });
-            });
-        }
-
-        // Функция для сворачивания/разворачивания категорий
-        function toggleCategory(header) {
-            const list = header.nextElementSibling;
-            if (list.style.display === 'none') {
-                list.style.display = 'block';
-            } else {
-                list.style.display = 'none';
-            }
-        }
-
-        // Функция для копирования текста
-        function copyToClipboard(text) {
-            const cleanText = text.replace(/\s+/g, ' ').trim();
-            
-            navigator.clipboard.writeText(cleanText).then(() => {
-                showNotification('Текст скопирован в буфер обмена!');
-            }).catch(err => {
-                console.error('Ошибка копирования: ', err);
-                const textArea = document.createElement('textarea');
-                textArea.value = cleanText;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showNotification('Текст скопирован в буфер обмена!');
-            });
-        }
-
-        function showNotification(message) {
-            const notification = document.getElementById('copyNotification');
-            const notificationText = document.getElementById('notificationText');
-            
-            if (notificationText) {
-                notificationText.textContent = message;
-            }
-            notification.style.display = 'flex';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 3000);
-        }
-
-        function updateUserData() {
-            userData = {
-                rank: document.getElementById('rank').value || "",
-                lastname: document.getElementById('lastname').value || "",
-                position: document.getElementById('position').value || "",
-                callsign: document.getElementById('callsign').value || "",
-                partnerCallsign: document.getElementById('partnerCallsign').value || "",
-                service: document.getElementById('service').value || "полиции"
-            };
-            saveUserDataToStorage();
-        }
-
-        // Форматирование команд с подстановкой данных
-        function formatCommands(commands) {
-            let formatted = commands;
-            formatted = formatted.replace(/\[Имя\]/g, userData.lastname || '[Имя]');
-            formatted = formatted.replace(/\[ваше имя\]/g, userData.lastname || '[ваше имя]');
-            formatted = formatted.replace(/\[ваша фамилия\]/g, userData.lastname || '[ваша фамилия]');
-            formatted = formatted.replace(/\[фамилия\]/g, userData.lastname || '[фамилия]');
-            formatted = formatted.replace(/\[звание\]/g, userData.rank || '[звание]');
-            formatted = formatted.replace(/\[должность\]/g, userData.position || '[должность]');
-            formatted = formatted.replace(/\[Позывной\]/g, userData.callsign || '[Позывной]');
-            formatted = formatted.replace(/\[полиции\/юстиции\/внутренней службы\]/g, userData.service || 'полиции');
-            return formatted;
-        }
-
-        function formatReportCommand(command) {
-            let formatted = command;
-            formatted = formatted.replace(/\[ваш позывной\]/g, userData.callsign || '[ваш позывной]');
-            formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.partnerCallsign || 'Нет');
-            return formatted;
-        }
-
-        // Заполнение подвкладок биндов
-        function fillBindsSubtab(subtabId) {
-            const container = document.getElementById('bindsSubtabContent');
-            const data = bindsData[subtabId];
-            
-            if (!data) return;
-            
-            let html = `<div class="subtab-content active" id="subtab-${subtabId}">`;
-            
-            data.forEach(category => {
-                html += `
-                    <div class="bind-category">
-                        <div class="category-header" onclick="toggleCategory(this)">
-                            <span>${category.category}</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="bind-list">
-                `;
-                
-                category.items.forEach(item => {
-                    const formattedCommands = formatCommands(item.commands);
-                    html += `
-                        <div class="bind-item">
-                            <div class="bind-key">${item.title}</div>
-                            <div class="bind-commands">${formattedCommands}</div>
-                            <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommands)}')">
-                                <i class="far fa-copy"></i> Копировать бинд
-                            </button>
-                        </div>
-                    `;
-                });
-                
-                html += `</div></div>`;
-            });
-            
-            html += `</div>`;
-            container.innerHTML = html;
-        }
-
-        // Заполнение докладов
-        function fillReports() {
-            const reportsList = document.getElementById('reportsList');
-            
-            if (reportsList) {
-                reportsList.innerHTML = '';
-                
-                const categories = [
-                    { id: 'shift', title: 'Заступил и сдал смену', icon: 'fa-calendar-check' },
-                    { id: 'patrol', title: 'Патрулирование', icon: 'fa-car' },
-                    { id: 'post', title: 'Стационарный Пост', icon: 'fa-map-pin' },
-                    { id: 'call', title: 'Принятие и закрытие вызова', icon: 'fa-phone-alt' },
-                    { id: 'help', title: 'Запросы и помощь', icon: 'fa-hand-paper' },
-                    { id: 'air', title: 'Воздушное патрулирование', icon: 'fa-helicopter' }
-                ];
-                
-                categories.forEach(cat => {
-                    const catReports = reports.filter(r => r.category === cat.id);
-                    
-                    if (catReports.length > 0) {
-                        let itemsHtml = '';
-                        catReports.forEach(report => {
-                            const formattedCommand = formatReportCommand(report.command);
-                            itemsHtml += `
-                                <div class="report-item">
-                                    <h4>${report.title}</h4>
-                                    <div class="report-command">${formattedCommand}</div>
-                                    <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommand)}')">
-                                        <i class="far fa-copy"></i> Копировать доклад
-                                    </button>
-                                </div>
-                            `;
-                        });
-                        
-                        const categoryDiv = document.createElement('div');
-                        categoryDiv.className = 'report-category';
-                        categoryDiv.innerHTML = `
-                            <div class="report-header" onclick="toggleCategory(this)">
-                                <span><i class="fas ${cat.icon}"></i> ${cat.title}</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="report-items" style="display: block;">
-                                ${itemsHtml}
-                            </div>
-                        `;
-                        reportsList.appendChild(categoryDiv);
-                    }
-                });
-            }
-        }
-
-        // Заполнение ПДП
-        function fillPDP() {
-            const pdpList = document.getElementById('pdpList');
-            
-            if (pdpList) {
-                pdpList.innerHTML = '';
-                pdpItems.forEach((item) => {
-                    const pdpItem = document.createElement('div');
-                    pdpItem.className = 'pdp-injury';
-                    pdpItem.innerHTML = `
-                        <div class="injury-header" onclick="toggleCategory(this)">
-                            <span>${item.title}</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="injury-content">
-                            <div class="bind-commands">${item.content}</div>
-                        </div>
-                    `;
-                    pdpList.appendChild(pdpItem);
-                });
-            }
-        }
-
-        // Функции для помощи
-        function openLawHelpModal() {
-            document.getElementById('lawHelpModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLawHelpModal() {
-            document.getElementById('lawHelpModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        function closeLawHelpOutside(event) {
-            if (event.target.classList.contains('law-help-modal')) {
-                closeLawHelpModal();
-            }
-        }
-
-        function escapeQuotes(text) {
-            return text
-                .replace(/\\/g, '\\\\')
-                .replace(/'/g, "\\'")
-                .replace(/"/g, '\\"')
-                .replace(/\n/g, '\\n');
-        }
-
-        // Инициализация
-        document.addEventListener('DOMContentLoaded', function() {
-            loadUserDataFromStorage();
-            initTabs();
-            fillBindsSubtab('academy');
-            fillReports();
-            fillPDP();
-            
-            // Обработчики для подвкладок
-            document.querySelectorAll('.subtab').forEach(subtab => {
-                subtab.addEventListener('click', function() {
-                    document.querySelectorAll('.subtab').forEach(s => s.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const subtabId = this.getAttribute('data-subtab');
-                    fillBindsSubtab(subtabId);
-                });
-            });
-            
-            document.getElementById('updateDataBtn').addEventListener('click', function() {
-                updateUserData();
-                const activeSubtab = document.querySelector('.subtab.active');
-                if (activeSubtab) {
-                    fillBindsSubtab(activeSubtab.getAttribute('data-subtab'));
-                }
-                fillReports();
-                showNotification('Данные обновлены!');
-            });
-            
-            document.querySelectorAll('.category-header, .injury-header, .report-header').forEach(header => {
-                header.classList.remove('collapsed');
-                const content = header.nextElementSibling;
-                if (content) {
-                    content.style.display = 'block';
-                }
-            });
-        });
-   
-       // Законодательство из JSON файла - ОБНОВЛЕННАЯ ВЕРСИЯ С НАКАЗАНИЯМИ И ПРИМЕЧАНИЯМИ
+        // Законодательство из JSON файла - ОБНОВЛЕННАЯ ВЕРСИЯ С НАКАЗАНИЯМИ И ПРИМЕЧАНИЯМИ
         const legislationData = {
             uk: [
                 // Глава 1
@@ -2585,6 +2300,7 @@ do У пострадавшего есть дыхание?</div>
             ]
 };
 
+
         // Функция для переключения вкладок
         function initTabs() {
             const tabs = document.querySelectorAll('.tab');
@@ -2633,7 +2349,6 @@ do У пострадавшего есть дыхание?</div>
             });
         }
 
-        // Показать уведомление
         function showNotification(message) {
             const notification = document.getElementById('copyNotification');
             const notificationText = document.getElementById('notificationText');
@@ -2648,7 +2363,6 @@ do У пострадавшего есть дыхание?</div>
             }, 3000);
         }
 
-        // Обновление пользовательских данных
         function updateUserData() {
             userData = {
                 rank: document.getElementById('rank').value || "",
@@ -2658,51 +2372,70 @@ do У пострадавшего есть дыхание?</div>
                 partnerCallsign: document.getElementById('partnerCallsign').value || "",
                 service: document.getElementById('service').value || "полиции"
             };
-            // Сохраняем в localStorage после обновления
             saveUserDataToStorage();
         }
 
-        // Функция для заполнения биндов
-        function fillBinds() {
-            const mainBindsList = document.getElementById('mainBindsList');
-            const additionalBindsList = document.getElementById('additionalBindsList');
-
-            if (mainBindsList) {
-                mainBindsList.innerHTML = '';
-                mainBinds.forEach((bind) => {
-                    const bindItem = document.createElement('div');
-                    bindItem.className = 'bind-item';
-                    const formattedCommands = formatBindCommands(bind.commands).replace(/\//g, '');
-                    bindItem.innerHTML = `
-                        <div class="bind-key">${bind.title}</div>
-                        <div class="bind-commands">${formattedCommands}</div>
-                        <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommands)}')">
-                            <i class="far fa-copy"></i> Копировать бинд
-                        </button>
-                    `;
-                    mainBindsList.appendChild(bindItem);
-                });
-            }
-            
-            if (additionalBindsList) {
-                additionalBindsList.innerHTML = '';
-                additionalBinds.forEach((bind) => {
-                    const bindItem = document.createElement('div');
-                    bindItem.className = 'bind-item';
-                    const formattedCommands = formatBindCommands(bind.commands).replace(/\//g, '');
-                    bindItem.innerHTML = `
-                        <div class="bind-key">${bind.title}</div>
-                        <div class="bind-commands">${formattedCommands}</div>
-                        <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommands)}')">
-                            <i class="far fa-copy"></i> Копировать бинд
-                        </button>
-                    `;
-                    additionalBindsList.appendChild(bindItem);
-                });
-            }
+        // Форматирование команд с подстановкой данных
+        function formatCommands(commands) {
+            let formatted = commands;
+            formatted = formatted.replace(/\[Имя\]/g, userData.lastname || '[Имя]');
+            formatted = formatted.replace(/\[ваше имя\]/g, userData.lastname || '[ваше имя]');
+            formatted = formatted.replace(/\[ваша фамилия\]/g, userData.lastname || '[ваша фамилия]');
+            formatted = formatted.replace(/\[фамилия\]/g, userData.lastname || '[фамилия]');
+            formatted = formatted.replace(/\[звание\]/g, userData.rank || '[звание]');
+            formatted = formatted.replace(/\[должность\]/g, userData.position || '[должность]');
+            formatted = formatted.replace(/\[Позывной\]/g, userData.callsign || '[Позывной]');
+            formatted = formatted.replace(/\[полиции\/юстиции\/внутренней службы\]/g, userData.service || 'полиции');
+            return formatted;
         }
 
-        // Функция для заполнения докладов
+        function formatReportCommand(command) {
+            let formatted = command;
+            formatted = formatted.replace(/\[ваш позывной\]/g, userData.callsign || '[ваш позывной]');
+            formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.partnerCallsign || 'Нет');
+            return formatted;
+        }
+
+        // Заполнение подвкладок биндов
+        function fillBindsSubtab(subtabId) {
+            const container = document.getElementById('bindsSubtabContent');
+            const data = bindsData[subtabId];
+            
+            if (!data) return;
+            
+            let html = `<div class="subtab-content active" id="subtab-${subtabId}">`;
+            
+            data.forEach(category => {
+                html += `
+                    <div class="bind-category">
+                        <div class="category-header" onclick="toggleCategory(this)">
+                            <span>${category.category}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="bind-list">
+                `;
+                
+                category.items.forEach(item => {
+                    const formattedCommands = formatCommands(item.commands);
+                    html += `
+                        <div class="bind-item">
+                            <div class="bind-key">${item.title}</div>
+                            <div class="bind-commands">${formattedCommands}</div>
+                            <button class="copy-btn" onclick="copyToClipboard('${escapeQuotes(formattedCommands)}')">
+                                <i class="far fa-copy"></i> Копировать бинд
+                            </button>
+                        </div>
+                    `;
+                });
+                
+                html += `</div></div>`;
+            });
+            
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        // Заполнение докладов
         function fillReports() {
             const reportsList = document.getElementById('reportsList');
             
@@ -2711,23 +2444,20 @@ do У пострадавшего есть дыхание?</div>
                 
                 const categories = [
                     { id: 'shift', title: 'Заступил и сдал смену', icon: 'fa-calendar-check' },
-                    { id: 'patrol', title: 'Патрулирование юрисдикции', icon: 'fa-car' },
+                    { id: 'patrol', title: 'Патрулирование', icon: 'fa-car' },
                     { id: 'post', title: 'Стационарный Пост', icon: 'fa-map-pin' },
-                    { id: 'call', title: 'Принятие, обработка, закрытие вызова', icon: 'fa-phone-alt' },
-                    { id: 'help', title: 'Запросы на ДПС, выезд за СОП/ОП, Подтверждение помощи', icon: 'fa-hand-paper' },
-                    { id: 'air', title: 'Патрулирование юрисдикции на вертолете', icon: 'fa-helicopter' }
+                    { id: 'call', title: 'Принятие и закрытие вызова', icon: 'fa-phone-alt' },
+                    { id: 'help', title: 'Запросы и помощь', icon: 'fa-hand-paper' },
+                    { id: 'air', title: 'Воздушное патрулирование', icon: 'fa-helicopter' }
                 ];
                 
                 categories.forEach(cat => {
                     const catReports = reports.filter(r => r.category === cat.id);
                     
                     if (catReports.length > 0) {
-                        const categoryDiv = document.createElement('div');
-                        categoryDiv.className = 'report-category';
-                        
                         let itemsHtml = '';
                         catReports.forEach(report => {
-                            const formattedCommand = formatReportCommand(report.command).replace(/\//g, '');
+                            const formattedCommand = formatReportCommand(report.command);
                             itemsHtml += `
                                 <div class="report-item">
                                     <h4>${report.title}</h4>
@@ -2739,6 +2469,8 @@ do У пострадавшего есть дыхание?</div>
                             `;
                         });
                         
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'report-category';
                         categoryDiv.innerHTML = `
                             <div class="report-header" onclick="toggleCategory(this)">
                                 <span><i class="fas ${cat.icon}"></i> ${cat.title}</span>
@@ -2754,7 +2486,7 @@ do У пострадавшего есть дыхание?</div>
             }
         }
 
-        // Функция для заполнения ПДП
+        // Заполнение ПДП
         function fillPDP() {
             const pdpList = document.getElementById('pdpList');
             
@@ -2769,7 +2501,7 @@ do У пострадавшего есть дыхание?</div>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="injury-content">
-                            <div class="bind-commands">${item.content.replace(/\//g, '')}</div>
+                            <div class="bind-commands">${item.content}</div>
                         </div>
                     `;
                     pdpList.appendChild(pdpItem);
@@ -2777,141 +2509,7 @@ do У пострадавшего есть дыхание?</div>
             }
         }
 
-        // Функция для поиска законодательства
-        function initLawSearch() {
-            const searchInput = document.getElementById('lawSearch');
-            const searchBtn = document.getElementById('searchLawBtn');
-            const lawResults = document.getElementById('lawResults');
-            
-            function performLawSearch() {
-                const query = searchInput.value.toLowerCase().trim();
-                const showUK = document.getElementById('filterUK').checked;
-                const showKOAP = document.getElementById('filterKOAP').checked;
-                const showFZOP = document.getElementById('filterFZOP').checked;
-                const showFZOVNG = document.getElementById('filterFZOVNG').checked;
-                const showOPSGO = document.getElementById('filterOPSGO').checked;
-                
-                lawResults.innerHTML = '';
-                
-                let hasResults = false;
-                
-                // Проверяем, есть ли вообще статьи в массивах
-                const hasAnyArticles = 
-                    (showUK && legislationData.uk.length > 0) ||
-                    (showKOAP && legislationData.koap.length > 0) ||
-                    (showFZOP && legislationData.fzop.length > 0) ||
-                    (showFZOVNG && legislationData.fzvng.length > 0) ||
-                    (showOPSGO && legislationData.opsgo.length > 0);
-                
-                if (!hasAnyArticles) {
-                    lawResults.innerHTML = `
-                        <div class="empty-law">
-                            <i class="fas fa-book-open"></i>
-                            <h3 style="color: #4CAF50; margin-bottom: 10px;">База законодательства пуста</h3>
-                            <p style="color: #ccc;">Добавьте статьи законов в массив legislationData в коде</p>
-                            <p style="color: #aaa; font-size: 0.9rem; margin-top: 20px;">Место для добавления отмечено комментариями в коде</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                // Поиск по УК
-                if (showUK) {
-                    legislationData.uk.forEach(article => {
-                        if (query === '' || 
-                            article.title.toLowerCase().includes(query) || 
-                            article.content.toLowerCase().includes(query) ||
-                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                            
-                            const articleElement = createLawArticleElement('УК РП', article, query);
-                            lawResults.appendChild(articleElement);
-                            hasResults = true;
-                        }
-                    });
-                }
-                
-                // Поиск по КоАП
-                if (showKOAP) {
-                    legislationData.koap.forEach(article => {
-                        if (query === '' || 
-                            article.title.toLowerCase().includes(query) || 
-                            article.content.toLowerCase().includes(query) ||
-                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                            
-                            const articleElement = createLawArticleElement('КоАП', article, query);
-                            lawResults.appendChild(articleElement);
-                            hasResults = true;
-                        }
-                    });
-                }
-                
-                // Поиск по ФЗоП
-                if (showFZOP) {
-                    legislationData.fzop.forEach(article => {
-                        if (query === '' || 
-                            article.title.toLowerCase().includes(query) || 
-                            article.content.toLowerCase().includes(query) ||
-                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                            
-                            const articleElement = createLawArticleElement('ФЗоП', article, query);
-                            lawResults.appendChild(articleElement);
-                            hasResults = true;
-                        }
-                    });
-                }
-                
-                // Поиск по ФЗоВНГ
-                if (showFZOVNG) {
-                    legislationData.fzvng.forEach(article => {
-                        if (query === '' || 
-                            article.title.toLowerCase().includes(query) || 
-                            article.content.toLowerCase().includes(query) ||
-                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                            
-                            const articleElement = createLawArticleElement('ФЗоВНГ', article, query);
-                            lawResults.appendChild(articleElement);
-                            hasResults = true;
-                        }
-                    });
-                }
-                
-                // Поиск по ОПСГО
-                if (showOPSGO) {
-                    legislationData.opsgo.forEach(article => {
-                        if (query === '' || 
-                            article.title.toLowerCase().includes(query) || 
-                            article.content.toLowerCase().includes(query) ||
-                            (article.hidden && article.hidden.toLowerCase().includes(query))) {
-                            
-                            const articleElement = createLawArticleElement('ОПСГО', article, query);
-                            lawResults.appendChild(articleElement);
-                            hasResults = true;
-                        }
-                    });
-                }
-                
-                if (!hasResults && query !== '') {
-                    lawResults.innerHTML = '<p style="text-align: center; color: #ccc; padding: 20px;">Ничего не найдено</p>';
-                }
-            }
-            
-            if (searchBtn) {
-                searchBtn.addEventListener('click', performLawSearch);
-            }
-            
-            if (searchInput) {
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        performLawSearch();
-                    }
-                });
-            }
-            
-            // Запустить поиск при загрузке
-            performLawSearch();
-        }
-
-                // Функция для создания элемента статьи с кнопкой примечания
+        // Функция для создания элемента статьи
         function createLawArticleElement(code, article, query) {
             const articleElement = document.createElement('div');
             articleElement.className = 'law-article';
@@ -2920,7 +2518,8 @@ do У пострадавшего есть дыхание?</div>
             let punishment = article.punishment || '';
             let note = article.note || '';
             
-            // Подсветка найденного текста
+            const articleNumber = article.title || '';
+            
             if (query && query.trim() !== '') {
                 const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
                 content = content.replace(regex, '<span class="highlight-text">$1</span>');
@@ -2932,13 +2531,11 @@ do У пострадавшего есть дыхание?</div>
                 }
             }
             
-            // Формируем HTML
             let html = `
                 <div class="law-code">${code} - ${article.title}</div>
                 <div class="law-text">${content.replace(/\n/g, '<br>')}</div>
             `;
             
-            // Добавляем наказание, если оно есть
             if (punishment) {
                 html += `
                     <div class="law-punishment" style="margin-top: 15px; color: #ff6b6b; font-weight: 600;">
@@ -2947,7 +2544,6 @@ do У пострадавшего есть дыхание?</div>
                 `;
             }
             
-            // Добавляем кнопку примечания, если есть примечание
             if (note) {
                 const noteId = 'note-' + Date.now() + Math.random().toString(36).substr(2, 9);
                 html += `
@@ -3001,96 +2597,110 @@ do У пострадавшего есть дыхание?</div>
                 button.innerHTML = '<i class="fas fa-info-circle"></i> Показать примечание';
             }
         }
-             
-       function formatBindCommands(commands) {
-            let formatted = commands;
-            
-            if (userData.rank) {
-                formatted = formatted.replace(/\[звание\]/g, userData.rank);
-            }
-            if (userData.lastname) {
-                formatted = formatted.replace(/\[фамилия\]/g, userData.lastname);
-                formatted = formatted.replace(/\[Имя\]/g, userData.lastname);
-            }
-            if (userData.position) {
-                formatted = formatted.replace(/\[должность\]/g, userData.position);
-            }
-            if (userData.callsign) {
-                formatted = formatted.replace(/\[Позывной\]/g, userData.callsign);
-            }
-            if (userData.service) {
-                formatted = formatted.replace(/\[полиции\/юстиции\/внутренней службы\]/g, userData.service);
-            }
-            
-            return formatted;
-        }
 
-        function formatReportCommand(command) {
-            let formatted = command;
+        // Функция для поиска законодательства
+        function initLawSearch() {
+            const searchInput = document.getElementById('lawSearch');
+            const searchBtn = document.getElementById('searchLawBtn');
+            const lawResults = document.getElementById('lawResults');
             
-            if (userData.callsign && userData.callsign.trim() !== "") {
-                formatted = formatted.replace(/\[ваш позывной\]/g, userData.callsign);
-            } else {
-                formatted = formatted.replace(/\[ваш позывной\]/g, "[ваш позывной]");
-            }
-            
-            if (userData.partnerCallsign && userData.partnerCallsign.trim() !== "") {
-                formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, userData.partnerCallsign);
-            } else {
-                formatted = formatted.replace(/\[Позывной\/Фамилия напарника\]/g, 'Нет');
-            }
-            
-            return formatted;
-        }
-
-        function escapeQuotes(text) {
-            return text
-                .replace(/\\/g, '\\\\')
-                .replace(/'/g, "\\'")
-                .replace(/"/g, '\\"')
-                .replace(/\n/g, '\\n');
-        }
-
-        function escapeRegExp(string) {
-            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        }
-
-        // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            loadUserDataFromStorage();
-            initTabs();
-            updateUserData();
-            fillBinds();
-            fillReports();
-            fillPDP();
-            initLawSearch();
-            
-            document.getElementById('updateDataBtn').addEventListener('click', function() {
-                updateUserData();
-                fillBinds();
-                fillReports();
-                showNotification('Данные обновлены!');
-            });
-            
-            ['filterUK', 'filterKOAP', 'filterFZOP', 'filterFZOVNG', 'filterOPSGO'].forEach(id => {
-                const filter = document.getElementById(id);
-                if (filter) {
-                    filter.addEventListener('change', () => {
-                        const searchBtn = document.getElementById('searchLawBtn');
-                        if (searchBtn) searchBtn.click();
+            function performLawSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+                const showUK = document.getElementById('filterUK').checked;
+                const showKOAP = document.getElementById('filterKOAP').checked;
+                const showFZOP = document.getElementById('filterFZOP').checked;
+                const showFZOVNG = document.getElementById('filterFZOVNG').checked;
+                const showOPSGO = document.getElementById('filterOPSGO').checked;
+                
+                lawResults.innerHTML = '';
+                
+                let hasResults = false;
+                
+                const hasAnyArticles = 
+                    (showUK && legislationData.uk.length > 0) ||
+                    (showKOAP && legislationData.koap.length > 0) ||
+                    (showFZOP && legislationData.fzop.length > 0) ||
+                    (showFZOVNG && legislationData.fzvng.length > 0) ||
+                    (showOPSGO && legislationData.opsgo.length > 0);
+                
+                if (!hasAnyArticles) {
+                    lawResults.innerHTML = `
+                        <div class="empty-law">
+                            <i class="fas fa-book-open"></i>
+                            <h3 style="color: #4CAF50; margin-bottom: 10px;">База законодательства пуста</h3>
+                            <p style="color: #ccc;">Добавьте статьи законов в массив legislationData в коде</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                function checkArticle(article, codeName) {
+                    const articleNumber = article.title ? article.title.toLowerCase() : '';
+                    if (query === '' || 
+                        articleNumber.includes(query) || 
+                        article.title.toLowerCase().includes(query) || 
+                        article.content.toLowerCase().includes(query) ||
+                        (article.punishment && article.punishment.toLowerCase().includes(query)) ||
+                        (article.note && article.note.toLowerCase().includes(query))) {
+                        
+                        const articleElement = createLawArticleElement(codeName, article, query);
+                        lawResults.appendChild(articleElement);
+                        return true;
+                    }
+                    return false;
+                }
+                
+                if (showUK) {
+                    legislationData.uk.forEach(article => {
+                        if (checkArticle(article, 'УК РП')) hasResults = true;
                     });
                 }
-            });
-            
-            document.querySelectorAll('.category-header, .injury-header, .report-header').forEach(header => {
-                header.classList.remove('collapsed');
-                const content = header.nextElementSibling;
-                if (content) {
-                    content.style.display = 'block';
+                
+                if (showKOAP) {
+                    legislationData.koap.forEach(article => {
+                        if (checkArticle(article, 'КоАП')) hasResults = true;
+                    });
                 }
-            });
-        });
-        // Функции для кнопки помощи в законодательстве
+                
+                if (showFZOP) {
+                    legislationData.fzop.forEach(article => {
+                        if (checkArticle(article, 'ФЗоП')) hasResults = true;
+                    });
+                }
+                
+                if (showFZOVNG) {
+                    legislationData.fzvng.forEach(article => {
+                        if (checkArticle(article, 'ФЗоВНГ')) hasResults = true;
+                    });
+                }
+                
+                if (showOPSGO) {
+                    legislationData.opsgo.forEach(article => {
+                        if (checkArticle(article, 'ОПСГО')) hasResults = true;
+                    });
+                }
+                
+                if (!hasResults && query !== '') {
+                    lawResults.innerHTML = '<p style="text-align: center; color: #ccc; padding: 20px;">Ничего не найдено</p>';
+                }
+            }
+            
+            if (searchBtn) {
+                searchBtn.addEventListener('click', performLawSearch);
+            }
+            
+            if (searchInput) {
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        performLawSearch();
+                    }
+                });
+            }
+            
+            performLawSearch();
+        }
+
+        // Функции для помощи
         function openLawHelpModal() {
             document.getElementById('lawHelpModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -3106,75 +2716,62 @@ do У пострадавшего есть дыхание?</div>
                 closeLawHelpModal();
             }
         }
-        
-        // Закрытие по ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const modal = document.getElementById('lawHelpModal');
-                if (modal && modal.classList.contains('active')) {
-                    closeLawHelpModal();
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function escapeQuotes(text) {
+            return text
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '\\"')
+                .replace(/\n/g, '\\n');
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserDataFromStorage();
+            initTabs();
+            fillBindsSubtab('academy');
+            fillReports();
+            fillPDP();
+            initLawSearch();
+            
+            document.querySelectorAll('.subtab').forEach(subtab => {
+                subtab.addEventListener('click', function() {
+                    document.querySelectorAll('.subtab').forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const subtabId = this.getAttribute('data-subtab');
+                    fillBindsSubtab(subtabId);
+                });
+            });
+            
+            document.getElementById('updateDataBtn').addEventListener('click', function() {
+                updateUserData();
+                const activeSubtab = document.querySelector('.subtab.active');
+                if (activeSubtab) {
+                    fillBindsSubtab(activeSubtab.getAttribute('data-subtab'));
                 }
-            }
+                fillReports();
+                showNotification('Данные обновлены!');
+            });
+            
+            document.querySelectorAll('.category-header, .injury-header, .report-header').forEach(header => {
+                header.classList.remove('collapsed');
+                const content = header.nextElementSibling;
+                if (content) {
+                    content.style.display = 'block';
+                }
+            });
+            
+            document.getElementById('filterUK').addEventListener('change', () => initLawSearch());
+            document.getElementById('filterKOAP').addEventListener('change', () => initLawSearch());
+            document.getElementById('filterFZOP').addEventListener('change', () => initLawSearch());
+            document.getElementById('filterFZOVNG').addEventListener('change', () => initLawSearch());
+            document.getElementById('filterOPSGO').addEventListener('change', () => initLawSearch());
         });
     </script>
-    <!-- Модальное окно помощи для законодательства -->
-    <div class="law-help-modal" id="lawHelpModal" onclick="closeLawHelpOutside(event)">
-        <div class="law-help-modal-content">
-            <span class="law-help-close" onclick="closeLawHelpModal()">&times;</span>
-            
-            <div class="law-help-header">
-                <h2>
-                    <i class="fas fa-gavel"></i> 
-                    Помощь по законодательству
-                </h2>
-                <div class="subtitle">Твой надежный помощник в мире законов</div>
-            </div>
-            
-            <div class="law-help-body">
-                <p style="text-align: center; font-size: 1.2rem;">👋 Привет, коллега!</p>
-                
-                <div class="law-help-features">
-                    <div class="law-help-feature">
-                        <i class="fas fa-search"></i> Поиск
-                    </div>
-                    <div class="law-help-feature">
-                        <i class="fas fa-filter"></i> Фильтры
-                    </div>
-                    <div class="law-help-feature">
-                        <i class="fas fa-star"></i> Актуально
-                    </div>
-                </div>
-                
-                <p><strong>🔍 Как пользоваться поиском:</strong><br>
-                Просто введи слово, номер статьи или ключевую фразу в поле поиска. Система покажет все связанные результаты. Можно искать по номеру (например, "5.1") или по тексту (например, "неповиновение").</p>
-                
-                <p><strong>✅ Фильтрация по кодексам:</strong><br>
-                Отмечай галочками нужные разделы — УК РП, КоАП, ФЗоП, ФЗоВНГ или ОПСГО. Можно выбрать один или несколько кодексов одновременно.</p>
-                
-                <p><strong>📌 Наказания и примечания:</strong><br>
-                Наказания выделены <span style="color: #ff6b6b;">красным цветом</span>. Если есть примечание к статье — нажимай на кнопку <span style="color: #64b5f6;">"Показать примечание"</span>.</p>
-                
-                <div class="law-help-divider"></div>
-                
-                <div class="law-help-error">
-                    <h3><i class="fas fa-exclamation-triangle"></i> Нашли ошибку?</h3>
-                    <p style="margin-bottom: 15px;">В приказах регулярно появляются изменения. Если ты заметил неточность или устаревшую информацию:</p>
-                    
-                    <ul style="text-align: left;">
-                        <li><strong>1. Причина:</strong> кратко опиши ошибку</li>
-                        <li><strong>2. Ссылка на видео/скрин:</strong> приложи доказательство</li>
-                    </ul>
-                    
-                    <a href="https://vk.com/id1091397178" target="_blank" class="vk-btn">
-                        <i class="fab fa-vk"></i> Написать разработчику
-                    </a>
-                </div>
-                
-                <div class="law-help-footer">
-                    <i class="fas fa-heart"></i> Пользуйся на здоровье! Если информация была полезной — поделись с коллегами.
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
