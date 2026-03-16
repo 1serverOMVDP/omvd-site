@@ -926,6 +926,1074 @@
                 font-size: 1.8rem;
             }
         }
+
+        /* ===== СТИЛИ ДЛЯ НОВЫХ ВКЛАДОК ===== */
+        
+        /* Помощь новичкам - разработка */
+        .development-notice {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px dashed #4CAF50;
+            border-radius: 20px;
+            padding: 60px 30px;
+            text-align: center;
+            margin: 30px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .development-notice i {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .development-notice h3 {
+            font-size: 2.2rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .development-notice p {
+            font-size: 1.2rem;
+            color: #b0bec5;
+            margin-bottom: 10px;
+        }
+
+        .development-notice .small-text {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .progress-bar {
+            width: 50%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 25px auto 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            font-size: 0.9rem !important;
+            color: #4CAF50 !important;
+        }
+
+        /* Обратная связь */
+        .feedback-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .feedback-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feedback-form-container, .suggestions-list-container {
+            background: rgba(20, 35, 55, 0.8);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .feedback-form-container h3, .suggestions-list-container h3 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        #suggestionForm .form-group {
+            margin-bottom: 20px;
+        }
+
+        #suggestionForm label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b0bec5;
+            font-weight: 600;
+        }
+
+        #suggestionForm input, #suggestionForm textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        #suggestionForm input:focus, #suggestionForm textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #2e7d32;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .suggestions-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .empty-suggestions {
+            text-align: center;
+            color: #b0bec5;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            font-style: italic;
+        }
+
+        .suggestion-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.2s;
+        }
+
+        .suggestion-card:hover {
+            border-color: #4CAF50;
+            transform: translateX(5px);
+        }
+
+        .suggestion-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-author {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .suggestion-date {
+            color: #b0bec5;
+        }
+
+        .suggestion-status {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .status-в-планах {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ffc107;
+        }
+
+        .status-в-работе {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+            border: 1px solid #2196f3;
+        }
+
+        .status-готово {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 1px solid #4caf50;
+        }
+
+        .status-отклонено {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid #f44336;
+        }
+
+        .suggestion-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .suggestion-description {
+            color: #b0bec5;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .suggestion-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .suggestion-votes {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vote-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #b0bec5;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .vote-btn:hover {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .vote-count {
+            font-weight: 600;
+            color: #4CAF50;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .suggestion-comments {
+            color: #b0bec5;
+        }
+
+        .suggestion-comments i {
+            margin-right: 5px;
+        }
+
+        .status-legend {
+            margin-top: 30px;
+            background: rgba(20, 35, 55, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .status-legend h4 {
+            color: #b0bec5;
+            margin-bottom: 15px;
+        }
+
+        .legend-items {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-dot.status-в-планах {
+            background: #ffc107;
+            box-shadow: 0 0 8px #ffc107;
+        }
+
+        .status-dot.status-в-работе {
+            background: #2196f3;
+            box-shadow: 0 0 8px #2196f3;
+        }
+
+        .status-dot.status-готово {
+            background: #4caf50;
+            box-shadow: 0 0 8px #4caf50;
+        }
+
+        .status-dot.status-отклонено {
+            background: #f44336;
+            box-shadow: 0 0 8px #f44336;
+        }
+
+        /* ===== СТИЛИ ДЛЯ АДМИН-ПАНЕЛИ ===== */
+        .admin-login-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .admin-login-btn:hover {
+            background: #4CAF50;
+            color: white;
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 20px #4CAF50;
+        }
+
+        .admin-login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-login-modal.active {
+            display: flex;
+        }
+
+        .admin-login-content {
+            background: rgba(20, 30, 50, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #4CAF50;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .admin-login-content h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-login-content input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .admin-login-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-login-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .admin-login-buttons button:first-child {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .admin-login-buttons button:first-child:hover {
+            background: #2e7d32;
+        }
+
+        .admin-login-buttons button:last-child {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .admin-login-buttons button:last-child:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95%;
+            max-width: 1300px;
+            height: 90vh;
+            background: rgba(10, 25, 41, 0.98);
+            backdrop-filter: blur(20px);
+            border: 3px solid #4CAF50;
+            border-radius: 20px;
+            z-index: 10000;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-header {
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .admin-header h2 {
+            color: #4CAF50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+        }
+
+        .admin-header button {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .admin-header button:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 5px;
+            padding: 15px 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            overflow-x: auto;
+        }
+
+        .admin-tab {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            color: #b0bec5;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 30px 30px 0 0;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .admin-tab:hover {
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .admin-tab.active {
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            border-bottom: 3px solid #4CAF50;
+        }
+
+        .admin-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px 30px;
+        }
+
+        .admin-tab-content {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+        }
+
+        /* Карточки для дашборда */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(20, 35, 55, 0.8);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #4CAF50;
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: #4CAF50;
+            font-size: 1.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
+
+        /* Графики */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-container {
+            background: rgba(20, 35, 55, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .chart-container h3 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            height: 200px;
+            margin-top: 20px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, #4CAF50, #8BC34A);
+            border-radius: 8px 8px 0 0;
+            min-width: 30px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .chart-bar:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
+        }
+
+        .chart-bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 0.8rem;
+        }
+
+        .chart-labels {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .chart-label {
+            flex: 1;
+            text-align: center;
+            color: #b0bec5;
+            font-size: 0.8rem;
+        }
+
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background: conic-gradient(#4CAF50 0% 40%, #2196f3 40% 65%, #ffc107 65% 85%, #f44336 85% 100%);
+        }
+
+        /* Таблицы */
+        .table-container {
+            overflow-x: auto;
+            background: rgba(20, 35, 55, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px 10px;
+            color: #4CAF50;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #b0bec5;
+        }
+
+        tr:hover td {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-admin {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .badge-user {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+        }
+
+        .badge-moderator {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin: 0 3px;
+            transition: 0.2s;
+        }
+
+        .action-btn.edit {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+        }
+
+        .action-btn.edit:hover {
+            background: #2196f3;
+            color: white;
+        }
+
+        .action-btn.delete {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+
+        .action-btn.delete:hover {
+            background: #f44336;
+            color: white;
+        }
+
+        .action-btn.block {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .action-btn.block:hover {
+            background: #ffc107;
+            color: black;
+        }
+
+        /* Фильтры */
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filters input, .filters select {
+            padding: 12px 18px;
+            background: rgba(20, 35, 55, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            color: white;
+            font-size: 0.95rem;
+            min-width: 200px;
+            flex: 1;
+        }
+
+        .filters input:focus, .filters select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Резервные копии */
+        .backups-list {
+            margin-top: 20px;
+        }
+
+        .backup-item {
+            background: rgba(20, 35, 55, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .backup-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .backup-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4CAF50;
+        }
+
+        .backup-details h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .backup-details p {
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
+
+        .backup-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .backup-actions button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .backup-actions .restore {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .backup-actions .restore:hover {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .backup-actions .download {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+        }
+
+        .backup-actions .download:hover {
+            background: #2196f3;
+            color: white;
+        }
+
+        .backup-actions .delete {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+
+        .backup-actions .delete:hover {
+            background: #f44336;
+            color: white;
+        }
+
+        .create-backup {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .create-backup:hover {
+            background: #2e7d32;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Настройки */
+        .settings-section {
+            background: rgba(20, 35, 55, 0.8);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .settings-section h3 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info {
+            flex: 1;
+        }
+
+        .setting-info label {
+            display: block;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .setting-info p {
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
+
+        .setting-control {
+            margin-left: 20px;
+        }
+
+        .toggle-switch {
+            width: 50px;
+            height: 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #4CAF50;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            left: 28px;
+        }
+
+        .color-picker {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* Уведомления */
+        .notifications-panel {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 350px;
+            max-height: 500px;
+            overflow-y: auto;
+            background: rgba(20, 35, 55, 0.98);
+            backdrop-filter: blur(10px);
+            border: 1px solid #4CAF50;
+            border-radius: 16px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .notifications-panel.active {
+            display: block;
+        }
+
+        .notifications-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notifications-header h3 {
+            color: #4CAF50;
+        }
+
+        .notifications-list {
+            padding: 10px;
+        }
+
+        .notification-item {
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .notification-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .notification-item.unread {
+            border-left: 3px solid #4CAF50;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .notification-time {
+            font-size: 0.8rem;
+            color: #b0bec5;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #f44336;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -992,6 +2060,12 @@
             </div>
             <div class="tab" data-tab="law">
                 <i class="fas fa-gavel"></i> Законодательство
+            </div>
+            <div class="tab" data-tab="help">
+                <i class="fas fa-question-circle"></i> Помощь новичкам
+            </div>
+            <div class="tab" data-tab="feedback">
+                <i class="fas fa-comment-dots"></i> Обратная связь
             </div>
         </div>
 
@@ -1168,7 +2242,6 @@ do У пострадавшего есть дыхание?</div>
             </div>
         </div>
 
-
         <!-- Вкладка Законодательство -->
         <div class="tab-content" id="law">
             <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
@@ -1197,10 +2270,10 @@ do У пострадавшего есть дыхание?</div>
                         <input type="checkbox" id="filterUK" checked>
                         <span>УК РП</span>
                     </label>
-<label class="filter-checkbox">
-    <input type="checkbox" id="filterPDD" checked>
-    <span>ПДД</span>
-</label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" id="filterPDD" checked>
+                        <span>ПДД</span>
+                    </label>
                     <label class="filter-checkbox">
                         <input type="checkbox" id="filterKOAP" checked>
                         <span>КоАП</span>
@@ -1229,12 +2302,404 @@ do У пострадавшего есть дыхание?</div>
                 </div>
             </div>
         </div>
+
+        <!-- Вкладка Помощь новичкам -->
+        <div class="tab-content" id="help">
+            <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-question-circle"></i> Помощь новичкам
+            </h2>
+            
+            <div class="development-notice">
+                <i class="fas fa-tools"></i>
+                <h3>Раздел в разработке</h3>
+                <p>К сожалению, данный раздел еще находится в разработке.</p>
+                <p class="small-text">Здесь будут появляться обучающие материалы, видео-инструкции, текстовые гайды и памятка стажера.</p>
+                <p class="small-text">Загляните позже!</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%"></div>
+                </div>
+                <p class="progress-text">Готовность: 30%</p>
+            </div>
+        </div>
+
+        <!-- Вкладка Обратная связь -->
+        <div class="tab-content" id="feedback">
+            <h2 style="color: #4CAF50; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-comment-dots"></i> Обратная связь и предложения
+            </h2>
+            
+            <div class="feedback-container">
+                <div class="feedback-form-container">
+                    <h3><i class="fas fa-lightbulb"></i> Предложить идею</h3>
+                    <form id="suggestionForm" onsubmit="submitSuggestion(event)">
+                        <div class="form-group">
+                            <label for="suggestionTitle">Название предложения:</label>
+                            <input type="text" id="suggestionTitle" placeholder="Например: Добавить генератор рапортов" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="suggestionDesc">Описание:</label>
+                            <textarea id="suggestionDesc" rows="4" placeholder="Подробно опишите вашу идею..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="suggestionAuthor">Ваше имя (необязательно):</label>
+                            <input type="text" id="suggestionAuthor" placeholder="Аноним">
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Отправить предложение
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="suggestions-list-container">
+                    <h3><i class="fas fa-list"></i> Предложения (<span id="suggestions-count">0</span>)</h3>
+                    <div class="suggestions-list" id="suggestions-list">
+                        <!-- Предложения будут загружаться через JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="status-legend">
+                <h4>Статусы:</h4>
+                <div class="legend-items">
+                    <span class="legend-item"><span class="status-dot status-в-планах"></span> В планах</span>
+                    <span class="legend-item"><span class="status-dot status-в-работе"></span> В работе</span>
+                    <span class="legend-item"><span class="status-dot status-готово"></span> Готово</span>
+                    <span class="legend-item"><span class="status-dot status-отклонено"></span> Отклонено</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Уведомление о копировании -->
     <div class="notification" id="copyNotification">
         <i class="fas fa-check-circle"></i>
         <span id="notificationText">Текст скопирован в буфер обмена!</span>
+    </div>
+
+    <!-- ===== АДМИН-ПАНЕЛЬ ===== -->
+    <!-- Кнопка входа в админку -->
+    <div class="admin-login-btn" id="adminLoginBtn" onclick="showAdminLogin()">
+        <i class="fas fa-lock"></i>
+    </div>
+
+    <!-- Модальное окно входа в админку -->
+    <div class="admin-login-modal" id="adminLoginModal">
+        <div class="admin-login-content">
+            <h2><i class="fas fa-crown"></i> Вход в панель управления</h2>
+            <input type="password" id="adminPassword" placeholder="Введите пароль" onkeypress="if(event.key==='Enter') checkAdminPassword()">
+            <div class="admin-login-buttons">
+                <button onclick="checkAdminPassword()">Войти</button>
+                <button onclick="closeAdminLogin()">Отмена</button>
+            </div>
+            <p class="admin-hint">Пароль по умолчанию: admin123</p>
+        </div>
+    </div>
+
+    <!-- Сама админ-панель -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2><i class="fas fa-crown"></i> Панель управления</h2>
+            <button onclick="closeAdminPanel()"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="admin-tabs">
+            <button class="admin-tab active" onclick="showAdminTab('dashboard')">
+                <i class="fas fa-chart-line"></i> Дашборд
+            </button>
+            <button class="admin-tab" onclick="showAdminTab('suggestions')">
+                <i class="fas fa-lightbulb"></i> Предложения
+            </button>
+            <button class="admin-tab" onclick="showAdminTab('users')">
+                <i class="fas fa-users"></i> Пользователи
+            </button>
+            <button class="admin-tab" onclick="showAdminTab('logs')">
+                <i class="fas fa-history"></i> Логи
+            </button>
+            <button class="admin-tab" onclick="showAdminTab('backups')">
+                <i class="fas fa-database"></i> Бэкапы
+            </button>
+            <button class="admin-tab" onclick="showAdminTab('analytics')">
+                <i class="fas fa-chart-pie"></i> Аналитика
+            </button>
+            <button class="admin-tab" onclick="showAdminTab('settings')">
+                <i class="fas fa-cog"></i> Настройки
+            </button>
+        </div>
+        
+        <div class="admin-content" id="adminContent">
+            <!-- Дашборд -->
+            <div class="admin-tab-content active" id="dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div class="stat-value" id="totalSuggestions">0</div>
+                        <div class="stat-label">Всего предложений</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="stat-value" id="pendingSuggestions">0</div>
+                        <div class="stat-label">В ожидании</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-value" id="completedSuggestions">0</div>
+                        <div class="stat-label">Выполнено</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-value" id="totalUsers">0</div>
+                        <div class="stat-label">Пользователей</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-thumbs-up"></i></div>
+                        <div class="stat-value" id="totalVotes">0</div>
+                        <div class="stat-label">Всего голосов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-comment"></i></div>
+                        <div class="stat-value" id="totalComments">0</div>
+                        <div class="stat-label">Комментариев</div>
+                    </div>
+                </div>
+
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Активность за последние 7 дней</h3>
+                        <div class="chart-bars" id="activityBars"></div>
+                        <div class="chart-labels" id="activityLabels"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Распределение по статусам</h3>
+                        <div class="pie-chart" id="statusPie"></div>
+                        <div style="margin-top: 20px; text-align: center;" id="statusLegend"></div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3 style="color: #4CAF50; margin-bottom: 20px;">Топ-5 активных авторов</h3>
+                    <table id="topAuthorsTable">
+                        <thead>
+                            <tr>
+                                <th>Автор</th>
+                                <th>Предложений</th>
+                                <th>Голосов</th>
+                                <th>Последняя активность</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topAuthorsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Предложения (админка) -->
+            <div class="admin-tab-content" id="suggestions">
+                <div class="filters">
+                    <input type="text" id="adminSearch" placeholder="Поиск предложений..." oninput="filterSuggestions()">
+                    <select id="adminStatusFilter" onchange="filterSuggestions()">
+                        <option value="all">Все статусы</option>
+                        <option value="В планах">В планах</option>
+                        <option value="В работе">В работе</option>
+                        <option value="Готово">Готово</option>
+                        <option value="Отклонено">Отклонено</option>
+                    </select>
+                    <select id="adminSortBy" onchange="filterSuggestions()">
+                        <option value="date">По дате (новые)</option>
+                        <option value="votes">По голосам</option>
+                        <option value="title">По названию</option>
+                    </select>
+                </div>
+                <div class="admin-suggestions-list" id="adminSuggestionsList"></div>
+            </div>
+
+            <!-- Пользователи -->
+            <div class="admin-tab-content" id="users">
+                <div class="filters">
+                    <input type="text" id="userSearch" placeholder="Поиск пользователей..." oninput="filterUsers()">
+                    <select id="userRoleFilter" onchange="filterUsers()">
+                        <option value="all">Все роли</option>
+                        <option value="admin">Администраторы</option>
+                        <option value="moderator">Модераторы</option>
+                        <option value="user">Пользователи</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Пользователь</th>
+                                <th>Роль</th>
+                                <th>Статус</th>
+                                <th>Предложений</th>
+                                <th>Регистрация</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Логи -->
+            <div class="admin-tab-content" id="logs">
+                <div class="filters">
+                    <input type="text" id="logSearch" placeholder="Поиск по логам..." oninput="filterLogs()">
+                    <select id="logTypeFilter" onchange="filterLogs()">
+                        <option value="all">Все типы</option>
+                        <option value="status">Изменение статуса</option>
+                        <option value="delete">Удаление</option>
+                        <option value="export">Экспорт</option>
+                        <option value="password">Изменение пароля</option>
+                    </select>
+                    <select id="logUserFilter" onchange="filterLogs()">
+                        <option value="all">Все пользователи</option>
+                    </select>
+                    <button class="create-backup" style="margin-left: auto;" onclick="exportLogs()">
+                        <i class="fas fa-download"></i> Экспорт логов
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="logsTable">
+                        <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Время</th>
+                                <th>Пользователь</th>
+                                <th>Действие</th>
+                                <th>Детали</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Бэкапы -->
+            <div class="admin-tab-content" id="backups">
+                <button class="create-backup" onclick="createBackup()">
+                    <i class="fas fa-plus-circle"></i> Создать резервную копию
+                </button>
+                <div class="backups-list" id="backupsList"></div>
+            </div>
+
+            <!-- Аналитика -->
+            <div class="admin-tab-content" id="analytics">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
+                        <div class="stat-value" id="avgPerDay">0</div>
+                        <div class="stat-label">В среднем в день</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-fire"></i></div>
+                        <div class="stat-value" id="peakDay">-</div>
+                        <div class="stat-label">Самый активный день</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="stat-value" id="avgResponse">0</div>
+                        <div class="stat-label">Ср. время ответа</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-star"></i></div>
+                        <div class="stat-value" id="popularTopic">-</div>
+                        <div class="stat-label">Популярная тема</div>
+                    </div>
+                </div>
+
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Активность по дням недели</h3>
+                        <div class="chart-bars" id="weekdayBars"></div>
+                        <div class="chart-labels" id="weekdayLabels"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Популярные темы</h3>
+                        <div id="topTopics"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Настройки -->
+            <div class="admin-tab-content" id="settings">
+                <div class="settings-section">
+                    <h3><i class="fas fa-key"></i> Безопасность</h3>
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <label>Изменить пароль администратора</label>
+                            <p>Введите новый пароль для входа в админ-панель</p>
+                        </div>
+                        <div class="setting-control">
+                            <div class="password-change">
+                                <input type="password" id="newAdminPassword" placeholder="Новый пароль">
+                                <input type="password" id="confirmAdminPassword" placeholder="Подтвердите">
+                                <button onclick="changeAdminPassword()">Сохранить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3><i class="fas fa-bell"></i> Уведомления</h3>
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <label>Звуковые уведомления</label>
+                            <p>Воспроизводить звук при новых предложениях</p>
+                        </div>
+                        <div class="setting-control">
+                            <div class="toggle-switch" id="soundToggle" onclick="toggleSetting('sound')"></div>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <label>Всплывающие уведомления</label>
+                            <p>Показывать уведомления в браузере</p>
+                        </div>
+                        <div class="setting-control">
+                            <div class="toggle-switch" id="popupToggle" onclick="toggleSetting('popup')"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3><i class="fas fa-palette"></i> Внешний вид</h3>
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <label>Цвет акцента</label>
+                            <p>Выберите основной цвет сайта</p>
+                        </div>
+                        <div class="setting-control">
+                            <input type="color" id="accentColor" value="#4CAF50" onchange="changeAccentColor(this.value)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3><i class="fas fa-trash-alt"></i> Опасная зона</h3>
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <label>Очистить все предложения</label>
+                            <p>Это действие невозможно отменить</p>
+                        </div>
+                        <div class="setting-control">
+                            <button class="action-btn delete" onclick="clearAllSuggestions()">Очистить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Панель уведомлений -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notifications-header">
+            <h3><i class="fas fa-bell"></i> Уведомления</h3>
+            <button onclick="markAllNotificationsRead()" style="background: none; border: none; color: #4CAF50; cursor: pointer;">
+                <i class="fas fa-check-double"></i>
+            </button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <!-- Уведомления будут загружаться сюда -->
+        </div>
     </div>
 
     <footer>
@@ -1305,7 +2770,7 @@ do У пострадавшего есть дыхание?</div>
     </div>
 
     <script>
-        // Глобальный объект для хранения пользовательских данных
+         // Глобальный объект для хранения пользовательских данных
         let userData = {
             rank: "",
             lastname: "",
@@ -1314,6 +2779,12 @@ do У пострадавшего есть дыхание?</div>
             partnerCallsign: "",
             service: "полиции"
         };
+
+        // Пароль администратора
+        let adminPassword = localStorage.getItem('admin_password') || 'admin123';
+
+        // Настройки уведомлений
+        let notificationSettings = JSON.parse(localStorage.getItem('notificationSettings') || '{"sound":true,"popup":true}');
 
         // Функции для сохранения и загрузки данных из localStorage
         function saveUserDataToStorage() {
@@ -1594,7 +3065,7 @@ do У пострадавшего есть дыхание?</div>
             { category: "air", title: "Взлёт на задание", command: "r [ваш позывной] Взлетаю для [задача]." }
         ];
 
-       // Отыгровки ПДП
+        // Отыгровки ПДП
         const pdpItems = [
             {
                 title: "СЕРДЕЧНО-ЛЁГОЧНАЯ РЕАНИМАЦИЯ (СЛР)",
@@ -2608,8 +4079,698 @@ pdd: [
 ]
 };
 
+        // Функции для работы с предложениями
+        function loadSuggestions() {
+            const suggestionsList = document.getElementById('suggestions-list');
+            const suggestionsCount = document.getElementById('suggestions-count');
+            
+            if (!suggestionsList) return;
+            
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            
+            if (suggestionsCount) {
+                suggestionsCount.textContent = suggestions.length;
+            }
+            
+            if (suggestions.length === 0) {
+                suggestionsList.innerHTML = '<p class="empty-suggestions">Пока нет предложений. Будьте первым!</p>';
+                return;
+            }
+            
+            let html = '';
+            suggestions.forEach((s, index) => {
+                html += `
+                    <div class="suggestion-card" data-id="${index}">
+                        <div class="suggestion-header">
+                            <span class="suggestion-author">${s.author || 'Аноним'}</span>
+                            <span class="suggestion-date">${s.date}</span>
+                            <span class="suggestion-status status-${s.status.toLowerCase().replace(' ', '-')}">${s.status}</span>
+                        </div>
+                        <div class="suggestion-title">${s.title}</div>
+                        <div class="suggestion-description">${s.description}</div>
+                        <div class="suggestion-footer">
+                            <div class="suggestion-votes">
+                                <button class="vote-btn" onclick="voteSuggestion(${index}, 'up')">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <span class="vote-count">${s.votes || 0}</span>
+                                <button class="vote-btn" onclick="voteSuggestion(${index}, 'down')">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                            </div>
+                            <div class="suggestion-comments">
+                                <i class="fas fa-comment"></i> ${s.comments || 0}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            suggestionsList.innerHTML = html;
+        }
 
-        // Функция для переключения вкладок
+        function submitSuggestion(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById('suggestionTitle').value;
+            const description = document.getElementById('suggestionDesc').value;
+            const author = document.getElementById('suggestionAuthor').value || 'Аноним';
+            const email = document.getElementById('suggestionEmail')?.value || '';
+            
+            if (!title || !description) {
+                alert('Заполните все обязательные поля');
+                return;
+            }
+            
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            
+            const newSuggestion = {
+                title: title,
+                description: description,
+                author: author,
+                email: email,
+                date: new Date().toLocaleDateString('ru-RU'),
+                time: new Date().toLocaleTimeString('ru-RU'),
+                status: 'В планах',
+                votes: 0,
+                comments: 0
+            };
+            
+            suggestions.push(newSuggestion);
+            localStorage.setItem('feedback_suggestions', JSON.stringify(suggestions));
+            
+            document.getElementById('suggestionForm').reset();
+            showNotification('Спасибо! Ваше предложение добавлено');
+            loadSuggestions();
+            
+            addNotification('Новое предложение', `${author}: ${title}`);
+            logActivity('Добавил предложение', `"${title}"`);
+        }
+
+        function voteSuggestion(index, direction) {
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            
+            if (index < 0 || index >= suggestions.length) return;
+            
+            if (direction === 'up') {
+                suggestions[index].votes = (suggestions[index].votes || 0) + 1;
+            } else if (direction === 'down') {
+                suggestions[index].votes = (suggestions[index].votes || 0) - 1;
+            }
+            
+            localStorage.setItem('feedback_suggestions', JSON.stringify(suggestions));
+            loadSuggestions();
+        }
+
+        // Админ-панель функции
+        function showAdminLogin() {
+            document.getElementById('adminLoginModal').classList.add('active');
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('adminPassword').focus();
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').classList.remove('active');
+        }
+
+        function checkAdminPassword() {
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === adminPassword) {
+                closeAdminLogin();
+                openAdminPanel();
+            } else {
+                alert('Неверный пароль!');
+            }
+        }
+
+        function openAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'flex';
+            showAdminTab('dashboard');
+            updateDashboard();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+
+        function showAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.admin-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+            
+            if (tabName === 'dashboard') {
+                updateDashboard();
+            } else if (tabName === 'suggestions') {
+                loadAdminSuggestions();
+            } else if (tabName === 'users') {
+                loadUsers();
+            } else if (tabName === 'logs') {
+                loadLogs();
+            } else if (tabName === 'backups') {
+                loadBackups();
+            } else if (tabName === 'analytics') {
+                loadAnalytics();
+            }
+        }
+
+        function updateDashboard() {
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            
+            document.getElementById('totalSuggestions').textContent = suggestions.length;
+            document.getElementById('pendingSuggestions').textContent = suggestions.filter(s => s.status === 'В планах').length;
+            document.getElementById('completedSuggestions').textContent = suggestions.filter(s => s.status === 'Готово').length;
+            document.getElementById('totalUsers').textContent = '4';
+            
+            const totalVotes = suggestions.reduce((sum, s) => sum + (s.votes || 0), 0);
+            document.getElementById('totalVotes').textContent = totalVotes;
+            document.getElementById('totalComments').textContent = suggestions.reduce((sum, s) => sum + (s.comments || 0), 0);
+            
+            const last7Days = [];
+            const activityData = [];
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toLocaleDateString('ru-RU');
+                last7Days.push(dateStr);
+                
+                const count = suggestions.filter(s => s.date === dateStr).length;
+                activityData.push(count);
+            }
+            
+            const barsContainer = document.getElementById('activityBars');
+            const labelsContainer = document.getElementById('activityLabels');
+            
+            if (barsContainer) {
+                const maxCount = Math.max(...activityData, 1);
+                barsContainer.innerHTML = activityData.map(count => 
+                    `<div class="chart-bar" style="height: ${(count / maxCount) * 180}px;" data-value="${count}"></div>`
+                ).join('');
+            }
+            
+            if (labelsContainer) {
+                labelsContainer.innerHTML = last7Days.map(date => 
+                    `<div class="chart-label">${date.slice(0, 5)}</div>`
+                ).join('');
+            }
+            
+            const authors = {};
+            suggestions.forEach(s => {
+                const author = s.author || 'Аноним';
+                if (!authors[author]) {
+                    authors[author] = { count: 0, votes: 0, lastDate: '' };
+                }
+                authors[author].count++;
+                authors[author].votes += s.votes || 0;
+                if (!authors[author].lastDate || s.date > authors[author].lastDate) {
+                    authors[author].lastDate = s.date;
+                }
+            });
+            
+            const topAuthors = Object.entries(authors)
+                .map(([name, data]) => ({ name, ...data }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 5);
+            
+            const tbody = document.getElementById('topAuthorsBody');
+            if (tbody) {
+                tbody.innerHTML = topAuthors.map(a => `
+                    <tr>
+                        <td>${a.name}</td>
+                        <td>${a.count}</td>
+                        <td>${a.votes}</td>
+                        <td>${a.lastDate}</td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function loadAdminSuggestions() {
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            const list = document.getElementById('adminSuggestionsList');
+            
+            if (!list) return;
+            
+            if (suggestions.length === 0) {
+                list.innerHTML = '<p class="empty-suggestions">Пока нет предложений</p>';
+                return;
+            }
+            
+            list.innerHTML = suggestions.map((s, index) => `
+                <div class="suggestion-card" data-id="${index}">
+                    <div class="suggestion-header">
+                        <span class="suggestion-author">${s.author || 'Аноним'}</span>
+                        <span class="suggestion-date">${s.date} ${s.time || ''}</span>
+                        <span class="suggestion-status status-${s.status.toLowerCase().replace(' ', '-')}">${s.status}</span>
+                    </div>
+                    <div class="suggestion-title">${s.title}</div>
+                    <div class="suggestion-description">${s.description}</div>
+                    ${s.email ? `<div style="color: #4CAF50; margin-bottom: 10px;"><i class="fas fa-envelope"></i> ${s.email}</div>` : ''}
+                    <div class="suggestion-footer">
+                        <div class="suggestion-votes">
+                            <span class="vote-count">${s.votes || 0} голосов</span>
+                        </div>
+                        <div class="admin-suggestion-actions">
+                            <button class="action-btn edit" onclick="updateSuggestionStatus(${index}, 'В работе')">В работу</button>
+                            <button class="action-btn edit" onclick="updateSuggestionStatus(${index}, 'Готово')">Готово</button>
+                            <button class="action-btn block" onclick="updateSuggestionStatus(${index}, 'Отклонено')">Отклонить</button>
+                            <button class="action-btn delete" onclick="deleteSuggestion(${index})">Удалить</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterSuggestions() {
+            const search = document.getElementById('adminSearch')?.value.toLowerCase() || '';
+            const status = document.getElementById('adminStatusFilter')?.value || 'all';
+            const sortBy = document.getElementById('adminSortBy')?.value || 'date';
+            
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            
+            let filtered = suggestions.filter(s => {
+                const matchesSearch = s.title.toLowerCase().includes(search) || 
+                                    s.description.toLowerCase().includes(search) ||
+                                    (s.author || '').toLowerCase().includes(search);
+                const matchesStatus = status === 'all' || s.status === status;
+                return matchesSearch && matchesStatus;
+            });
+            
+            filtered.sort((a, b) => {
+                if (sortBy === 'date') return new Date(b.date) - new Date(a.date);
+                if (sortBy === 'votes') return (b.votes || 0) - (a.votes || 0);
+                if (sortBy === 'title') return a.title.localeCompare(b.title);
+                return 0;
+            });
+            
+            const list = document.getElementById('adminSuggestionsList');
+            if (list) {
+                list.innerHTML = filtered.map((s, index) => {
+                    const originalIndex = suggestions.findIndex(item => 
+                        item.title === s.title && item.date === s.date && item.author === s.author
+                    );
+                    return `
+                        <div class="suggestion-card" data-id="${originalIndex}">
+                            <div class="suggestion-header">
+                                <span class="suggestion-author">${s.author || 'Аноним'}</span>
+                                <span class="suggestion-date">${s.date}</span>
+                                <span class="suggestion-status status-${s.status.toLowerCase().replace(' ', '-')}">${s.status}</span>
+                            </div>
+                            <div class="suggestion-title">${s.title}</div>
+                            <div class="suggestion-description">${s.description}</div>
+                            <div class="suggestion-footer">
+                                <div class="suggestion-votes">
+                                    <span class="vote-count">${s.votes || 0} голосов</span>
+                                </div>
+                                <div class="admin-suggestion-actions">
+                                    <button class="action-btn edit" onclick="updateSuggestionStatus(${originalIndex}, 'В работе')">В работу</button>
+                                    <button class="action-btn edit" onclick="updateSuggestionStatus(${originalIndex}, 'Готово')">Готово</button>
+                                    <button class="action-btn block" onclick="updateSuggestionStatus(${originalIndex}, 'Отклонено')">Отклонить</button>
+                                    <button class="action-btn delete" onclick="deleteSuggestion(${originalIndex})">Удалить</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function updateSuggestionStatus(index, status) {
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            
+            if (index >= 0 && index < suggestions.length) {
+                const oldStatus = suggestions[index].status;
+                const title = suggestions[index].title;
+                
+                suggestions[index].status = status;
+                localStorage.setItem('feedback_suggestions', JSON.stringify(suggestions));
+                
+                filterSuggestions();
+                loadSuggestions();
+                updateDashboard();
+                
+                logActivity(`Изменил статус предложения`, `"${title}" с "${oldStatus}" на "${status}"`);
+                showNotification(`Статус изменен на "${status}"`);
+            }
+        }
+
+        function deleteSuggestion(index) {
+            if (confirm('Вы уверены, что хотите удалить это предложение?')) {
+                const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+                
+                if (index >= 0 && index < suggestions.length) {
+                    const title = suggestions[index].title;
+                    
+                    suggestions.splice(index, 1);
+                    localStorage.setItem('feedback_suggestions', JSON.stringify(suggestions));
+                    
+                    filterSuggestions();
+                    loadSuggestions();
+                    updateDashboard();
+                    
+                    logActivity(`Удалил предложение`, `"${title}"`);
+                    showNotification('Предложение удалено');
+                }
+            }
+        }
+
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('users') || '[{"username":"admin","role":"admin","status":"active","suggestions":12,"registered":"01.01.2026"},{"username":"moderator","role":"moderator","status":"active","suggestions":8,"registered":"02.01.2026"},{"username":"user1","role":"user","status":"active","suggestions":5,"registered":"03.01.2026"},{"username":"user2","role":"user","status":"blocked","suggestions":2,"registered":"04.01.2026"}]');
+            
+            const tbody = document.getElementById('usersBody');
+            if (tbody) {
+                tbody.innerHTML = users.map(u => `
+                    <tr>
+                        <td>${u.username}</td>
+                        <td><span class="badge badge-${u.role}">${u.role}</span></td>
+                        <td><span class="badge" style="background: ${u.status === 'active' ? 'rgba(76,175,80,0.2)' : 'rgba(244,67,54,0.2)'}; color: ${u.status === 'active' ? '#4CAF50' : '#f44336'}">${u.status}</span></td>
+                        <td>${u.suggestions}</td>
+                        <td>${u.registered}</td>
+                        <td>
+                            <button class="action-btn edit" onclick="editUser('${u.username}')"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn ${u.status === 'active' ? 'block' : 'edit'}" onclick="toggleUserStatus('${u.username}')">
+                                <i class="fas ${u.status === 'active' ? 'fa-ban' : 'fa-check'}"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function filterUsers() {
+            loadUsers();
+        }
+
+        function loadLogs() {
+            const logs = JSON.parse(localStorage.getItem('admin_activities') || '[]');
+            const tbody = document.getElementById('logsBody');
+            
+            if (tbody) {
+                tbody.innerHTML = logs.map(log => `
+                    <tr>
+                        <td>${log.date}</td>
+                        <td>${log.time}</td>
+                        <td>Админ</td>
+                        <td>${log.action}</td>
+                        <td>${log.details || ''}</td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function filterLogs() {
+            loadLogs();
+        }
+
+        function exportLogs() {
+            const logs = JSON.parse(localStorage.getItem('admin_activities') || '[]');
+            
+            let csv = 'Дата;Время;Пользователь;Действие;Детали\n';
+            logs.forEach(log => {
+                csv += `${log.date};${log.time};Админ;${log.action};${log.details || ''}\n`;
+            });
+            
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `logs_${new Date().toLocaleDateString()}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification('Логи экспортированы');
+            logActivity('Экспортировал логи');
+        }
+
+        function loadBackups() {
+            const backups = JSON.parse(localStorage.getItem('backups') || '[]');
+            const list = document.getElementById('backupsList');
+            
+            if (!list) return;
+            
+            if (backups.length === 0) {
+                list.innerHTML = '<p class="empty-suggestions">Нет резервных копий</p>';
+                return;
+            }
+            
+            list.innerHTML = backups.map((b, i) => `
+                <div class="backup-item">
+                    <div class="backup-info">
+                        <div class="backup-icon"><i class="fas fa-database"></i></div>
+                        <div class="backup-details">
+                            <h4>${b.name}</h4>
+                            <p>${b.date} • ${b.size} • ${b.items} предложений</p>
+                        </div>
+                    </div>
+                    <div class="backup-actions">
+                        <button class="restore" onclick="restoreBackup(${i})"><i class="fas fa-undo"></i> Восстановить</button>
+                        <button class="download" onclick="downloadBackup(${i})"><i class="fas fa-download"></i></button>
+                        <button class="delete" onclick="deleteBackup(${i})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function createBackup() {
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            const backups = JSON.parse(localStorage.getItem('backups') || '[]');
+            
+            const backup = {
+                name: `Бэкап ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
+                date: new Date().toLocaleString(),
+                size: `${(JSON.stringify(suggestions).length / 1024).toFixed(2)} KB`,
+                items: suggestions.length,
+                data: JSON.parse(JSON.stringify(suggestions))
+            };
+            
+            backups.push(backup);
+            localStorage.setItem('backups', JSON.stringify(backups));
+            
+            loadBackups();
+            showNotification('Резервная копия создана');
+            logActivity('Создал резервную копию');
+        }
+
+        function restoreBackup(index) {
+            if (confirm('Восстановить данные из этой резервной копии? Текущие данные будут заменены.')) {
+                const backups = JSON.parse(localStorage.getItem('backups') || '[]');
+                
+                if (index >= 0 && index < backups.length) {
+                    localStorage.setItem('feedback_suggestions', JSON.stringify(backups[index].data));
+                    showNotification('Данные восстановлены');
+                    logActivity('Восстановил данные из бэкапа');
+                    
+                    loadSuggestions();
+                    if (document.getElementById('suggestions').classList.contains('active')) {
+                        loadAdminSuggestions();
+                    }
+                }
+            }
+        }
+
+        function downloadBackup(index) {
+            const backups = JSON.parse(localStorage.getItem('backups') || '[]');
+            
+            if (index >= 0 && index < backups.length) {
+                const dataStr = JSON.stringify(backups[index].data, null, 2);
+                const blob = new Blob(['\uFEFF' + dataStr], { type: 'application/json;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                
+                link.setAttribute('href', url);
+                link.setAttribute('download', `backup_${new Date().toLocaleDateString()}.json`);
+                link.style.visibility = 'hidden';
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showNotification('Бэкап скачан');
+            }
+        }
+
+        function deleteBackup(index) {
+            if (confirm('Удалить эту резервную копию?')) {
+                const backups = JSON.parse(localStorage.getItem('backups') || '[]');
+                
+                if (index >= 0 && index < backups.length) {
+                    backups.splice(index, 1);
+                    localStorage.setItem('backups', JSON.stringify(backups));
+                    loadBackups();
+                    showNotification('Бэкап удален');
+                }
+            }
+        }
+
+        function loadAnalytics() {
+            document.getElementById('avgPerDay').textContent = '2.4';
+            document.getElementById('peakDay').textContent = '15.03';
+            document.getElementById('avgResponse').textContent = '3 дня';
+            document.getElementById('popularTopic').textContent = 'Дизайн';
+        }
+
+        function exportSuggestions() {
+            const suggestions = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]');
+            
+            let csv = 'Дата;Время;Автор;Email;Название;Описание;Статус;Голоса;Комментарии\n';
+            suggestions.forEach(s => {
+                csv += `${s.date || ''};${s.time || ''};${s.author || 'Аноним'};${s.email || ''};${s.title};${s.description.replace(/;/g, ',')};${s.status};${s.votes || 0};${s.comments || 0}\n`;
+            });
+            
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `предложения_${new Date().toLocaleDateString()}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            logActivity('Экспортировал предложения в CSV', `${suggestions.length} записей`);
+            showNotification('CSV файл скачан');
+        }
+
+        function clearAllSuggestions() {
+            if (confirm('ВНИМАНИЕ! Вы уверены, что хотите удалить ВСЕ предложения? Это действие нельзя отменить!')) {
+                if (confirm('Последнее подтверждение: удалить все предложения?')) {
+                    const count = JSON.parse(localStorage.getItem('feedback_suggestions') || '[]').length;
+                    localStorage.setItem('feedback_suggestions', '[]');
+                    
+                    logActivity(`Очистил все предложения`, `Удалено ${count} записей`);
+                    
+                    loadSuggestions();
+                    if (document.getElementById('suggestions').classList.contains('active')) {
+                        loadAdminSuggestions();
+                    }
+                    updateDashboard();
+                    
+                    showNotification('Все предложения удалены');
+                }
+            }
+        }
+
+        function changeAdminPassword() {
+            const newPass = document.getElementById('newAdminPassword').value;
+            const confirmPass = document.getElementById('confirmAdminPassword').value;
+            
+            if (!newPass) {
+                alert('Введите новый пароль');
+                return;
+            }
+            
+            if (newPass !== confirmPass) {
+                alert('Пароли не совпадают');
+                return;
+            }
+            
+            if (newPass.length < 4) {
+                alert('Пароль должен быть не менее 4 символов');
+                return;
+            }
+            
+            adminPassword = newPass;
+            localStorage.setItem('admin_password', newPass);
+            
+            document.getElementById('newAdminPassword').value = '';
+            document.getElementById('confirmAdminPassword').value = '';
+            
+            logActivity('Изменил пароль администратора');
+            showNotification('Пароль успешно изменен');
+        }
+
+        function changeAccentColor(color) {
+            document.documentElement.style.setProperty('--accent', color);
+            document.documentElement.style.setProperty('--accent-dark', color);
+            localStorage.setItem('accent_color', color);
+        }
+
+        function toggleSetting(setting) {
+            if (setting === 'sound') {
+                notificationSettings.sound = !notificationSettings.sound;
+                document.getElementById('soundToggle').classList.toggle('active', notificationSettings.sound);
+            } else if (setting === 'popup') {
+                notificationSettings.popup = !notificationSettings.popup;
+                document.getElementById('popupToggle').classList.toggle('active', notificationSettings.popup);
+            }
+            localStorage.setItem('notificationSettings', JSON.stringify(notificationSettings));
+        }
+
+        function addNotification(title, message) {
+            const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+            
+            const notification = {
+                id: Date.now(),
+                title: title,
+                message: message,
+                time: new Date().toLocaleTimeString(),
+                read: false
+            };
+            
+            notifications.push(notification);
+            localStorage.setItem('notifications', JSON.stringify(notifications));
+            
+            updateNotificationsBadge();
+            
+            if (notificationSettings.popup) {
+                showNotification(`${title}: ${message}`);
+            }
+        }
+
+        function updateNotificationsBadge() {
+            const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+            const unread = notifications.filter(n => !n.read).length;
+            
+            const loginBtn = document.getElementById('adminLoginBtn');
+            if (loginBtn) {
+                let badge = loginBtn.querySelector('.notification-badge');
+                if (unread > 0) {
+                    if (!badge) {
+                        badge = document.createElement('span');
+                        badge.className = 'notification-badge';
+                        loginBtn.appendChild(badge);
+                    }
+                    badge.textContent = unread;
+                } else if (badge) {
+                    badge.remove();
+                }
+            }
+        }
+
+        function logActivity(action, details = '') {
+            const activities = JSON.parse(localStorage.getItem('admin_activities') || '[]');
+            
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            const dateStr = now.toLocaleDateString('ru-RU');
+            
+            activities.unshift({
+                action: action,
+                details: details,
+                time: timeStr,
+                date: dateStr,
+                timestamp: now.getTime()
+            });
+            
+            if (activities.length > 50) {
+                activities.pop();
+            }
+            
+            localStorage.setItem('admin_activities', JSON.stringify(activities));
+        }
+
         function initTabs() {
             const tabs = document.querySelectorAll('.tab');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -2624,12 +4785,15 @@ pdd: [
                     const tabContent = document.getElementById(tabId);
                     if (tabContent) {
                         tabContent.classList.add('active');
+                        
+                        if (tabId === 'feedback') {
+                            loadSuggestions();
+                        }
                     }
                 });
             });
         }
 
-        // Функция для сворачивания/разворачивания категорий
         function toggleCategory(header) {
             const list = header.nextElementSibling;
             if (list.style.display === 'none') {
@@ -2639,7 +4803,6 @@ pdd: [
             }
         }
 
-        // Функция для копирования текста
         function copyToClipboard(text) {
             const cleanText = text.replace(/\s+/g, ' ').trim();
             
@@ -2683,7 +4846,6 @@ pdd: [
             saveUserDataToStorage();
         }
 
-        // Форматирование команд с подстановкой данных
         function formatCommands(commands) {
             let formatted = commands;
             formatted = formatted.replace(/\[Имя\]/g, userData.lastname || '[Имя]');
@@ -2704,7 +4866,6 @@ pdd: [
             return formatted;
         }
 
-        // Заполнение подвкладок биндов
         function fillBindsSubtab(subtabId) {
             const container = document.getElementById('bindsSubtabContent');
             const data = bindsData[subtabId];
@@ -2743,7 +4904,6 @@ pdd: [
             container.innerHTML = html;
         }
 
-        // Заполнение докладов
         function fillReports() {
             const reportsList = document.getElementById('reportsList');
             
@@ -2794,7 +4954,6 @@ pdd: [
             }
         }
 
-        // Заполнение ПДП
         function fillPDP() {
             const pdpList = document.getElementById('pdpList');
             
@@ -2817,153 +4976,59 @@ pdd: [
             }
         }
 
-                        // ========== ЗАКОНОДАТЕЛЬСТВО (исправленная версия) ==========
-
-        // Функция для создания элемента статьи с поддержкой content_after_note
         function createLawArticleElement(code, article, query) {
             const articleElement = document.createElement('div');
             articleElement.className = 'law-article';
             
-            // Основной текст (до примечания)
             let content = article.content || '';
-            // Текст после примечания
             let contentAfterNote = article.content_after_note || '';
             let contentAfterNote2 = article.content_after_note2 || '';
             let contentAfterNote3 = article.content_after_note3 || '';
-            
             let punishment = article.punishment || '';
             let note = article.note || '';
             let note2 = article.note2 || '';
             let note3 = article.note3 || '';
             
-            // Подсветка найденного текста
             if (query && query.trim() !== '') {
                 const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
                 content = content.replace(regex, '<span class="highlight-text">$1</span>');
                 contentAfterNote = contentAfterNote.replace(regex, '<span class="highlight-text">$1</span>');
                 contentAfterNote2 = contentAfterNote2.replace(regex, '<span class="highlight-text">$1</span>');
                 contentAfterNote3 = contentAfterNote3.replace(regex, '<span class="highlight-text">$1</span>');
-                if (punishment) {
-                    punishment = punishment.replace(regex, '<span class="highlight-text">$1</span>');
-                }
-                if (note) {
-                    note = note.replace(regex, '<span class="highlight-text">$1</span>');
-                }
-                if (note2) {
-                    note2 = note2.replace(regex, '<span class="highlight-text">$1</span>');
-                }
-                if (note3) {
-                    note3 = note3.replace(regex, '<span class="highlight-text">$1</span>');
-                }
+                if (punishment) punishment = punishment.replace(regex, '<span class="highlight-text">$1</span>');
+                if (note) note = note.replace(regex, '<span class="highlight-text">$1</span>');
+                if (note2) note2 = note2.replace(regex, '<span class="highlight-text">$1</span>');
+                if (note3) note3 = note3.replace(regex, '<span class="highlight-text">$1</span>');
             }
             
-            // Начинаем формировать HTML
-            let html = `
-                <div class="law-code">${code} - ${article.title}</div>
-                <div class="law-text">${content.replace(/\n/g, '<br>')}</div>
-            `;
+            let html = `<div class="law-code">${code} - ${article.title}</div>
+                <div class="law-text">${content.replace(/\n/g, '<br>')}</div>`;
             
-            // Функция для добавления блока примечания
             function addNoteBlock(noteText) {
                 if (!noteText) return '';
-                return `
-                    <div style="margin-top: 15px;">
-                        <button class="note-toggle-btn" style="
-                            background: rgba(100, 181, 246, 0.2);
-                            border: 1px solid #64b5f6;
-                            color: #64b5f6;
-                            padding: 8px 15px;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            font-size: 0.9rem;
-                            display: inline-flex;
-                            align-items: center;
-                            gap: 8px;
-                            transition: all 0.3s;
-                        ">
-                            <i class="fas fa-info-circle"></i> Показать примечание
-                        </button>
-                        <div class="law-note" style="
-                            display: none;
-                            margin-top: 15px;
-                            padding: 15px;
-                            background: rgba(100, 181, 246, 0.1);
-                            border-left: 4px solid #64b5f6;
-                            border-radius: 5px;
-                            color: #ddd;
-                            font-size: 0.95rem;
-                        ">
-                            <i class="fas fa-exclamation-circle" style="color: #64b5f6; margin-right: 8px;"></i>
-                            ${noteText.replace(/\n/g, '<br>')}
-                        </div>
+                return `<div style="margin-top: 15px;">
+                    <button class="note-toggle-btn" style="background: rgba(100, 181, 246, 0.2); border: 1px solid #64b5f6; color: #64b5f6; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s;">
+                        <i class="fas fa-info-circle"></i> Показать примечание
+                    </button>
+                    <div class="law-note" style="display: none; margin-top: 15px; padding: 15px; background: rgba(100, 181, 246, 0.1); border-left: 4px solid #64b5f6; border-radius: 5px; color: #ddd; font-size: 0.95rem;">
+                        <i class="fas fa-exclamation-circle" style="color: #64b5f6; margin-right: 8px;"></i>
+                        ${noteText.replace(/\n/g, '<br>')}
                     </div>
-                `;
+                </div>`;
             }
             
-            // Добавляем первое примечание, если есть
-            if (note) {
-                html += addNoteBlock(note);
-            }
-            
-            // Добавляем текст после первого примечания
-            if (contentAfterNote) {
-                html += `<div class="law-text" style="margin-top: 15px;">${contentAfterNote.replace(/\n/g, '<br>')}</div>`;
-            }
-            
-            // Добавляем второе примечание, если есть
-            if (note2) {
-                html += addNoteBlock(note2);
-            }
-            
-            // Добавляем текст после второго примечания
-            if (contentAfterNote2) {
-                html += `<div class="law-text" style="margin-top: 15px;">${contentAfterNote2.replace(/\n/g, '<br>')}</div>`;
-            }
-            
-            // Добавляем третье примечание, если есть
-            if (note3) {
-                html += addNoteBlock(note3);
-            }
-            
-            // Добавляем текст после третьего примечания
-            if (contentAfterNote3) {
-                html += `<div class="law-text" style="margin-top: 15px;">${contentAfterNote3.replace(/\n/g, '<br>')}</div>`;
-            }
-            
-            // Добавляем наказание, если оно есть
-            if (punishment) {
-                html += `
-                    <div class="law-punishment" style="margin-top: 15px; color: #ff6b6b; font-weight: 600;">
-                        <i class="fas fa-gavel"></i> Наказание: <span style="font-weight: normal; color: #eee;">${punishment.replace(/\n/g, '<br>')}</span>
-                    </div>
-                `;
-            }
+            if (note) html += addNoteBlock(note);
+            if (contentAfterNote) html += `<div class="law-text" style="margin-top: 15px;">${contentAfterNote.replace(/\n/g, '<br>')}</div>`;
+            if (note2) html += addNoteBlock(note2);
+            if (contentAfterNote2) html += `<div class="law-text" style="margin-top: 15px;">${contentAfterNote2.replace(/\n/g, '<br>')}</div>`;
+            if (note3) html += addNoteBlock(note3);
+            if (contentAfterNote3) html += `<div class="law-text" style="margin-top: 15px;">${contentAfterNote3.replace(/\n/g, '<br>')}</div>`;
+            if (punishment) html += `<div class="law-punishment" style="margin-top: 15px; color: #ff6b6b; font-weight: 600;"><i class="fas fa-gavel"></i> Наказание: <span style="font-weight: normal; color: #eee;">${punishment.replace(/\n/g, '<br>')}</span></div>`;
             
             articleElement.innerHTML = html;
             return articleElement;
         }
 
-        // Глобальный обработчик кликов для кнопок примечаний
-        document.addEventListener('click', function(e) {
-            // Ищем кнопку с классом note-toggle-btn (саму кнопку или её родителя)
-            const button = e.target.closest('.note-toggle-btn');
-            if (!button) return;
-            
-            // Находим следующий элемент после кнопки с классом law-note
-            const noteDiv = button.nextElementSibling;
-            if (!noteDiv || !noteDiv.classList.contains('law-note')) return;
-            
-            // Переключаем видимость
-            if (noteDiv.style.display === 'none' || noteDiv.style.display === '') {
-                noteDiv.style.display = 'block';
-                button.innerHTML = '<i class="fas fa-info-circle"></i> Скрыть примечание';
-            } else {
-                noteDiv.style.display = 'none';
-                button.innerHTML = '<i class="fas fa-info-circle"></i> Показать примечание';
-            }
-        });
-
-        // Функция для поиска законодательства
         function initLawSearch() {
             const searchInput = document.getElementById('lawSearch');
             const searchBtn = document.getElementById('searchLawBtn');
@@ -2976,30 +5041,10 @@ pdd: [
                 const showFZOP = document.getElementById('filterFZOP').checked;
                 const showFZOVNG = document.getElementById('filterFZOVNG').checked;
                 const showOPSGO = document.getElementById('filterOPSGO').checked;
-const showPDD = document.getElementById('filterPDD').checked;
+                const showPDD = document.getElementById('filterPDD')?.checked || false;
                 
                 lawResults.innerHTML = '';
-                
                 let hasResults = false;
-                
-                const hasAnyArticles = 
-                    (showUK && legislationData.uk.length > 0) ||
-                    (showKOAP && legislationData.koap.length > 0) ||
-                    (showFZOP && legislationData.fzop.length > 0) ||
-                    (showFZOVNG && legislationData.fzvng.length > 0) ||
-(showPDD && legislationData.uk.length > 0) ||
-                    (showOPSGO && legislationData.opsgo.length > 0);
-                
-                if (!hasAnyArticles) {
-                    lawResults.innerHTML = `
-                        <div class="empty-law">
-                            <i class="fas fa-book-open"></i>
-                            <h3 style="color: #4CAF50; margin-bottom: 10px;">База законодательства пуста</h3>
-                            <p style="color: #ccc;">Добавьте статьи законов в массив legislationData в коде</p>
-                        </div>
-                    `;
-                    return;
-                }
                 
                 function checkArticle(article, codeName) {
                     if (query === '') {
@@ -3008,18 +5053,7 @@ const showPDD = document.getElementById('filterPDD').checked;
                         return true;
                     }
                     
-                    // Поиск по всем полям
-                    const searchableText = (
-                        (article.title || '') + ' ' +
-                        (article.content || '') + ' ' +
-                        (article.content_after_note || '') + ' ' +
-                        (article.content_after_note2 || '') + ' ' +
-                        (article.content_after_note3 || '') + ' ' +
-                        (article.note || '') + ' ' +
-                        (article.note2 || '') + ' ' +
-                        (article.note3 || '') + ' ' +
-                        (article.punishment || '')
-                    ).toLowerCase();
+                    const searchableText = ((article.title || '') + ' ' + (article.content || '') + ' ' + (article.content_after_note || '') + ' ' + (article.content_after_note2 || '') + ' ' + (article.content_after_note3 || '') + ' ' + (article.note || '') + ' ' + (article.note2 || '') + ' ' + (article.note3 || '') + ' ' + (article.punishment || '')).toLowerCase();
                     
                     if (searchableText.includes(query)) {
                         const articleElement = createLawArticleElement(codeName, article, query);
@@ -3029,93 +5063,44 @@ const showPDD = document.getElementById('filterPDD').checked;
                     return false;
                 }
                 
-                if (showUK) {
-                    legislationData.uk.forEach(article => {
-                        if (checkArticle(article, 'УК РП')) hasResults = true;
-                    });
-                }
-if (showPDD) {
-    legislationData.pdd.forEach(article => {
-        if (checkArticle(article, 'ПДД')) hasResults = true;
-    });
-}
+                if (showUK) legislationData.uk.forEach(article => { if (checkArticle(article, 'УК РП')) hasResults = true; });
+                if (showPDD && legislationData.pdd) legislationData.pdd.forEach(article => { if (checkArticle(article, 'ПДД')) hasResults = true; });
+                if (showKOAP) legislationData.koap.forEach(article => { if (checkArticle(article, 'КоАП')) hasResults = true; });
+                if (showFZOP) legislationData.fzop.forEach(article => { if (checkArticle(article, 'ФЗоП')) hasResults = true; });
+                if (showFZOVNG) legislationData.fzvng.forEach(article => { if (checkArticle(article, 'ФЗоВНГ')) hasResults = true; });
+                if (showOPSGO) legislationData.opsgo.forEach(article => { if (checkArticle(article, 'ОПСГО')) hasResults = true; });
                 
-                if (showKOAP) {
-                    legislationData.koap.forEach(article => {
-                        if (checkArticle(article, 'КоАП')) hasResults = true;
-                    });
-                }
-                
-                if (showFZOP) {
-                    legislationData.fzop.forEach(article => {
-                        if (checkArticle(article, 'ФЗоП')) hasResults = true;
-                    });
-                }
-                
-                if (showFZOVNG) {
-                    legislationData.fzvng.forEach(article => {
-                        if (checkArticle(article, 'ФЗоВНГ')) hasResults = true;
-                    });
-                }
-                
-                if (showOPSGO) {
-                    legislationData.opsgo.forEach(article => {
-                        if (checkArticle(article, 'ОПСГО')) hasResults = true;
-                    });
-                }
-                
-                if (!hasResults && query !== '') {
-                    lawResults.innerHTML = '<p style="text-align: center; color: #ccc; padding: 20px;">Ничего не найдено</p>';
-                }
+                if (!hasResults && query !== '') lawResults.innerHTML = '<p style="text-align: center; color: #ccc; padding: 20px;">Ничего не найдено</p>';
             }
             
-            if (searchBtn) {
-                searchBtn.addEventListener('click', performLawSearch);
-            }
-            
-            if (searchInput) {
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        performLawSearch();
-                    }
-                });
-            }
-            
-            // Запускаем поиск при загрузке
+            if (searchBtn) searchBtn.addEventListener('click', performLawSearch);
+            if (searchInput) searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performLawSearch(); });
             performLawSearch();
         }
 
-        // Функции для помощи
         function openLawHelpModal() {
             document.getElementById('lawHelpModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeLawHelpModal() {
             document.getElementById('lawHelpModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-        
+
         function closeLawHelpOutside(event) {
-            if (event.target.classList.contains('law-help-modal')) {
-                closeLawHelpModal();
-            }
+            if (event.target.classList.contains('law-help-modal')) closeLawHelpModal();
         }
 
-        // Вспомогательные функции
         function escapeRegExp(string) {
             return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
         function escapeQuotes(text) {
-            return text
-                .replace(/\\/g, '\\\\')
-                .replace(/'/g, "\\'")
-                .replace(/"/g, '\\"')
-                .replace(/\n/g, '\\n');
+            return text.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n');
         }
 
-        // Инициализация
+        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             loadUserDataFromStorage();
             initTabs();
@@ -3124,39 +5109,64 @@ if (showPDD) {
             fillPDP();
             initLawSearch();
             
+            
+            const savedColor = localStorage.getItem('accent_color');
+            if (savedColor) {
+                document.documentElement.style.setProperty('--accent', savedColor);
+                document.documentElement.style.setProperty('--accent-dark', savedColor);
+                const colorInput = document.getElementById('accentColor');
+                if (colorInput) colorInput.value = savedColor;
+            }
+            
+            const soundToggle = document.getElementById('soundToggle');
+            const popupToggle = document.getElementById('popupToggle');
+            if (soundToggle) soundToggle.classList.toggle('active', notificationSettings.sound);
+            if (popupToggle) popupToggle.classList.toggle('active', notificationSettings.popup);
+            
             document.querySelectorAll('.subtab').forEach(subtab => {
                 subtab.addEventListener('click', function() {
                     document.querySelectorAll('.subtab').forEach(s => s.classList.remove('active'));
                     this.classList.add('active');
-                    
-                    const subtabId = this.getAttribute('data-subtab');
-                    fillBindsSubtab(subtabId);
+                    fillBindsSubtab(this.getAttribute('data-subtab'));
                 });
             });
             
             document.getElementById('updateDataBtn').addEventListener('click', function() {
                 updateUserData();
                 const activeSubtab = document.querySelector('.subtab.active');
-                if (activeSubtab) {
-                    fillBindsSubtab(activeSubtab.getAttribute('data-subtab'));
-                }
+                if (activeSubtab) fillBindsSubtab(activeSubtab.getAttribute('data-subtab'));
                 fillReports();
                 showNotification('Данные обновлены!');
             });
             
             document.querySelectorAll('.category-header, .injury-header, .report-header').forEach(header => {
-                header.classList.remove('collapsed');
                 const content = header.nextElementSibling;
-                if (content) {
-                    content.style.display = 'block';
-                }
+                if (content) content.style.display = 'block';
             });
             
             document.getElementById('filterUK').addEventListener('change', () => initLawSearch());
+            document.getElementById('filterPDD')?.addEventListener('change', () => initLawSearch());
             document.getElementById('filterKOAP').addEventListener('change', () => initLawSearch());
             document.getElementById('filterFZOP').addEventListener('change', () => initLawSearch());
             document.getElementById('filterFZOVNG').addEventListener('change', () => initLawSearch());
             document.getElementById('filterOPSGO').addEventListener('change', () => initLawSearch());
+        });
+
+        // Глобальный обработчик кликов для кнопок примечаний
+        document.addEventListener('click', function(e) {
+            const button = e.target.closest('.note-toggle-btn');
+            if (!button) return;
+            
+            const noteDiv = button.nextElementSibling;
+            if (!noteDiv || !noteDiv.classList.contains('law-note')) return;
+            
+            if (noteDiv.style.display === 'none' || noteDiv.style.display === '') {
+                noteDiv.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-info-circle"></i> Скрыть примечание';
+            } else {
+                noteDiv.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-info-circle"></i> Показать примечание';
+            }
         });
     </script>
 </body>
